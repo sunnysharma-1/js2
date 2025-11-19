@@ -101,7 +101,7 @@ export default function AfterSalesSupportPage() {
       {/* HERO */
       <header
         ref={heroRef}
-        className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 py-20 md:py-28"
+        className="relative overflow-hidden bg-linear-to-b from-white to-slate-50 py-20 md:py-28"
         aria-labelledby="hero-heading"
       >
         {/* PCB patterned background (SVG) */}
@@ -154,7 +154,7 @@ export default function AfterSalesSupportPage() {
               <h1 id="hero-heading" className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
                 Support that keeps your products
                 <br />
-                <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">working reliably</span>
+                <span className="bg-linear-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">working reliably</span>
               </h1>
 
               <p className="text-lg text-slate-600 max-w-2xl mb-6">
@@ -213,7 +213,7 @@ export default function AfterSalesSupportPage() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl h-80 border-2 border-slate-100">
                 {/* replace with your PCB assembly hero image - put an image named https://www.newburyelectronics.co.uk/wp-content/uploads/2018/12/pcb-assembly-machine.jpg in public folder */}
                 <Image src="https://www.newburyelectronics.co.uk/wp-content/uploads/2018/12/pcb-assembly-machine.jpg" alt="PCB assembly" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-white/30 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-linear-to-tr from-transparent to-white/30 mix-blend-overlay" />
                 <div className="absolute left-4 bottom-4 bg-black/40 text-white text-xs px-3 py-1 rounded">SMT Line • Reflow • AOI</div>
               </div>
             </div>
@@ -237,7 +237,7 @@ export default function AfterSalesSupportPage() {
                         ? "bg-white shadow border border-slate-200"
                         : "text-slate-600 hover:bg-white/80"
                     }`}
-                    aria-pressed={i === activeServiceIndex}
+                    aria-pressed={i === activeServiceIndex ? "true" : "false"}
                   >
                     <s.icon className="inline-block mr-2 -mt-0.5 h-4 w-4 text-cyan-600" />
                     {s.title}
@@ -271,10 +271,10 @@ export default function AfterSalesSupportPage() {
                         </ul>
 
                         <div className="mt-6 flex gap-3">
-                          <Button size="md" className="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2">
+                          <Button size="default" className="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2">
                             Request Service
                           </Button>
-                          <Button size="md" variant="outline" className="px-4 py-2">
+                          <Button size="default" variant="outline" className="px-4 py-2">
                             Learn More
                           </Button>
                         </div>
@@ -332,7 +332,6 @@ export default function AfterSalesSupportPage() {
                             <div className="font-medium">{c.title}</div>
                             <div className="text-sm text-slate-600">{c.line}</div>
                           </div>
-                          <div className="text-xs text-slate-500">{c.availability}</div>
                         </div>
                       ))}
                     </div>
@@ -379,10 +378,10 @@ export default function AfterSalesSupportPage() {
               <p className="text-sm opacity-90">Contact our support team or open a ticket in the portal.</p>
             </div>
             <div className="flex gap-3">
-              <Button size="md" className="bg-white text-cyan-700 font-semibold px-4 py-2">
+              <Button size="default" className="bg-white text-cyan-700 font-semibold px-4 py-2">
                 <Link href="/contact">Contact Support</Link>
               </Button>
-              <Button size="md" variant="outline" className="border-white text-white px-4 py-2">
+              <Button size="default" variant="outline" className="border-white text-white px-4 py-2">
                 Open Portal
               </Button>
             </div>

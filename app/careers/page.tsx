@@ -676,6 +676,8 @@ export default function CareersPage() {
               <button
                 onClick={() => setIsApplicationOpen(false)}
                 className="text-slate-500 hover:text-slate-700"
+                title="Close"
+                aria-label="Close application form"
               >
                 <X className="h-5 w-5" />
               </button>

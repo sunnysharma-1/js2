@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 
 export function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(1)
+  const [isLargeScreen, setIsLargeScreen] = useState(false)
 
   const slides = [
     {
@@ -48,6 +49,17 @@ export function HeroSection() {
 
     return () => clearInterval(interval)
   }, [slides.length])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024)
+    }
+
+    handleResize() // Set initial value
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#1e5a8e] via-[#1a7a9e] to-[#00a8a8] min-h-[600px]">
@@ -139,7 +151,7 @@ export function HeroSection() {
                       // when the component is wide enough (which is what `lg:` would imply)
                       style={{
                         clipPath:
-                          window.innerWidth >= 1024 // 1024px is the default 'lg' breakpoint
+                          isLargeScreen
                             ? "polygon(15% 0, 100% 0, 100% 100%, 0 100%)"
                             : "none",
                       }}

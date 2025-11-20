@@ -174,7 +174,7 @@ export default function AfterSalesSupportPage() {
                   <Link href="#services">Explore Services</Link>
                 </Button>
 
-                <div className="ml-2 text-sm text-slate-500">or call <span className="font-medium text-slate-800">+91 648 929 1400</span></div>
+                <div className="ml-2 text-sm text-slate-500">or call <span className="font-medium text-slate-800">+91 88669 68821</span></div>
               </div>
 
               <ul className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-md">

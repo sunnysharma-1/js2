@@ -42,7 +42,7 @@ const services = [
       "Automated Optical Inspection (AOI)",
     ],
     image:
-      "https://images.pexels.com/photos/4254167/pexels-photo-4254167.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://ecelectronics.com/wp-content/uploads/2025/05/shutterstock_2137865295-1-scaled-1.jpg",
     category: "Core Manufacturing",
   },
   {
@@ -62,7 +62,7 @@ const services = [
       "Engineering Consultation",
     ],
     image:
-      "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://foxtronicsems.com/wp-content/uploads/2025/07/rapid-prototyping-img-2.jpg",
     category: "Engineering & NPI",
   },
   {
@@ -122,7 +122,7 @@ const services = [
       "Logistics Support",
     ],
     image:
-      "https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7rUuP0nbmi1FthU_e9zVr83qyDHq2fcvGSg&s",
     category: "Core Manufacturing",
   },
   {
@@ -162,7 +162,7 @@ const services = [
       "Full Traceability Reporting",
     ],
     image:
-      "https://images.pexels.com/photos/3735762/pexels-photo-3735762.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://maguselectronics.co.uk/wp-content/uploads/2025/08/Testing-Electroless-Nickel-unit.jpg",
     category: "Quality & Reliability",
   },
   {

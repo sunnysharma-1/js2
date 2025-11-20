@@ -31,7 +31,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "6 min read",
     image: "/pcb-testing-methods-electronics.jpg",
     author: "Nirav Patel",
-    authorBio: "Electronics Engineer and EMS Specialist with over 12 years of experience in PCB manufacturing and testing.",
+    authorBio:
+      "Electronics Engineer and EMS Specialist with over 12 years of experience in PCB manufacturing and testing.",
     slug: "top-pcb-testing-methods-indian-ems",
     content: `
       <h2>Introduction</h2>
@@ -199,7 +200,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "7 min read",
     image: "https://vectorbluehub.com/zdjecia/artykul/80/561/1920x1080/4/Box-Build__153_.JPG",
     author: "Nirav Patel",
-    authorBio: "Senior System Integration Engineer specializing in industrial automation and control systems.",
+    authorBio:
+      "Senior System Integration Engineer specializing in industrial automation and control systems.",
     slug: "box-build-assembly-industrial-automation",
     content: `
       <h2>Understanding Box Build Assembly</h2>
@@ -304,7 +306,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "8 min read",
     image: "/pcb-design-manufacturability-dfm.jpg",
     author: "Nirav Patel",
-    authorBio: "DFM Consultant helping startups and OEMs convert concepts into scalable electronic products.",
+    authorBio:
+      "DFM Consultant helping startups and OEMs convert concepts into scalable electronic products.",
     slug: "design-for-manufacturability-pcb",
     content: `
       <h2>What Is Design for Manufacturability (DFM)?</h2>
@@ -404,7 +407,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "7 min read",
     image: "/wire-harness-medical-devices-assembly.jpg",
     author: "Nirav Patel",
-    authorBio: "Wire harness and cable assembly specialist working with regulated medical and industrial applications.",
+    authorBio:
+      "Wire harness and cable assembly specialist working with regulated medical and industrial applications.",
     slug: "wire-harness-assembly-medical-devices",
     content: `
       <h2>Why Wire Harness Quality Matters in Medical Devices</h2>
@@ -499,7 +503,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "6 min read",
     image: "/pcb-assembly-automation-technology.jpg",
     author: "Nirav Patel",
-    authorBio: "SMT Process Engineer focused on automation, line optimization, and Industry 4.0 practices.",
+    authorBio:
+      "SMT Process Engineer focused on automation, line optimization, and Industry 4.0 practices.",
     slug: "latest-trends-pcb-assembly-automation",
     content: `
       <h2>Automation in PCB Assembly: The Big Picture</h2>
@@ -578,7 +583,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "6 min read",
     image: "/wire-harness-industrial-machinery-applications.jpg",
     author: "Nirav Patel",
-    authorBio: "Industrial wiring and harness design expert working across factory automation and heavy machinery.",
+    authorBio:
+      "Industrial wiring and harness design expert working across factory automation and heavy machinery.",
     slug: "wire-harness-industrial-machinery-applications",
     content: `
       <h2>Why Wire Harnesses Are So Important</h2>
@@ -643,7 +649,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "7 min read",
     image: "/shielded-unshielded-cable-assemblies.jpg",
     author: "Nirav Patel",
-    authorBio: "Cable assembly engineer with a focus on EMI/EMC performance in industrial and telecom systems.",
+    authorBio:
+      "Cable assembly engineer with a focus on EMI/EMC performance in industrial and telecom systems.",
     slug: "shielded-vs-unshielded-cable-assemblies",
     content: `
       <h2>What Is Shielding in Cable Assemblies?</h2>
@@ -723,7 +730,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "8 min read",
     image: "/pcb-assembly-low-volume-high-volume.jpg",
     author: "Nirav Patel",
-    authorBio: "EMS operations specialist with experience in prototype, NPI, and mass production environments.",
+    authorBio:
+      "EMS operations specialist with experience in prototype, NPI, and mass production environments.",
     slug: "low-volume-high-volume-pcb-assembly",
     content: `
       <h2>Understanding Volume in PCB Assembly</h2>
@@ -797,7 +805,8 @@ const blogPostsData: Record<string, BlogPost> = {
     readTime: "9 min read",
     image: "/types-wiring-harness-modern-applications.jpg",
     author: "Jayshree Instruments",
-    authorBio: "JINST engineering team with hands-on experience in custom wiring harness design and manufacturing.",
+    authorBio:
+      "JINST engineering team with hands-on experience in custom wiring harness design and manufacturing.",
     slug: "types-wiring-harness-complete-guide",
     content: `
       <h2>What Is a Wiring Harness?</h2>
@@ -892,150 +901,203 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   if (!post) {
     return (
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-slate-50">
         <section className="py-20">
-          <div className="container px-4">
-            <div className="text-center max-w-xl mx-auto">
-              <h1 className="text-4xl font-bold mb-4">Article Not Found</h1>
-              <p className="text-muted-foreground mb-8">
-                The article you&apos;re looking for doesn&apos;t exist or hasn&apos;t been published yet.
-              </p>
-              <Button asChild>
-                <Link href="/blog">Back to Blog</Link>
-              </Button>
-            </div>
+          <div className="mx-auto max-w-2xl px-4">
+            <h1 className="mb-4 text-3xl font-bold tracking-tight text-slate-900">
+              Article Not Found
+            </h1>
+            <p className="mb-8 text-slate-600">
+              The article you&apos;re looking for doesn&apos;t exist or hasn&apos;t been published yet.
+            </p>
+            <Button asChild>
+              <Link href="/blog">Back to Blog</Link>
+            </Button>
           </div>
         </section>
       </main>
     )
   }
 
+  const relatedPosts = Object.values(blogPostsData)
+    .filter((p) => p.slug !== post.slug)
+    .slice(0, 3)
+
+  const handleShare = () => {
+    if (typeof window === "undefined") return
+    const url = window.location.href
+
+    if ((navigator as any).share) {
+      ;(navigator as any).share({
+        title: post.title,
+        text: post.excerpt,
+        url,
+      })
+    } else {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, "_blank")
+    }
+  }
+
   return (
-  <main className="min-h-screen">
-    {/* Hero Section */}
-    <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 md:py-16 text-white overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-[#4A90E2]/20 to-[#00A896]/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
+    <main className="min-h-screen bg-white">
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16 text-white">
+        {/* soft glow */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-32 top-10 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl" />
+          <div className="absolute -right-32 bottom-10 h-72 w-72 rounded-full bg-emerald-500/20 blur-3xl" />
+        </div>
 
-      {/* 🔥 full-width wrapper instead of `container max-w-3xl` */}
-      <div className="relative z-10 w-full px-4 sm:px-8 lg:px-16">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Blog
-        </Link>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full"
-        >
-          <div className="mb-6 flex flex-wrap items-center gap-4">
-            <span className="inline-block px-3 py-1 bg-[#4A90E2]/20 border border-[#4A90E2]/40 rounded-full text-sm font-medium text-[#4A90E2]">
-              {post.category}
-            </span>
-            <div className="flex items-center gap-4 text-sm text-white/70">
-              <span className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                {post.date}
-              </span>
-              <span className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
-                {post.readTime}
-              </span>
-            </div>
+        <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
+          <div>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-sm text-white/80 ring-1 ring-white/10 hover:bg-white/10"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to all articles
+            </Link>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance leading-tight">
-            {post.title}
-          </h1>
-
-          <p className="text-lg text-white/80 text-pretty mb-8">{post.excerpt}</p>
-
-          <div className="flex items-center justify-between pt-6 border-t border-white/10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.2fr)] md:items-end"
+          >
             <div>
-              <p className="font-semibold text-white">By {post.author}</p>
-              <p className="text-sm text-white/60">{post.authorBio}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                size="sm"
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 bg-transparent"
-              >
-                <Share2 className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+              <div className="mb-4 flex flex-wrap items-center gap-3">
+                <span className="inline-flex items-center rounded-full bg-cyan-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-300 ring-1 ring-cyan-400/30">
+                  {post.category}
+                </span>
+                <div className="flex flex-wrap items-center gap-4 text-sm text-white/70">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="h-4 w-4" />
+                    {post.date}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock className="h-4 w-4" />
+                    {post.readTime}
+                  </span>
+                </div>
+              </div>
 
-    {/* Featured Image */}
-    <section className="py-8 md:py-12">
-      {/* 🔥 full-width, no `container` */}
-      <div className="w-full px-0">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative h-[300px] md:h-[500px] w-full rounded-none md:rounded-xl overflow-hidden shadow-2xl"
-        >
-          <Image
-            src={post.image || "/placeholder.svg"}
-            alt={post.title}
-            fill
-            className="object-cover"
+              <h1 className="mb-4 text-balance text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-5xl">
+                {post.title}
+              </h1>
+
+              <p className="max-w-2xl text-pretty text-base text-white/80 md:text-lg">
+                {post.excerpt}
+              </p>
+            </div>
+
+            <div className="space-y-4 rounded-2xl bg-white/5 p-4 ring-1 ring-white/10 backdrop-blur-md">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
+                  Author
+                </p>
+                <p className="mt-1 text-sm font-semibold text-white">{post.author}</p>
+                <p className="mt-1 text-xs text-white/70">{post.authorBio}</p>
+              </div>
+              <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                <span className="text-xs text-white/60">Share this article</span>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  onClick={handleShare}
+                  className="h-9 w-9 border-white/30 bg-white/5 text-white hover:bg-white/15"
+                >
+                  <Share2 className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FEATURED IMAGE */}
+      <section className="bg-slate-950 pb-10">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative h-[260px] w-full overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/60 shadow-2xl md:h-[380px]"
+          >
+            <Image
+              src={post.image || "/placeholder.svg"}
+              alt={post.title}
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-900/10 to-transparent" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ARTICLE CONTENT */}
+      <section className="bg-white pb-16 pt-10 md:pb-20 md:pt-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <motion.article
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-h2:text-slate-900 prose-h3:text-slate-900 prose-p:text-slate-700 prose-li:text-slate-700 prose-strong:text-slate-900 prose-a:text-cyan-700 sm:prose-lg"
+            dangerouslySetInnerHTML={{ __html: post.content }}
           />
-        </motion.div>
-      </div>
-    </section>
-
-    {/* Article Content */}
-    <section className="py-12 md:py-20">
-      {/* 🔥 wider content area */}
-      <div className="w-full px-4 sm:px-8 lg:px-16">
-        <motion.article
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="prose prose-lg max-w-none w-full"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-      </div>
-    </section>
-
-    {/* Related Articles CTA */}
-    <section className="py-16 md:py-24 bg-slate-50">
-      {/* 🔥 full width CTA */}
-      <div className="w-full px-4 sm:px-8 lg:px-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">More Articles</h2>
-          <p className="text-muted-foreground text-lg">Explore more insights from our blog</p>
         </div>
+      </section>
 
-        <div className="flex justify-center">
-          <Button asChild size="lg" className="bg-gradient-to-r from-[#4A90E2] to-[#00A896]">
-            <Link href="/blog">Back to All Articles</Link>
-          </Button>
+      {/* MORE ARTICLES */}
+      <section className="border-t bg-slate-50 py-14 md:py-18">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Keep reading
+              </h2>
+              <p className="text-sm text-slate-600">
+                Explore more insights on PCB, wire harness, and electronics manufacturing.
+              </p>
+            </div>
+            <Button asChild variant="outline" className="mt-2 w-fit md:mt-0">
+              <Link href="/blog">View all articles</Link>
+            </Button>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {relatedPosts.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/blog/${item.slug}`}
+                className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm hover:border-slate-300 hover:shadow-md"
+              >
+                <div className="relative h-40 w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={item.image || "/placeholder.svg"}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-slate-900/5 to-transparent" />
+                  <span className="absolute left-3 top-3 rounded-full bg-black/50 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-slate-50">
+                    {item.category}
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col p-4">
+                  <p className="mb-1 text-xs text-slate-500">
+                    {item.date} • {item.readTime}
+                  </p>
+                  <h3 className="mb-1 line-clamp-2 text-sm font-semibold text-slate-900">
+                    {item.title}
+                  </h3>
+                  <p className="line-clamp-3 text-xs text-slate-600">{item.excerpt}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
-)
+      </section>
+    </main>
+  )
 }

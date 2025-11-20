@@ -107,14 +107,7 @@ export function Footer() {
                       +91 88669 68821
                     </a>
                   </p>
-                  <p className="text-sm">
-                    <a
-                      href="tel:+918866968821"
-                      className="text-teal-600 hover:text-teal-700 transition-colors"
-                    >
-                      +91 8866 968 821
-                    </a>
-                  </p>
+                  
                 </div>
               </div>
             </div>

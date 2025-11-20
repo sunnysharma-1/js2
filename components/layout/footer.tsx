@@ -192,7 +192,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/services/global-purchase"
+                  href="/services/global-purchasing"
                   className="text-teal-600 hover:text-teal-700 transition-colors"
                 >
                   Global Purchase

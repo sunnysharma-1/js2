@@ -48,7 +48,7 @@ export default function BoxBuildPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* HERO – darker overlay applied */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white py-24 md:py-36">
+      <section className="relative overflow-hidden bbg-linear-to-br from-slate-950 via-slate-900 to-slate-950 text-white py-24 md:py-36">
         {/* Background image + strong dark overlay */}
         <div className="absolute inset-0">
           <Image

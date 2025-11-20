@@ -270,14 +270,7 @@ export default function AfterSalesSupportPage() {
                           ))}
                         </ul>
 
-                        <div className="mt-6 flex gap-3">
-                          <Button size="default" className="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2">
-                            Request Service
-                          </Button>
-                          <Button size="default" variant="outline" className="px-4 py-2">
-                            Learn More
-                          </Button>
-                        </div>
+                       
                       </div>
                     </div>
                   </CardContent>
@@ -381,9 +374,7 @@ export default function AfterSalesSupportPage() {
               <Button size="default" className="bg-white text-cyan-700 font-semibold px-4 py-2">
                 <Link href="/contact">Contact Support</Link>
               </Button>
-              <Button size="default" variant="outline" className="border-white text-white px-4 py-2">
-                Open Portal
-              </Button>
+            
             </div>
           </div>
         </div>

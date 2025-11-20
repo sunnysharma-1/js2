@@ -136,7 +136,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-4">
-                {/* Updated Address Card */}
+                {/* Address Card */}
                 <Card className="shadow-sm">
                   <CardContent className="p-5 md:p-6">
                     <div className="flex items-start gap-4">
@@ -168,7 +168,7 @@ export default function ContactPage() {
                   </CardContent>
                 </Card>
 
-                {/* Updated Phone Card with clickable numbers */}
+                {/* Phone Card */}
                 <Card className="shadow-sm">
                   <CardContent className="p-5 md:p-6">
                     <div className="flex items-start gap-4">
@@ -200,6 +200,7 @@ export default function ContactPage() {
                   </CardContent>
                 </Card>
 
+                {/* Email Card */}
                 <Card className="shadow-sm">
                   <CardContent className="p-5 md:p-6">
                     <div className="flex items-start gap-4">
@@ -231,6 +232,7 @@ export default function ContactPage() {
                   </CardContent>
                 </Card>
 
+                {/* Hours Card */}
                 <Card className="shadow-sm">
                   <CardContent className="p-5 md:p-6">
                     <div className="flex items-start gap-4">
@@ -275,8 +277,18 @@ export default function ContactPage() {
               Schedule a visit to see our state-of-the-art manufacturing facility and meet our team.
             </p>
           </div>
-          <div className="mx-auto h-[350px] rounded-lg bg-gray-200 md:h-[400px] flex items-center justify-center">
-            <p className="text-sm text-muted-foreground">Map integration placeholder</p>
+
+          {/* Embedded Google Map */}
+          <div className="mx-auto h-[350px] md:h-[400px] rounded-lg overflow-hidden shadow-md">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.7432719935027!2d72.6338526!3d23.2524275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2c745f9917d5%3A0x2ca6d7e5188d0cb0!2sJayshree%20Instruments%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1763624334066!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full border-0"
+            />
           </div>
         </div>
       </section>

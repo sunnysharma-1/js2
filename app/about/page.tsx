@@ -1111,7 +1111,7 @@ export default function AboutPage() {
               {
                 title: "Telecommunications",
                 description: "Network equipment, 5G infrastructure, and communication devices for connectivity.",
-                image: "https://images.unsplash.com/photo-1544197150-b990a580bb7a8?w=800&h=600&fit=crop",
+                image: "https://www.venture-mfg.com/wp-content/uploads/2022/12/Multilayer-PCB-2.jpg",
                 icon: "📡",
                 stats: "120+ Telecom Solutions",
               },

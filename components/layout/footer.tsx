@@ -237,12 +237,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/about#team"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Team
-                </Link>
+             
               </li>
               <li>
                 <Link
@@ -253,12 +248,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/about#client"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Client
-                </Link>
+            
               </li>
             </ul>
           </div>

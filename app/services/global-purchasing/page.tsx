@@ -78,7 +78,7 @@ export default function GlobalPurchasingPage() {
       title: "Inventory & Buffer Stock",
       description: "Strategic stocking models to support JIT deliveries and reduce line-down risk.",
       image:
-        "https://images.pexels.com/photos/4484077/pexels-photo-4484077.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://www.versaclouderp.com/blog/wp-content/uploads/2025/03/Essentials-of-Inventory-What-is-Buffer-Stock.png",
     },
   ]
 

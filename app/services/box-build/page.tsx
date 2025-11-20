@@ -55,7 +55,7 @@ export default function BoxBuildPage() {
             src="https://www.globalwellpcba.com/wp-content/uploads/2024/09/Complex-circuit-board-system-with-various-connectors-and-wiring.webp"
             alt="Box build assembly line"
             fill
-            className="object-cover opacity-30" // dim the image
+            className="object-cover opacity-30"
           />
           {/* solid dark base */}
           <div className="absolute inset-0 bg-slate-950/80" />
@@ -267,10 +267,7 @@ export default function BoxBuildPage() {
       </section>
 
       {/* Assembly Process Showcase */}
-      <section
-        id="process"
-        className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white"
-      >
+      <section id="process" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#0066CC] to-[#00A896] bg-clip-text text-transparent">
@@ -322,7 +319,7 @@ export default function BoxBuildPage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items=end p-6">
                   <p className="text-white font-medium text-sm">{item.label}</p>
                 </div>
               </motion.div>
@@ -551,11 +548,11 @@ export default function BoxBuildPage() {
               <div className="space-y-3 mb-6">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-white/90">Email</span>
-                  <span className="font-medium">sales@jayshreeinstruments.com</span>
+                  <span className="font-medium">info@jinst.in</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-white/90">Phone</span>
-                  <span className="font-medium">+91 648 929 1400</span>
+                  <span className="font-medium">+91 88669 68821</span>
                 </div>
               </div>
 

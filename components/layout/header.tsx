@@ -1,8 +1,21 @@
 "use client"
 
+import { useState } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { Menu, ChevronDown, Cpu, Wrench, Cable, Pencil, Headphones, Grid3x3, Lightbulb } from "lucide-react"
+import {
+  Menu,
+  ChevronDown,
+  Cpu,
+  Wrench,
+  Cable,
+  Pencil,
+  Headphones,
+  Grid3x3,
+  Lightbulb,
+  Sparkles,
+  ArrowRight,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
@@ -17,12 +30,13 @@ import Image from "next/image"
 
 export function Header() {
   const pathname = usePathname()
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
 
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About Us" },
     { href: "/portfolio", label: "Portfolio" },
-     {href: "/careers", label: "Careers" },
+    { href: "/careers", label: "Careers" },
     { href: "/blog", label: "Blog" },
   ]
 
@@ -81,11 +95,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 shadow-sm">
-      {/* ↓↓↓ decreased header height here (h-28 -> h-20) ↓↓↓ */}
       <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
-          {/* ↓↓↓ increased logo container size here ↓↓↓ */}
           <div className="relative h-35 w-56 md:h-50 md:w-64">
             <Image
               src="/images/design-mode/Black_and_White_Circular_Art___Design_Logo__1_-removebg-preview.png"
@@ -178,10 +190,180 @@ export function Header() {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-80">
-            <nav className="flex flex-col gap-4 mt-8">
-              {/* Add mobile links/services here */}
-            </nav>
+          <SheetContent side="right" className="w-80 flex flex-col px-4">
+            {/* ✨ Hero Card / Interesting Design Block */}
+            <div className="mt-4 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-4 shadow-lg relative overflow-hidden">
+              <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-cyan-500/10 blur-2xl" />
+              <div className="absolute -left-16 bottom-0 h-24 w-24 rounded-full bg-emerald-500/10 blur-2xl" />
+
+              <div className="flex items-center gap-3">
+                <div className="h-9 w-9 rounded-xl bg-white/10 flex items-center justify-center">
+                  <Sparkles className="h-5 w-5 text-cyan-300" />
+                </div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-cyan-300/80">
+                    Precision Electronics
+                  </p>
+                  <p className="text-sm font-semibold leading-tight mt-0.5">
+                    End-to-End EMS Partner
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-3 flex flex-wrap gap-2 text-[11px]">
+                <span className="rounded-full bg-white/5 px-3 py-1 border border-white/10">
+                  PCB Assembly
+                </span>
+                <span className="rounded-full bg-white/5 px-3 py-1 border border-white/10">
+                  Box Build
+                </span>
+                <span className="rounded-full bg-white/5 px-3 py-1 border border-white/10">
+                  Wire Harness
+                </span>
+              </div>
+
+              <div className="mt-3 flex items-center justify-between text-[11px] text-slate-200/80">
+                <div className="flex flex-col">
+                  <span className="font-semibold text-sm">24/7</span>
+                  <span>Project Support</span>
+                </div>
+                <div className="h-8 w-px bg-white/10" />
+                <div className="flex flex-col items-end">
+                  <span className="font-semibold text-sm">100%+</span>
+                  <span>Quality Focus</span>
+                </div>
+              </div>
+            </div>
+
+            {/* ⚡ Quick Actions */}
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <Button
+                asChild
+                variant="outline"
+                className="h-10 rounded-xl border-dashed border-[#4A90E2]/40 text-xs font-medium flex items-center justify-center gap-1"
+              >
+                <Link href="/services">
+                  View Services
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                className="h-10 rounded-xl bg-gradient-to-r from-[#00A896] to-[#008C7A] text-xs font-medium text-white shadow-md hover:shadow-lg"
+              >
+                <Link href="/contact">
+                  Get a Quote
+                  <ArrowRight className="h-3 w-3 ml-1" />
+                </Link>
+              </Button>
+            </div>
+
+            <div className="mt-5 space-y-2 flex-1 overflow-y-auto pb-4">
+              <div className="flex flex-col gap-1">
+                <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.18em]">
+                  Navigation
+                </span>
+              </div>
+
+              {/* Primary pages */}
+              <nav className="flex flex-col gap-2 mt-1">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
+                        isActive
+                          ? "bg-blue-50 text-[#1D4ED8] border border-blue-100"
+                          : "text-gray-700 hover:bg-gray-100"
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                    </Link>
+                  )
+                })}
+
+                {/* Services - collapsible in mobile */}
+                <button
+                  type="button"
+                  onClick={() => setMobileServicesOpen((prev) => !prev)}
+                  className={`mt-2 flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium transition-colors border ${
+                    isServicesActive
+                      ? "bg-blue-50 text-[#1D4ED8] border-blue-200"
+                      : "text-gray-700 hover:bg-gray-100 border-gray-200/70"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span>Services</span>
+                    <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 border border-emerald-100">
+                      Core Offering
+                    </span>
+                  </div>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      mobileServicesOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {mobileServicesOpen && (
+                  <div className="mt-2 space-y-1 pl-3 border-l border-gray-200">
+                    {serviceLinks.map((link, index) => {
+                      const Icon = link.icon
+                      const isActive = pathname === link.href
+                      return (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className={`flex items-start gap-3 rounded-lg px-2 py-2 text-xs transition-colors ${
+                            isActive
+                              ? "bg-blue-50 text-[#1D4ED8]"
+                              : index === 0
+                              ? "bg-gradient-to-r from-blue-50 to-teal-50 text-[#2563EB]"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          <div className="mt-0.5">
+                            <Icon className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <div className="font-semibold">{link.label}</div>
+                            <div className="text-[11px] text-gray-500">{link.description}</div>
+                          </div>
+                        </Link>
+                      )
+                    })}
+                  </div>
+                )}
+              </nav>
+            </div>
+
+            {/* Bottom: Contact & CTA */}
+            <div className="border-t pt-4 mt-3 space-y-3">
+              <div className="flex items-center justify-between text-sm">
+                <div>
+                  <div className="text-[10px] uppercase text-gray-400 mb-0.5 tracking-[0.18em]">
+                    Call Us
+                  </div>
+                  <a
+                    href="tel:+918866968821"
+                    className="font-semibold text-gray-800 hover:text-[#4A90E2]"
+                  >
+                    +91 88669 68821
+                  </a>
+                </div>
+                <span className="rounded-full bg-gray-100 px-3 py-1 text-[10px] font-medium text-gray-600">
+                  Response within 24 hrs
+                </span>
+              </div>
+              <Button
+                asChild
+                className="w-full bg-gradient-to-r from-[#00A896] to-[#008C7A] hover:from-[#008C7A] hover:to-[#00A896] text-white rounded-xl font-medium shadow-md hover:shadow-lg transition-all duration-300 h-11"
+              >
+                <Link href="/contact">Schedule a Call</Link>
+              </Button>
+            </div>
           </SheetContent>
         </Sheet>
       </div>

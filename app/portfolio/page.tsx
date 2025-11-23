@@ -111,12 +111,12 @@ export default function PortfolioPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Animated background pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0066CC]/20 via-transparent to-[#00A896]/20" />
+        <div className="absolute inset-0 bg-linear-to-br from-[#0066CC]/20 via-transparent to-[#00A896]/20" />
 
         <div className="relative mx-auto max-auto px-4 sm:px-3 lg:px-8 py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
@@ -131,7 +131,7 @@ export default function PortfolioPage() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-flex items-auto gap-2 rounded-full bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 px-6 py-3 backdrop-blur-sm border border-white/10"
+                className="inline-flex items-auto gap-2 rounded-full bg-linear-to-r from-[#0066CC]/20 to-[#00A896]/20 px-6 py-3 backdrop-blur-sm border border-white/10"
               >
                 <Sparkles className="h-4 w-4 text-[#00A896]" />
                 <span className="text-sm font-semibold text-white">Excellence in Every Project</span>
@@ -180,7 +180,7 @@ export default function PortfolioPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-gradient-to-r from-[#0066CC] to-[#0052A3] hover:from-[#0052A3] hover:to-[#003D7A] text-white font-semibold text-lg px-8 py-6 shadow-lg shadow-[#0066CC]/50"
+                  className="bg-linear-to-r from-[#0066CC] to-[#0052A3] hover:from-[#0052A3] hover:to-[#003D7A] text-white font-semibold text-lg px-8 py-6 shadow-lg shadow-[#0066CC]/50"
                 >
                   <Link href="/contact">
                     Start Your Project <ArrowRight className="ml-2 h-5 w-5" />

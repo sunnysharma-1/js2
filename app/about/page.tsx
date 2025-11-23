@@ -343,7 +343,7 @@ export default function AboutPage() {
             }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=900&fit=crop"
+              src="https://www.pcbstartech.com/wp-content/uploads/2019/08/company-profile-2.jpg"
               alt="Team collaboration"
               fill
               className="object-cover"

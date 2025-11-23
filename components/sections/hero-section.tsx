@@ -22,7 +22,7 @@ export function HeroSection() {
       video:
         "https://videos.pexels.com/video-files/3571937/3571937-sd_640_360_30fps.mp4",
       fallbackImage:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Testing-KDadL2g4iPPdYLLzkn6aSKKGfW8jJP.jpg",
+        "https://5.imimg.com/data5/SELLER/Default/2025/8/539147602/CJ/FI/CB/23776993/pcb-design-research-development-service.jpeg",
     },
     {
       id: 2,
@@ -134,9 +134,8 @@ export function HeroSection() {
                 {slides.map((slide, index) => (
                   <div
                     key={slide.id}
-                    className={`absolute inset-0 transition-opacity duration-700 ${
-                      activeSlide === index ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute inset-0 transition-opacity duration-700 ${activeSlide === index ? "opacity-100" : "opacity-0"
+                      }`}
                   >
                     <div
                       className="h-full w-full"
@@ -187,11 +186,10 @@ export function HeroSection() {
               <button
                 key={slide.id}
                 onClick={() => setActiveSlide(index)}
-                className={`transition-colors hover:text-[#1e5a8e] ${
-                  activeSlide === index
-                    ? "text-[#1e5a8e] font-bold"
-                    : "text-gray-400"
-                }`}
+                className={`transition-colors hover:text-[#1e5a8e] ${activeSlide === index
+                  ? "text-[#1e5a8e] font-bold"
+                  : "text-gray-400"
+                  }`}
               >
                 {slide.title}
               </button>

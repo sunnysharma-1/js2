@@ -140,393 +140,418 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen">
       {/* Merged Hero & Story Section */}
-     <section className="relative py-20 md:py-28 lg:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
-  {/* Animated background elements */}
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {/* Floating orbs */}
-    <motion.div
-      className="absolute top-10 -left-32 w-96 h-96 bg-gradient-to-br from-[#0066CC]/25 to-[#00A896]/20 rounded-full blur-3xl"
-      animate={{
-        scale: [1, 1.4, 1],
-        x: [0, 80, 0],
-        y: [0, 40, 0],
-      }}
-      transition={{
-        duration: 12,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
-      }}
-    />
-    <motion.div
-      className="absolute top-1/3 -right-20 w-80 h-80 bg-gradient-to-br from-[#00A896]/18 to-[#0066CC]/18 rounded-full blur-3xl"
-      animate={{
-        scale: [1.2, 0.8, 1.2],
-        x: [0, -60, 0],
-        y: [0, 50, 0],
-      }}
-      transition={{
-        duration: 14,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
-        delay: 2,
-      }}
-    />
-    <motion.div
-      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-t from-[#0066CC]/15 to-transparent rounded-full blur-3xl"
-      animate={{
-        scale: [0.8, 1.3, 0.8],
-        y: [0, -40, 0],
-      }}
-      transition={{
-        duration: 16,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
-        delay: 4,
-      }}
-    />
-
-    {/* Subtle grid / pattern */}
-    <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(to_right,#1f293780_1px,transparent_1px),linear-gradient(to_bottom,#1f293780_1px,transparent_1px)] bg-[size:18px_18px]" />
-  </div>
-
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
-    {/* Top Section - Main Heading & Images */}
-    <div className="grid gap-12 lg:gap-16 lg:grid-cols-2 items-center mb-20">
-      {/* Left Content */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        className="space-y-8"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="inline-block px-4 py-2 bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 rounded-full border border-[#0066CC]/40 backdrop-blur-sm"
-        >
-          <span className="text-sm font-semibold text-sky-100">🏭 Since 2001</span>
-        </motion.div>
-
-        <div>
-          <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl text-balance leading-tight mb-6 text-white">
-            Transforming Ideas into{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] via-[#22c55e] to-[#a5f3fc]">
-              Manufacturing Excellence
-            </span>
-          </h1>
-          <p className="text-lg leading-relaxed text-slate-200 text-pretty mb-6">
-            For over{" "}
-            <span className="font-semibold text-[#38bdf8]">
-              22+ years
-            </span>
-            , Jayshree Instruments has been at the forefront of electronics manufacturing, delivering
-            innovative EMS solutions to startups, corporates, and OEMs worldwide.
-          </p>
-          <p className="text-base leading-relaxed text-slate-300 text-pretty">
-            Jayshree Instruments was founded in 2001 with a vision to simplify and scale electronics
-            manufacturing in India. Today, we are a leading EMS company trusted by product innovators and
-            established OEMs.
-          </p>
-        </div>
-
-        {/* Animated Stats Grid */}
-        <div ref={yearsCounter.ref} className="grid grid-cols-3 gap-4 md:gap-6 pt-4">
+      <section className="relative py-20 md:py-28 lg:py-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Floating orbs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
-          >
-            <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
-              {yearsCounter.count}+
-            </div>
-            <div className="text-sm text-slate-300 font-medium">
-              Years Experience
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            ref={projectsCounter.ref}
-            className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
-          >
-            <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
-              {projectsCounter.count}+
-            </div>
-            <div className="text-sm text-slate-300 font-medium">
-              Projects Delivered
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            ref={industriesCounter.ref}
-            className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
-          >
-            <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
-              {industriesCounter.count}+
-            </div>
-            <div className="text-sm text-slate-300 font-medium">
-              Industries Served
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Certifications badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="flex flex-wrap gap-3"
-        >
-          {["ISO 9001", "ISO 14001", "ISO 45001"].map((cert, index) => (
-            <motion.div
-              key={cert}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 + index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="px-4 py-2 bg-gradient-to-r from-[#0f172a]/80 to-[#020617]/80 rounded-full border border-slate-600/60 hover:border-sky-400/70 transition-all"
-            >
-              <span className="text-sm font-semibold text-slate-100">✓ {cert}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Right Content - Unified Image Gallery */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative hidden lg:block"
-      >
-        <div className="relative h-[600px]">
-          {/* Main large image */}
-          <motion.div
-            className="absolute top-0 right-0 w-80 h-96 rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.7)] border border-slate-700/80 bg-slate-900"
+            className="absolute top-10 -left-32 w-96 h-96 bg-gradient-to-br from-[#0066CC]/25 to-[#00A896]/20 rounded-full blur-3xl"
             animate={{
-              y: [0, -15, 0],
-              rotate: [0, 2, 0],
+              scale: [1, 1.4, 1],
+              x: [0, 80, 0],
+              y: [0, 40, 0],
             }}
             transition={{
-              duration: 6,
+              duration: 12,
               repeat: Number.POSITIVE_INFINITY,
               ease: "easeInOut",
-            }}
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=1000&fit=crop"
-              alt="Manufacturing facility"
-              fill
-              className="object-cover"
-            />
-          </motion.div>
-
-          {/* Secondary image */}
-          <motion.div
-            className="absolute bottom-0 left-0 w-72 h-80 rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.7)] border border-slate-700/80 bg-slate-900"
-            animate={{
-              y: [0, 15, 0],
-              rotate: [0, -2, 0],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 0.5,
-            }}
-          >
-            <Image
-              src="https://www.pcbstartech.com/wp-content/uploads/2019/08/company-profile-2.jpg"
-              alt="Team collaboration"
-              fill
-              className="object-cover"
-            />
-          </motion.div>
-
-          {/* Small circular image */}
-          <motion.div
-            className="absolute top-32 left-10 w-32 h-32 rounded-full overflow-hidden shadow-[0_18px_45px_rgba(0,0,0,0.7)] border border-slate-700/80 bg-slate-900"
-            animate={{
-              y: [0, -10, 0],
-              rotate: [0, 5, 0],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=400&fit=crop"
-              alt="PCB"
-              fill
-              className="object-cover"
-            />
-          </motion.div>
-
-          {/* Floating quality stat card */}
-          <motion.div
-            className="absolute bottom-32 right-10 bg-slate-900/95 rounded-2xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.9)] border border-slate-700/80 backdrop-blur-sm"
-            animate={{
-              y: [0, 10, 0],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-[#38bdf8] to-[#22c55e] flex items-center justify-center">
-                <Award className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-sky-100">99.9%</div>
-                <div className="text-xs text-slate-300">Quality Rate</div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Decorative rotating element */}
-          <motion.div
-            className="absolute top-10 right-20 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#38bdf8]/30 to-[#22c55e]/30 backdrop-blur-sm border border-slate-600/70"
-            animate={{
-              rotate: [0, 180, 360],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
             }}
           />
-        </div>
-      </motion.div>
-    </div>
-
-    {/* Bottom Section - Team Members & Testimonial */}
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
-      className="bg-slate-900/90 rounded-3xl p-8 md:p-12 border border-slate-700/80 shadow-[0_24px_70px_rgba(0,0,0,0.85)]"
-    >
-      <div className="grid gap-12 lg:grid-cols-3 items-center">
-        {/* Left - Text Content */}
-        <div className="lg:col-span-2 space-y-6">
-          <div>
-            <h2 className="text-3xl font-bold text-white md:text-4xl mb-4">
-              Our Expert Team Behind the Excellence
-            </h2>
-            <p className="text-lg leading-relaxed text-slate-200 text-pretty">
-              At JINST, our multidisciplinary team of engineers, designers, and manufacturing experts work
-              together to deliver excellence — from concept to final assembly. Each team member brings specialized
-              expertise and a commitment to quality.
-            </p>
-          </div>
-
-          {/* Team highlights */}
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { title: "Design Innovation", subtitle: "Cutting-edge solutions" },
-              { title: "Quality Assurance", subtitle: "Rigorous standards" },
-              { title: "Manufacturing Excellence", subtitle: "Optimal efficiency" },
-              { title: "Global Collaboration", subtitle: "Worldwide network" },
-            ].map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 * (idx + 1) }}
-                className="flex items-start gap-3 p-4 bg-gradient-to-br from-slate-800/80 to-slate-900/90 rounded-lg border border-slate-700/80"
-              >
-                <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-gradient-to-br from-[#38bdf8] to-[#22c55e] flex items-center justify-center">
-                  <svg
-                    className="h-5 w-5 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold text-slate-50">{item.title}</div>
-                  <div className="text-xs text-slate-300">{item.subtitle}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right - Team Member Avatars */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col items-center justify-center lg:items-end gap-6"
-        >
-          <div className="text-center lg:text-right">
-            <p className="text-sm font-semibold text-sky-300 mb-2">Meet Our Team</p>
-            <p className="text-slate-300 text-sm">
-              Experts with 22+ years of combined experience
-            </p>
-          </div>
-
-          <div className="flex justify-center lg:justify-end items-center -space-x-4">
-            {[
-              "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=200&h=200&fit=crop",
-              "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
-              "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop",
-            ].map((src, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0, x: 20 }}
-                whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.15 }}
-                whileHover={{ scale: 1.15, zIndex: 10, y: -8 }}
-                className="relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-slate-900 shadow-[0_18px_45px_rgba(0,0,0,0.9)] bg-slate-800 hover:shadow-[0_22px_60px_rgba(0,0,0,1)] transition-shadow"
-              >
-                <Image src={src || "/placeholder.svg"} alt="Team member" fill className="object-cover" />
-              </motion.div>
-            ))}
-          </div>
-
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            className="absolute top-1/3 -right-20 w-80 h-80 bg-gradient-to-br from-[#00A896]/18 to-[#0066CC]/18 rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 0.8, 1.2],
+              x: [0, -60, 0],
+              y: [0, 50, 0],
+            }}
+            transition={{
+              duration: 14,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-t from-[#0066CC]/15 to-transparent rounded-full blur-3xl"
+            animate={{
+              scale: [0.8, 1.3, 0.8],
+              y: [0, -40, 0],
+            }}
+            transition={{
+              duration: 16,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 4,
+            }}
+          />
+
+          {/* Subtle grid / pattern */}
+          <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(to_right,#1f293780_1px,transparent_1px),linear-gradient(to_bottom,#1f293780_1px,transparent_1px)] bg-[size:18px_18px]" />
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl relative z-10">
+          {/* Top Section - Main Heading & Images */}
+          <div className="grid gap-12 lg:gap-16 lg:grid-cols-2 items-center mb-20">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-block px-4 py-2 bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 rounded-full border border-[#0066CC]/40 backdrop-blur-sm"
+              >
+                <span className="text-sm font-semibold text-sky-100">🏭 Since 2001</span>
+              </motion.div>
+
+              <div>
+                <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl text-balance leading-tight mb-6 text-white">
+                  Transforming Ideas into{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] via-[#22c55e] to-[#a5f3fc]">
+                    Manufacturing Excellence
+                  </span>
+                </h1>
+                <p className="text-base md:text-lg leading-relaxed text-slate-200 text-pretty mb-6">
+                  For over{" "}
+                  <span className="font-semibold text-[#38bdf8]">
+                    22+ years
+                  </span>
+                  , Jayshree Instruments has been at the forefront of electronics manufacturing, delivering
+                  innovative EMS solutions to startups, corporates, and OEMs worldwide.
+                </p>
+                <p className="text-sm md:text-base leading-relaxed text-slate-300 text-pretty">
+                  Jayshree Instruments was founded in 2001 with a vision to simplify and scale electronics
+                  manufacturing in India. Today, we are a leading EMS company trusted by product innovators and
+                  established OEMs.
+                </p>
+              </div>
+
+              {/* Mobile Image View (Visible only on lg and below) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="block lg:hidden relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 my-8"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=1000&fit=crop"
+                  alt="Manufacturing facility"
+                  fill
+                  className="object-cover"
+                />
+                {/* Floating badge for mobile */}
+                <div className="absolute bottom-4 right-4 bg-slate-900/90 rounded-xl p-3 shadow-lg border border-slate-700/80 backdrop-blur-sm flex items-center gap-2">
+                  <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#38bdf8] to-[#22c55e] flex items-center justify-center">
+                    <Award className="h-4 w-4 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-sky-100">99.9%</div>
+                    <div className="text-[10px] text-slate-300">Quality Rate</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Animated Stats Grid */}
+              <div ref={yearsCounter.ref} className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
+                    {yearsCounter.count}+
+                  </div>
+                  <div className="text-sm text-slate-300 font-medium">
+                    Years Experience
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  ref={projectsCounter.ref}
+                  className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
+                    {projectsCounter.count}+
+                  </div>
+                  <div className="text-sm text-slate-300 font-medium">
+                    Projects Delivered
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  ref={industriesCounter.ref}
+                  className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
+                    {industriesCounter.count}+
+                  </div>
+                  <div className="text-sm text-slate-300 font-medium">
+                    Industries Served
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Certifications badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="flex flex-wrap gap-3"
+              >
+                {["ISO 9001", "ISO 14001", "ISO 45001"].map((cert, index) => (
+                  <motion.div
+                    key={cert}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8 + index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    className="px-4 py-2 bg-gradient-to-r from-[#0f172a]/80 to-[#020617]/80 rounded-full border border-slate-600/60 hover:border-sky-400/70 transition-all"
+                  >
+                    <span className="text-sm font-semibold text-slate-100">✓ {cert}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Right Content - Unified Image Gallery */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative hidden lg:block"
+            >
+              <div className="relative h-[600px]">
+                {/* Main large image */}
+                <motion.div
+                  className="absolute top-0 right-0 w-80 h-96 rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.7)] border border-slate-700/80 bg-slate-900"
+                  animate={{
+                    y: [0, -15, 0],
+                    rotate: [0, 2, 0],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=1000&fit=crop"
+                    alt="Manufacturing facility"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+
+                {/* Secondary image */}
+                <motion.div
+                  className="absolute bottom-0 left-0 w-72 h-80 rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.7)] border border-slate-700/80 bg-slate-900"
+                  animate={{
+                    y: [0, 15, 0],
+                    rotate: [0, -2, 0],
+                  }}
+                  transition={{
+                    duration: 7,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                    delay: 0.5,
+                  }}
+                >
+                  <Image
+                    src="https://www.pcbstartech.com/wp-content/uploads/2019/08/company-profile-2.jpg"
+                    alt="Team collaboration"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+
+                {/* Small circular image */}
+                <motion.div
+                  className="absolute top-32 left-10 w-32 h-32 rounded-full overflow-hidden shadow-[0_18px_45px_rgba(0,0,0,0.7)] border border-slate-700/80 bg-slate-900"
+                  animate={{
+                    y: [0, -10, 0],
+                    rotate: [0, 5, 0],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=400&fit=crop"
+                    alt="PCB"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+
+                {/* Floating quality stat card */}
+                <motion.div
+                  className="absolute bottom-32 right-10 bg-slate-900/95 rounded-2xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.9)] border border-slate-700/80 backdrop-blur-sm"
+                  animate={{
+                    y: [0, 10, 0],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-[#38bdf8] to-[#22c55e] flex items-center justify-center">
+                      <Award className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-sky-100">99.9%</div>
+                      <div className="text-xs text-slate-300">Quality Rate</div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Decorative rotating element */}
+                <motion.div
+                  className="absolute top-10 right-20 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#38bdf8]/30 to-[#22c55e]/30 backdrop-blur-sm border border-slate-600/70"
+                  animate={{
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "linear",
+                  }}
+                />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom Section - Team Members & Testimonial */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="text-center lg:text-right"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="bg-slate-900/90 rounded-3xl p-6 md:p-12 border border-slate-700/80 shadow-[0_24px_70px_rgba(0,0,0,0.85)]"
           >
-            <div className="inline-block px-4 py-2 bg-gradient-to-r from-slate-800/90 to-slate-900/90 rounded-full border border-slate-600/80">
-              <span className="text-xs font-semibold text-slate-100">
-                3+ Core Leaders
-              </span>
+            <div className="grid gap-12 lg:grid-cols-3 items-center">
+              {/* Left - Text Content */}
+              <div className="lg:col-span-2 space-y-6">
+                <div>
+                  <h2 className="text-2xl font-bold text-white md:text-4xl mb-4">
+                    Our Expert Team Behind the Excellence
+                  </h2>
+                  <p className="text-base md:text-lg leading-relaxed text-slate-200 text-pretty">
+                    At JINST, our multidisciplinary team of engineers, designers, and manufacturing experts work
+                    together to deliver excellence — from concept to final assembly. Each team member brings specialized
+                    expertise and a commitment to quality.
+                  </p>
+                </div>
+
+                {/* Team highlights */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { title: "Design Innovation", subtitle: "Cutting-edge solutions" },
+                    { title: "Quality Assurance", subtitle: "Rigorous standards" },
+                    { title: "Manufacturing Excellence", subtitle: "Optimal efficiency" },
+                    { title: "Global Collaboration", subtitle: "Worldwide network" },
+                  ].map((item, idx) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 * (idx + 1) }}
+                      className="flex items-start gap-3 p-4 bg-gradient-to-br from-slate-800/80 to-slate-900/90 rounded-lg border border-slate-700/80"
+                    >
+                      <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-gradient-to-br from-[#38bdf8] to-[#22c55e] flex items-center justify-center">
+                        <svg
+                          className="h-5 w-5 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="font-semibold text-slate-50">{item.title}</div>
+                        <div className="text-xs text-slate-300">{item.subtitle}</div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right - Team Member Avatars */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-col items-center justify-center lg:items-end gap-6"
+              >
+                <div className="text-center lg:text-right">
+                  <p className="text-sm font-semibold text-sky-300 mb-2">Meet Our Team</p>
+                  <p className="text-slate-300 text-sm">
+                    Experts with 22+ years of combined experience
+                  </p>
+                </div>
+
+                <div className="flex justify-center lg:justify-end items-center -space-x-4">
+                  {[
+                    "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=200&h=200&fit=crop",
+                    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
+                    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop",
+                  ].map((src, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0, x: 20 }}
+                      whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.15 }}
+                      whileHover={{ scale: 1.15, zIndex: 10, y: -8 }}
+                      className="relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-slate-900 shadow-[0_18px_45px_rgba(0,0,0,0.9)] bg-slate-800 hover:shadow-[0_22px_60px_rgba(0,0,0,1)] transition-shadow"
+                    >
+                      <Image src={src || "/placeholder.svg"} alt="Team member" fill className="object-cover" />
+                    </motion.div>
+                  ))}
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="text-center lg:text-right"
+                >
+                  <div className="inline-block px-4 py-2 bg-gradient-to-r from-slate-800/90 to-slate-900/90 rounded-full border border-slate-600/80">
+                    <span className="text-xs font-semibold text-slate-100">
+                      3+ Core Leaders
+                    </span>
+                  </div>
+                </motion.div>
+              </motion.div>
             </div>
           </motion.div>
-        </motion.div>
-      </div>
-    </motion.div>
-  </div>
-</section>
+        </div>
+      </section>
 
 
       {/* Video Introduction Section – Redesigned with YouTube + Custom Thumbnail */}
@@ -536,7 +561,7 @@ export default function AboutPage() {
           <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#00A896]/10 rounded-full blur-3xl" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl relative z-10">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Left Content */}
             <motion.div
@@ -655,7 +680,7 @@ export default function AboutPage() {
         </div>
       </section>
 
- 
+
 
 
       {/* Why Choose Jayshree Instruments section */}
@@ -665,7 +690,7 @@ export default function AboutPage() {
           <div className="absolute bottom-20 -right-20 w-96 h-96 bg-[#00A896]/5 rounded-full blur-3xl" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -879,172 +904,172 @@ export default function AboutPage() {
       </section>
 
       {/* Core EMS Services section */}
-    <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 md:py-20 lg:py-24">
-  {/* Decorative background: angled band, dots, soft glow */}
-  <div className="pointer-events-none absolute inset-0">
-    {/* Angled gradient strip on the right */}
-    <div className="absolute -right-28 top-[-10%] h-[140%] w-[55%] -skew-x-6 bg-gradient-to-br from-[#0066CC]/25 via-[#00A896]/10 to-slate-800/40" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 md:py-20 lg:py-24">
+        {/* Decorative background: angled band, dots, soft glow */}
+        <div className="pointer-events-none absolute inset-0">
+          {/* Angled gradient strip on the right */}
+          <div className="absolute -right-28 top-[-10%] h-[140%] w-[55%] -skew-x-6 bg-gradient-to-br from-[#0066CC]/25 via-[#00A896]/10 to-slate-800/40" />
 
-    {/* Dot pattern on the left */}
-    <div className="absolute -left-8 top-20 h-44 w-44 rounded-3xl bg-[radial-gradient(circle,_rgba(148,163,184,0.7)_1px,_transparent_1px)] [background-size:16px_16px] opacity-60" />
+          {/* Dot pattern on the left */}
+          <div className="absolute -left-8 top-20 h-44 w-44 rounded-3xl bg-[radial-gradient(circle,_rgba(148,163,184,0.7)_1px,_transparent_1px)] [background-size:16px_16px] opacity-60" />
 
-    {/* Soft glow behind cards */}
-    <div className="absolute inset-x-10 bottom-[-40px] h-48 rounded-full bg-[#0066CC]/25 blur-3xl" />
-  </div>
+          {/* Soft glow behind cards */}
+          <div className="absolute inset-x-10 bottom-[-40px] h-48 rounded-full bg-[#0066CC]/25 blur-3xl" />
+        </div>
 
-  <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    {/* Heading */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
-      className="mb-16 text-center md:mb-20"
-    >
-      <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/80 px-5 py-2 shadow-sm backdrop-blur">
-        <span className="inline-block h-1.5 w-6 rounded-full bg-gradient-to-r from-[#0066CC] to-[#00A896]" />
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-200">
-          Our Services
-        </span>
-      </div>
-
-      <h2 className="mt-5 text-balance text-3xl font-bold text-white md:text-4xl lg:text-5xl">
-        Core EMS Services
-      </h2>
-      <p className="mx-auto mt-4 max-w-3xl text-balance text-base leading-relaxed text-slate-300 sm:text-lg">
-        Comprehensive electronics manufacturing solutions from PCB assembly to final packaging,
-        engineered for reliability, scalability, and faster time-to-market.
-      </p>
-    </motion.div>
-
-    {/* Service cards */}
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {[
-        {
-          icon: (
-            <svg
-              className="h-7 w-7"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
-              />
-            </svg>
-          ),
-          title: "PCB Assembly Services",
-          description:
-            "Surface-mount (SMT), through-hole (THT), and mixed-technology PCB assembly with fine-pitch capability and AOI-backed quality.",
-          gradient: "from-[#0066CC] to-[#00A896]",
-        },
-        {
-          icon: (
-            <svg
-              className="h-7 w-7"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              />
-            </svg>
-          ),
-          title: "Wire & Cable Harnessing",
-          description:
-            "Custom wire harness design and assembly with routing, labeling, and testing for automotive, industrial, and consumer platforms.",
-          gradient: "from-[#00A896] to-[#0066CC]",
-        },
-        {
-          icon: (
-            <svg
-              className="h-7 w-7"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-              />
-            </svg>
-          ),
-          title: "Box Build Assembly",
-          description:
-            "Complete product assembly including enclosures, sub-assemblies, firmware loading, and functional testing for market-ready units.",
-          gradient: "from-[#0066CC] to-[#00A896]",
-        },
-        {
-          icon: (
-            <svg
-              className="h-7 w-7"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-              />
-            </svg>
-          ),
-          title: "Prototyping & Product Development",
-          description:
-            "Rapid prototypes with DFM input, EVT/DVT support, and validation testing to de-risk full-scale production.",
-          gradient: "from-[#00A896] to-[#0066CC]",
-        },
-        {
-          icon: <Shield className="h-7 w-7" />,
-          title: "Global Component Sourcing",
-          description:
-            "Strategic sourcing from vetted suppliers, alternates management, lifecycle risk checks, and BOM cost optimization.",
-          gradient: "from-[#0066CC] to-[#00A896]",
-        },
-        {
-          icon: <CheckCircle2 className="h-7 w-7" />,
-          title: "Testing, QA & Final Packaging",
-          description:
-            "In-circuit, functional, and burn-in testing with structured QA and export-ready packaging for safe global shipment.",
-          gradient: "from-[#00A896] to-[#0066CC]",
-        },
-      ].map((service, index) => (
-        <motion.div
-          key={service.title}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          whileHover={{ y: -4, transition: { duration: 0.2 } }}
-          className="group h-full rounded-2xl bg-slate-900/80 p-7 shadow-[0_18px_45px_rgba(15,23,42,0.75)] ring-1 ring-slate-700/70 transition-all duration-300 hover:shadow-[0_22px_60px_rgba(15,23,42,0.9)] hover:ring-[#00A896]/60"
-        >
+        <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
           <motion.div
-            whileHover={{ rotate: 360, scale: 1.08 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${service.gradient} text-white shadow-lg shadow-slate-900/70`}
+            className="mb-16 text-center md:mb-20"
           >
-            {service.icon}
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/80 bg-slate-900/80 px-5 py-2 shadow-sm backdrop-blur">
+              <span className="inline-block h-1.5 w-6 rounded-full bg-gradient-to-r from-[#0066CC] to-[#00A896]" />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-200">
+                Our Services
+              </span>
+            </div>
+
+            <h2 className="mt-5 text-balance text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              Core EMS Services
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-balance text-base leading-relaxed text-slate-300 sm:text-lg">
+              Comprehensive electronics manufacturing solutions from PCB assembly to final packaging,
+              engineered for reliability, scalability, and faster time-to-market.
+            </p>
           </motion.div>
-          <h3 className="mb-2 text-lg font-semibold text-white">{service.title}</h3>
-          <p className="text-sm leading-relaxed text-slate-300">{service.description}</p>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+
+          {/* Service cards */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                icon: (
+                  <svg
+                    className="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                    />
+                  </svg>
+                ),
+                title: "PCB Assembly Services",
+                description:
+                  "Surface-mount (SMT), through-hole (THT), and mixed-technology PCB assembly with fine-pitch capability and AOI-backed quality.",
+                gradient: "from-[#0066CC] to-[#00A896]",
+              },
+              {
+                icon: (
+                  <svg
+                    className="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                ),
+                title: "Wire & Cable Harnessing",
+                description:
+                  "Custom wire harness design and assembly with routing, labeling, and testing for automotive, industrial, and consumer platforms.",
+                gradient: "from-[#00A896] to-[#0066CC]",
+              },
+              {
+                icon: (
+                  <svg
+                    className="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                    />
+                  </svg>
+                ),
+                title: "Box Build Assembly",
+                description:
+                  "Complete product assembly including enclosures, sub-assemblies, firmware loading, and functional testing for market-ready units.",
+                gradient: "from-[#0066CC] to-[#00A896]",
+              },
+              {
+                icon: (
+                  <svg
+                    className="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    />
+                  </svg>
+                ),
+                title: "Prototyping & Product Development",
+                description:
+                  "Rapid prototypes with DFM input, EVT/DVT support, and validation testing to de-risk full-scale production.",
+                gradient: "from-[#00A896] to-[#0066CC]",
+              },
+              {
+                icon: <Shield className="h-7 w-7" />,
+                title: "Global Component Sourcing",
+                description:
+                  "Strategic sourcing from vetted suppliers, alternates management, lifecycle risk checks, and BOM cost optimization.",
+                gradient: "from-[#0066CC] to-[#00A896]",
+              },
+              {
+                icon: <CheckCircle2 className="h-7 w-7" />,
+                title: "Testing, QA & Final Packaging",
+                description:
+                  "In-circuit, functional, and burn-in testing with structured QA and export-ready packaging for safe global shipment.",
+                gradient: "from-[#00A896] to-[#0066CC]",
+              },
+            ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="group h-full rounded-2xl bg-slate-900/80 p-7 shadow-[0_18px_45px_rgba(15,23,42,0.75)] ring-1 ring-slate-700/70 transition-all duration-300 hover:shadow-[0_22px_60px_rgba(15,23,42,0.9)] hover:ring-[#00A896]/60"
+              >
+                <motion.div
+                  whileHover={{ rotate: 360, scale: 1.08 }}
+                  transition={{ duration: 0.6 }}
+                  className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${service.gradient} text-white shadow-lg shadow-slate-900/70`}
+                >
+                  {service.icon}
+                </motion.div>
+                <h3 className="mb-2 text-lg font-semibold text-white">{service.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-300">{service.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Industries We Serve section */}
       <section className="py-16 md:py-20 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1200,7 +1225,7 @@ export default function AboutPage() {
 
       {/* Our 7-Step Process section */}
       <section className="py-16 md:py-20 lg:py-24 bg-gray-50 overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1342,9 +1367,8 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`relative flex flex-col lg:flex-row items-center gap-8 ${
-                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                  }`}
+                  className={`relative flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                    }`}
                 >
                   {/* Content Card */}
                   <motion.div
@@ -1480,7 +1504,7 @@ export default function AboutPage() {
           />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

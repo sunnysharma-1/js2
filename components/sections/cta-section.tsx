@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 export function CTASection() {
   return (
     <section className="py-20 lg:py-28 bg-gradient-to-br from-[#1e5a8e] to-[#00a8a8] text-white">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto max-w-screen-2xl px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-balance">
             Ready to Bring Your Electronics Project to Life?
@@ -16,8 +16,8 @@ export function CTASection() {
 
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/contact">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-white text-[#1e5a8e] hover:bg-white/90 font-semibold text-lg px-8"
               >
                 Contact Us

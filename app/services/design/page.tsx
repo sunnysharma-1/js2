@@ -53,7 +53,7 @@ export default function DesignEngineeringPage() {
     {
       title: "Design for Test (DFT)",
       description: "Testability analysis and optimization for easier quality control.",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Testing-KDadL2g4iPPdYLLzkn6aSKKGfW8jJP.jpg",
+      image: "https://blog.milwaukeeelectronics.com/wp-content/uploads/2015/04/DFT-Engineers2.jpg",
     },
     {
       title: "Component Selection",

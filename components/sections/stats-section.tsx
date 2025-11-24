@@ -5,7 +5,7 @@ export function StatsSection() {
     <section className="bg-slate-50 py-24 lg:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto max-w-screen-2xl px-6 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 text-balance">Why Trust Us</h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto text-balance">

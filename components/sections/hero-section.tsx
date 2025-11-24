@@ -63,7 +63,7 @@ export function HeroSection() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#1e5a8e] via-[#1a7a9e] to-[#00a8a8] min-h-[600px]">
-      <div className="container mx-auto px-6 py-16 lg:py-24">
+      <div className="container mx-auto max-w-screen-2xl px-6 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative z-10 text-white space-y-6">
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-balance">
@@ -180,7 +180,7 @@ export function HeroSection() {
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto max-w-screen-2xl px-6 py-4">
           <div className="flex flex-wrap justify-center lg:justify-end gap-8 lg:gap-12 text-sm lg:text-base">
             {slides.map((slide, index) => (
               <button

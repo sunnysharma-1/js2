@@ -66,7 +66,7 @@ export function ServicesSection() {
 
   return (
     <section className="py-20 lg:py-28 bg-white">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto max-w-screen-2xl px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-[#0066CC]">Electronics Manufacturing Services</h2>
           <p className="text-lg text-gray-700 max-w-4xl mx-auto">

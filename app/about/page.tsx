@@ -13,8 +13,12 @@ import {
   Globe,
 } from "lucide-react"
 import Image from "next/image"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useLayoutEffect } from "react"
 import { motion } from "framer-motion"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 function useCounter(end: number, duration = 2) {
   const [count, setCount] = useState(0)
@@ -65,6 +69,65 @@ function useCounter(end: number, duration = 2) {
 export default function AboutPage() {
   const [selectedInnovator, setSelectedInnovator] = useState(0)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const coreValuesRef = useRef<HTMLElement>(null)
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Background Animations
+      gsap.to(".gsap-blob-1", {
+        y: 50,
+        x: 30,
+        duration: 8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      })
+      gsap.to(".gsap-blob-2", {
+        y: -40,
+        x: -20,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 1
+      })
+      gsap.to(".gsap-blob-3", {
+        scale: 1.1,
+        opacity: 0.8,
+        duration: 12,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      })
+
+      // Content Animations
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: coreValuesRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+
+      tl.to(".gsap-header", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out"
+      })
+        .to(".gsap-card", {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.2)"
+        }, "-=0.4")
+
+    }, coreValuesRef)
+
+    return () => ctx.revert()
+  }, [])
 
   // 🔹 Updated to 22 years
   const yearsCounter = useCounter(22, 2)
@@ -554,128 +617,64 @@ export default function AboutPage() {
       </section>
 
 
-      {/* Video Introduction Section – Redesigned with YouTube + Custom Thumbnail */}
-      <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-[#0066CC]/5 via-white to-[#00A896]/5 relative overflow-hidden">
+      {/* Core Values Section - Replaces Video */}
+      <section ref={coreValuesRef} className="py-20 md:py-28 lg:py-32 bg-slate-50 relative overflow-hidden">
+        {/* GSAP Animated Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#0066CC]/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#00A896]/10 rounded-full blur-3xl" />
+          {/* Circuit Board Pattern */}
+          <div className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230066CC' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            }}
+          />
+
+          {/* Animated Blobs */}
+          <div className="gsap-blob-1 absolute top-0 -left-20 w-96 h-96 bg-[#0066CC]/10 rounded-full blur-3xl mix-blend-multiply" />
+          <div className="gsap-blob-2 absolute bottom-0 -right-20 w-96 h-96 bg-[#00A896]/10 rounded-full blur-3xl mix-blend-multiply" />
+          <div className="gsap-blob-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-slate-200/50 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl relative z-10">
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
-            {/* Left Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
-              <div className="inline-block px-4 py-2 bg-[#0066CC]/10 rounded-full">
-                <span className="text-sm font-semibold text-[#0066CC] uppercase tracking-wide">
-                  Company Overview
-                </span>
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl leading-tight text-balance">
-                See How We Transform{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066CC] to-[#00A896]">
-                  Ideas into Reality
-                </span>
-              </h2>
-              <p className="text-base sm:text-lg leading-relaxed text-gray-600 text-pretty">
-                Take a virtual tour of our state-of-the-art manufacturing facility and discover how our expert team
-                delivers world-class electronics manufacturing services. From PCB assembly to final product delivery, we
-                bring precision and excellence to every project.
-              </p>
-              <div className="grid grid-cols-2 gap-4 pt-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-gradient-to-br from-[#0066CC] to-[#00A896] flex items-center justify-center">
-                    <CheckCircle2 className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">ISO Certified</div>
-                    <div className="text-sm text-gray-600">Quality Standards</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-gradient-to-br from-[#00A896] to-[#0066CC] flex items-center justify-center">
-                    <Users className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Expert Team</div>
-                    <div className="text-sm text-gray-600">22+ Years Experience</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+          <div className="gsap-header text-center mb-16 md:mb-20 opacity-0 translate-y-10">
+            <div className="inline-block px-4 py-2 bg-[#0066CC]/10 rounded-full mb-4">
+              <span className="text-sm font-semibold text-[#0066CC] uppercase tracking-wide">
+                Our Philosophy
+              </span>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl leading-tight text-balance mb-6">
+              Driven by Values,{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066CC] to-[#00A896]">
+                Defined by Excellence
+              </span>
+            </h2>
+            <p className="text-base sm:text-lg leading-relaxed text-gray-600 max-w-3xl mx-auto text-pretty">
+              Our core values guide every decision, project, and partnership. They are the foundation of our culture and the promise we make to our clients.
+            </p>
+          </div>
 
-            {/* Right – YouTube with custom thumbnail */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900">
-                <div className="relative w-full aspect-video">
-                  {!isVideoPlaying ? (
-                    <button
-                      type="button"
-                      onClick={() => setIsVideoPlaying(true)}
-                      className="group relative w-full h-full"
-                    >
-                      {/* Custom thumbnail image */}
-                      <Image
-                        src="https://www.airproducts.co.uk/-/media/images/969x646/content-row-image/627264108-pcb-assembly-3x2.jpg?as=0&w=969&hash=3DE45C6D6AA0D9E6CD774AED89CECA81"
-                        alt="Jayshree Instruments Company Overview"
-                        fill
-                        className="object-cover"
-                      />
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                      {/* Center play button */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <motion.div
-                          animate={{ scale: [1, 1.08, 1] }}
-                          transition={{
-                            duration: 1.8,
-                            repeat: Number.POSITIVE_INFINITY,
-                            repeatDelay: 0.4,
-                          }}
-                          className="h-24 w-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-2xl"
-                        >
-                          <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#0066CC] to-[#00A896] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                            <svg className="h-8 w-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          </div>
-                        </motion.div>
-                      </div>
-                      {/* Bottom label */}
-                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs sm:text-sm">
-                        <span className="inline-flex items-center gap-2 bg-black/40 px-3 py-1 rounded-full">
-                          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                          Facility Walkthrough • PCB Assembly
-                        </span>
-                        <span className="bg-black/40 px-3 py-1 rounded-full">Watch Overview</span>
-                      </div>
-                    </button>
-                  ) : (
-                    <iframe
-                      className="w-full h-full"
-                      src="https://www.youtube.com/embed/dalCFsZGDGI?autoplay=1&rel=0"
-                      title="Jayshree Instruments Company Overview"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  )}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {values.map((value, index) => {
+              const Icon = value.icon
+              return (
+                <div
+                  key={index}
+                  className="gsap-card group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden opacity-0 translate-y-10"
+                >
+                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${value.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
+
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${value.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className="w-7 h-7 text-white" />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#0066CC] transition-colors">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {value.description}
+                  </p>
                 </div>
-              </div>
-              {/* Decorative Elements */}
-              <div className="absolute -top-6 -right-6 h-24 w-24 bg-gradient-to-br from-[#0066CC] to-[#00A896] rounded-2xl opacity-20 blur-xl" />
-              <div className="absolute -bottom-6 -left-6 h-32 w-32 bg-gradient-to-br from-[#00A896] to-[#0066CC] rounded-2xl opacity-20 blur-xl" />
-            </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>

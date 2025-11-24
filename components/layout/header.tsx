@@ -30,6 +30,7 @@ import Image from "next/image"
 
 export function Header() {
   const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
 
   const navLinks = [
@@ -95,10 +96,10 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 shadow-sm">
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex h-24 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
-          <div className="relative h-35 w-56 md:h-50 md:w-64">
+          <div className="relative h-50 w-56 md:h-60 md:w-64">
             <Image
               src="/images/design-mode/Black_and_White_Circular_Art___Design_Logo__1_-removebg-preview.png"
               alt="Jayshree Instruments Logo"
@@ -117,8 +118,10 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-sm font-medium transition-colors hover:text-[#4A90E2] after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:bg-[#4A90E2] after:transition-all after:duration-300 ${
-                  isActive ? "text-[#4A90E2] after:w-full" : "text-gray-700 after:w-0 hover:after:w-full"
+                className={`relative text-base font-semibold transition-colors hover:text-[#4A90E2] after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:bg-[#4A90E2] after:transition-all after:duration-300 ${
+                  isActive
+                    ? "text-[#4A90E2] after:w-full"
+                    : "text-gray-700 after:w-0 hover:after:w-full"
                 }`}
               >
                 {link.label}
@@ -128,7 +131,7 @@ export function Header() {
 
           <DropdownMenu>
             <DropdownMenuTrigger
-              className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-[#4A90E2] focus:outline-none data-[state=open]:text-[#4A90E2] ${
+              className={`flex items-center gap-1 text-base font-semibold transition-colors hover:text-[#4A90E2] focus:outline-none data-[state=open]:text-[#4A90E2] ${
                 isServicesActive ? "text-[#4A90E2]" : "text-gray-700"
               }`}
             >
@@ -147,14 +150,20 @@ export function Header() {
                     <Link
                       href={link.href}
                       className={`cursor-pointer flex items-start gap-3 p-3 rounded-lg transition-colors hover:bg-blue-50 ${
-                        index === 0 ? "bg-gradient-to-r from-blue-50 to-teal-50 border border-blue-100" : ""
+                        index === 0
+                          ? "bg-gradient-to-r from-blue-50 to-teal-50 border border-blue-100"
+                          : ""
                       }`}
                     >
                       <div className={`mt-0.5 ${index === 0 ? "text-[#4A90E2]" : "text-gray-500"}`}>
                         <Icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1">
-                        <div className={`font-medium ${index === 0 ? "text-[#4A90E2]" : "text-gray-900"}`}>
+                        <div
+                          className={`font-medium ${
+                            index === 0 ? "text-[#4A90E2]" : "text-gray-900"
+                          }`}
+                        >
                           {link.label}
                         </div>
                         <div className="text-xs text-gray-500 mt-0.5">{link.description}</div>
@@ -183,7 +192,7 @@ export function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="lg:hidden">
             <Button variant="ghost" size="icon" className="hover:bg-gray-100">
               <Menu className="h-6 w-6" />
@@ -242,7 +251,7 @@ export function Header() {
                 variant="outline"
                 className="h-10 rounded-xl border-dashed border-[#4A90E2]/40 text-xs font-medium flex items-center justify-center gap-1"
               >
-                <Link href="/services">
+                <Link href="/services" onClick={() => setIsOpen(false)}>
                   View Services
                   <ArrowRight className="h-3 w-3" />
                 </Link>
@@ -251,7 +260,7 @@ export function Header() {
                 asChild
                 className="h-10 rounded-xl bg-gradient-to-r from-[#00A896] to-[#008C7A] text-xs font-medium text-white shadow-md hover:shadow-lg"
               >
-                <Link href="/contact">
+                <Link href="/contact" onClick={() => setIsOpen(false)}>
                   Get a Quote
                   <ArrowRight className="h-3 w-3 ml-1" />
                 </Link>
@@ -273,7 +282,8 @@ export function Header() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
+                      onClick={() => setIsOpen(false)}
+                      className={`flex items-center justify-between rounded-xl px-3 py-2 text-base font-semibold transition-colors ${
                         isActive
                           ? "bg-blue-50 text-[#1D4ED8] border border-blue-100"
                           : "text-gray-700 hover:bg-gray-100"
@@ -288,7 +298,7 @@ export function Header() {
                 <button
                   type="button"
                   onClick={() => setMobileServicesOpen((prev) => !prev)}
-                  className={`mt-2 flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium transition-colors border ${
+                  className={`mt-2 flex w-full items-center justify-between rounded-xl px-3 py-2 text-base font-semibold transition-colors border ${
                     isServicesActive
                       ? "bg-blue-50 text-[#1D4ED8] border-blue-200"
                       : "text-gray-700 hover:bg-gray-100 border-gray-200/70"
@@ -316,6 +326,7 @@ export function Header() {
                         <Link
                           key={link.href}
                           href={link.href}
+                          onClick={() => setIsOpen(false)}
                           className={`flex items-start gap-3 rounded-lg px-2 py-2 text-xs transition-colors ${
                             isActive
                               ? "bg-blue-50 text-[#1D4ED8]"
@@ -361,7 +372,9 @@ export function Header() {
                 asChild
                 className="w-full bg-gradient-to-r from-[#00A896] to-[#008C7A] hover:from-[#008C7A] hover:to-[#00A896] text-white rounded-xl font-medium shadow-md hover:shadow-lg transition-all duration-300 h-11"
               >
-                <Link href="/contact">Schedule a Call</Link>
+                <Link href="/contact" onClick={() => setIsOpen(false)}>
+                  Schedule a Call
+                </Link>
               </Button>
             </div>
           </SheetContent>

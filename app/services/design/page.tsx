@@ -144,7 +144,7 @@ export default function DesignEngineeringPage() {
 
               {/* Stats – styled like Global Purchasing hero */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {[ 
+                {[
                   { label: "Years in Design", value: "20+", icon: Award },
                   { label: "Designs Optimised", value: "300+", icon: Zap },
                   { label: "Avg. Response Time", value: "< 48h", icon: CheckCircle },
@@ -505,11 +505,11 @@ export default function DesignEngineeringPage() {
               <div className="space-y-3 mb-6 text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-white/90">Email</span>
-                  <span className="font-medium">sales@jayshreeinstruments.com</span>
+                  <span className="font-medium">info@jinst.in</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-white/90">Phone</span>
-                  <span className="font-medium">+91 648 929 1400</span>
+                  <span className="font-medium">+91 88669 68821</span>
                 </div>
               </div>
 

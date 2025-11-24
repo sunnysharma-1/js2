@@ -69,7 +69,7 @@ export default function VideoIntroductionSection() {
                     Watch Company Introduction
                   </button>
                 </DialogTrigger>
-                <DialogContent className="max-w-screen-xl border-none bg-black p-0 overflow-hidden aspect-video">
+                <DialogContent className="max-w-[90vw] w-full sm:max-w-[90vw] border-none bg-black p-0 overflow-hidden aspect-video">
                   <DialogTitle className="sr-only">Company Introduction Video</DialogTitle>
                   <iframe
                     title="Jayshree Instruments — Introduction"
@@ -183,7 +183,7 @@ export default function VideoIntroductionSection() {
                       </div>
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-screen-xl border-none bg-black p-0 overflow-hidden aspect-video">
+                  <DialogContent className="max-w-[90vw] w-full sm:max-w-[90vw] border-none bg-black p-0 overflow-hidden aspect-video">
                     <DialogTitle className="sr-only">Company Introduction Video</DialogTitle>
                     <iframe
                       title="Jayshree Instruments — Introduction"

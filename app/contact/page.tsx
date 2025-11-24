@@ -183,14 +183,6 @@ export default function ContactPage() {
                               href="tel:+918866968821"
                               className="text-[#00A896] hover:underline"
                             >
-                              +91 88669 68821
-                            </a>
-                          </span>
-                          <span className="block">
-                            <a
-                              href="tel:+918866968821"
-                              className="text-[#00A896] hover:underline"
-                            >
                               +91 8866 968 821
                             </a>
                           </span>
@@ -218,14 +210,6 @@ export default function ContactPage() {
                               info@jinst.in
                             </a>
                           </span>
-                          <span className="block">
-                            <a
-                              href="mailto:sales@jinst.in"
-                              className="text-[#0066CC] hover:underline"
-                            >
-                              sales@jinst.in
-                            </a>
-                          </span>
                         </p>
                       </div>
                     </div>
@@ -244,7 +228,7 @@ export default function ContactPage() {
                         <p className="text-sm text-muted-foreground">
                           Monday - Friday: 9:00 AM - 6:00 PM
                           <br />
-                          Saturday: 9:00 AM - 1:00 PM
+                          Saturday: 9:00 AM - 6:00 PM
                           <br />
                           Sunday: Closed
                         </p>

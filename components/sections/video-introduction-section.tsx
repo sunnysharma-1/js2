@@ -24,7 +24,7 @@ export default function VideoIntroductionSection() {
         <div className="absolute -right-32 bottom-10 h-72 w-72 rounded-full bg-[#00A896]/10 blur-3xl" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* LEFT: Content */}
           <motion.div

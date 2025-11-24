@@ -14,7 +14,7 @@ import {
   Shield,
 } from "lucide-react"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image from "next/image"
@@ -208,33 +208,49 @@ export default function ServicesClient() {
         y: -20,
         opacity: 0,
         duration: 0.8,
-        ease: "power3.out"
+        ease: "power3.out",
       })
-        .from(".hero-heading", {
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out"
-        }, "-=0.4")
-        .from(".hero-text", {
-          y: 20,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out"
-        }, "-=0.6")
-        .from(".hero-cta", {
-          y: 20,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out"
-        }, "-=0.6")
-        .from(".hero-stats > div", {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out"
-        }, "-=0.4")
+        .from(
+          ".hero-heading",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.4",
+        )
+        .from(
+          ".hero-text",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.6",
+        )
+        .from(
+          ".hero-cta",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.6",
+        )
+        .from(
+          ".hero-stats > div",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power3.out",
+          },
+          "-=0.4",
+        )
 
       // 3D Card Tilt Effect
       const card = document.querySelector(".perspective-1000") as HTMLElement
@@ -253,7 +269,7 @@ export default function ServicesClient() {
             rotateX: rotateX,
             rotateY: rotateY,
             duration: 0.5,
-            ease: "power2.out"
+            ease: "power2.out",
           })
         })
 
@@ -262,7 +278,7 @@ export default function ServicesClient() {
             rotateX: 0,
             rotateY: 0,
             duration: 0.5,
-            ease: "power2.out"
+            ease: "power2.out",
           })
         })
       }
@@ -275,8 +291,8 @@ export default function ServicesClient() {
           trigger: ".hero-heading",
           start: "top top",
           end: "bottom top",
-          scrub: true
-        }
+          scrub: true,
+        },
       })
 
       // Existing animations for other sections...
@@ -320,7 +336,7 @@ export default function ServicesClient() {
         scrollTrigger: {
           trigger: ".graph-section",
           start: "top 70%",
-        }
+        },
       })
 
       graphTl.from(".graph-section h2, .graph-section p, .graph-legend-item", {
@@ -328,7 +344,7 @@ export default function ServicesClient() {
         opacity: 0,
         duration: 0.8,
         stagger: 0.1,
-        ease: "power3.out"
+        ease: "power3.out",
       })
 
       // Animate Donut Segments (Scroll-Linked)
@@ -354,7 +370,7 @@ export default function ServicesClient() {
           end: "bottom top",
           scrub: 1,
         },
-        rotation: 90, // Rotate an additional 90 degrees over the scroll duration
+        rotation: 90,
         ease: "none",
       })
 
@@ -367,9 +383,8 @@ export default function ServicesClient() {
         y: 50,
         opacity: 0,
         duration: 1,
-        ease: "power3.out"
+        ease: "power3.out",
       })
-
     }, rootRef)
 
     return () => ctx.revert()
@@ -378,19 +393,20 @@ export default function ServicesClient() {
   return (
     <main ref={rootRef} className="min-h-screen bg-slate-950 text-slate-50">
       {/* HERO + LIVE EMS DASHBOARD */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden py-12 md:py-20 bg-[#0B1120]">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden py-10 sm:py-12 md:py-20 bg-[#0B1120]">
         {/* Dynamic Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-sky-500/10 blur-[120px] animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-500/10 blur-[120px] animate-pulse delay-1000" />
-          <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] rounded-full bg-indigo-500/10 blur-[100px] animate-pulse delay-2000" />
+          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[50%] rounded-full bg-sky-500/10 blur-[120px] animate-pulse" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[50%] rounded-full bg-emerald-500/10 blur-[120px] animate-pulse delay-1000" />
+          <div className="absolute top-[20%] right-[10%] w-[40%] h-[30%] rounded-full bg-indigo-500/10 blur-[100px] animate-pulse delay-2000" />
 
           {/* Grid Pattern */}
           <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
-              backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-              backgroundSize: '40px 40px'
+              backgroundImage:
+                "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
             }}
           />
         </div>
@@ -399,7 +415,7 @@ export default function ServicesClient() {
           <div className="grid gap-10 lg:gap-16 lg:grid-cols-2 items-center">
             {/* Left Side: Content */}
             <div className="flex flex-col items-start text-left">
-              <div className="hero-badge inline-flex items-center gap-2 mb-8 rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-sky-400 backdrop-blur-md shadow-[0_0_15px_rgba(14,165,233,0.3)]">
+              <div className="hero-badge inline-flex items-center gap-2 mb-6 sm:mb-8 rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-sky-400 backdrop-blur-md shadow-[0_0_15px_rgba(14,165,233,0.3)]">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
@@ -407,96 +423,104 @@ export default function ServicesClient() {
                 <span>Next-Gen EMS Solutions</span>
               </div>
 
-              <h1 className="hero-heading text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
+              <h1 className="hero-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-4 sm:mb-6">
                 Manufacturing <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-400 drop-shadow-[0_0_30px_rgba(56,189,248,0.3)]">
                   The Future
                 </span>
               </h1>
 
-              <p className="hero-text text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed mb-8">
+              <p className="hero-text text-sm sm:text-base md:text-lg text-slate-400 max-w-xl leading-relaxed mb-6 sm:mb-8">
                 From rapid prototyping to mass production, we deliver precision electronics manufacturing with real-time visibility and ISO-certified quality.
               </p>
 
-              <div className="hero-cta flex flex-wrap gap-4 w-full sm:w-auto">
+              <div className="hero-cta flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="h-14 px-8 text-base font-bold bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:shadow-[0_0_30px_rgba(14,165,233,0.6)] transition-all duration-300 rounded-full"
+                  className="h-12 sm:h-14 w-full sm:w-auto px-6 sm:px-8 text-sm sm:text-base font-bold bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:shadow-[0_0_30px_rgba(14,165,233,0.6)] transition-all duration-300 rounded-full"
                 >
                   Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-14 px-8 text-base font-bold border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-600 transition-all duration-300 rounded-full backdrop-blur-sm"
+                  className="h-12 sm:h-14 w-full sm:w-auto px-6 sm:px-8 text-sm sm:text-base font-bold border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-600 transition-all duration-300 rounded-full backdrop-blur-sm"
                 >
                   Explore Capabilities
                 </Button>
               </div>
 
               {/* Stats Row */}
-              <div className="hero-stats mt-8 grid grid-cols-3 gap-8 border-t border-slate-800/50 pt-8 w-full">
+              <div className="hero-stats mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 border-t border-slate-800/50 pt-6 sm:pt-8 w-full">
                 {[
                   { value: "99.9%", label: "Quality Yield" },
                   { value: "10M+", label: "Units Shipped" },
                   { value: "24/7", label: "Production" },
                 ].map((stat, i) => (
                   <div key={i}>
-                    <div className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</div>
-                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">{stat.label}</div>
+                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-[10px] sm:text-xs font-medium text-slate-500 uppercase tracking-wider">
+                      {stat.label}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Right Side: 3D Dashboard Card */}
-            <div className="relative perspective-1000 group">
+            <div className="relative perspective-1000 group mt-8 lg:mt-0">
               {/* Glow Effect behind card */}
               <div className="absolute -inset-4 bg-gradient-to-r from-sky-500 to-emerald-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
 
               <Card className="relative border-slate-700/50 bg-[#0F172A]/90 backdrop-blur-xl shadow-2xl transform transition-transform duration-500 hover:scale-[1.02] hover:-rotate-1">
                 {/* Card Header */}
-                <div className="flex items-center justify-between p-6 border-b border-slate-800/50">
-                  <div className="flex items-center gap-3">
-                    <div className="h-3 w-3 rounded-full bg-red-500/20 border border-red-500/50" />
-                    <div className="h-3 w-3 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
-                    <div className="h-3 w-3 rounded-full bg-green-500/20 border border-green-500/50" />
+                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-800/50">
+                  <div className="flex items-center gap-2">
+                    <div className="h-2.5 w-2.5 rounded-full bg-red-500/20 border border-red-500/50" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-green-500/20 border border-green-500/50" />
                   </div>
-                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700/50">
+                  <div className="flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700/50">
                     <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">System Online</span>
+                    <span className="text-[9px] sm:text-[10px] font-bold text-slate-300 uppercase tracking-wider">
+                      System Online
+                    </span>
                   </div>
                 </div>
 
-                <CardContent className="p-6 space-y-6">
+                <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                   {/* Metric Cards */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 rounded-2xl bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50 transition-colors">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50 transition-colors">
                       <div className="flex items-center justify-between mb-2">
-                        <Cpu className="h-5 w-5 text-sky-400" />
+                        <Cpu className="h-4 w-4 sm:h-5 sm:w-5 text-sky-400" />
                         <span className="text-xs font-medium text-sky-400">+12%</span>
                       </div>
-                      <div className="text-2xl font-bold text-white mb-1">842</div>
-                      <div className="text-xs text-slate-500">Active Components</div>
+                      <div className="text-lg sm:text-2xl font-bold text-white mb-1">842</div>
+                      <div className="text-[11px] sm:text-xs text-slate-500">Active Components</div>
                     </div>
-                    <div className="p-4 rounded-2xl bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50 transition-colors">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50 transition-colors">
                       <div className="flex items-center justify-between mb-2">
-                        <Zap className="h-5 w-5 text-emerald-400" />
+                        <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-emerald-400" />
                         <span className="text-xs font-medium text-emerald-400">98.2%</span>
                       </div>
-                      <div className="text-2xl font-bold text-white mb-1">Efficiency</div>
-                      <div className="text-xs text-slate-500">Production Rate</div>
+                      <div className="text-lg sm:text-2xl font-bold text-white mb-1">Efficiency</div>
+                      <div className="text-[11px] sm:text-xs text-slate-500">Production Rate</div>
                     </div>
                   </div>
 
                   {/* Graph Placeholder */}
-                  <div className="p-4 rounded-2xl bg-slate-800/30 border border-slate-700/30">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-bold text-slate-300 uppercase">Output Velocity</span>
-                      <span className="text-xs text-slate-500">Last 24h</span>
+                  <div className="p-3 sm:p-4 rounded-2xl bg-slate-800/30 border border-slate-700/30">
+                    <div className="flex items-center justify-between mb-3 sm:mb-4">
+                      <span className="text-[11px] sm:text-xs font-bold text-slate-300 uppercase">
+                        Output Velocity
+                      </span>
+                      <span className="text-[11px] sm:text-xs text-slate-500">Last 24h</span>
                     </div>
-                    <div className="h-24 flex items-end gap-1">
+                    <div className="h-20 sm:h-24 flex items-end gap-1">
                       {[40, 65, 45, 80, 55, 90, 70, 85, 60, 75, 50, 95].map((h, i) => (
                         <div
                           key={i}
@@ -508,16 +532,16 @@ export default function ServicesClient() {
                   </div>
 
                   {/* Active Job */}
-                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-sky-500/10 to-transparent border border-sky-500/20">
-                    <div className="h-10 w-10 rounded-xl bg-sky-500/20 flex items-center justify-center text-sky-400">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-sky-500/10 to-transparent border border-sky-500/20">
+                    <div className="h-10 w-10 rounded-xl bg-sky-500/20 flex items-center justify-center text-sky-400 shrink-0">
                       <Package className="h-5 w-5" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <div className="text-sm font-bold text-white">Autonomous Line Active</div>
                       <div className="text-xs text-slate-400">Throughput: 1,200 UPH</div>
                     </div>
                     <div className="ml-auto">
-                      <div className="h-8 w-8 rounded-full border-2 border-sky-500 border-t-transparent animate-spin" />
+                      <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border-2 border-sky-500 border-t-transparent animate-spin" />
                     </div>
                   </div>
                 </CardContent>
@@ -526,25 +550,26 @@ export default function ServicesClient() {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
-            <span className="text-[10px] font-medium text-slate-400 uppercase tracking-widest">Scroll</span>
-            <div className="h-12 w-[1px] bg-gradient-to-b from-slate-400 to-transparent" />
+          <div className="hidden sm:flex absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 opacity-50 animate-bounce">
+            <span className="text-[9px] sm:text-[10px] font-medium text-slate-400 uppercase tracking-widest">
+              Scroll
+            </span>
+            <div className="h-10 sm:h-12 w-[1px] bg-gradient-to-b from-slate-400 to-transparent" />
           </div>
         </div>
       </section>
 
       {/* CORE SERVICE STACK (CLEAN DESIGN, NO SCROLL EFFECT) */}
-      {/* CORE SERVICE STACK (CLEAN DESIGN, NO SCROLL EFFECT) */}
-      <section className="bg-slate-50 py-12 md:py-20">
+      <section className="bg-slate-50 py-10 sm:py-12 md:py-20">
         <div className="container max-w-[1600px] px-4 md:px-8 mx-auto">
-          <div className="mb-12 md:mb-16 flex flex-col items-center text-center">
-            <span className="mb-3 inline-flex items-center rounded-full bg-sky-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-sky-700">
+          <div className="mb-10 md:mb-16 flex flex-col items-center text-center">
+            <span className="mb-3 inline-flex items-center rounded-full bg-sky-100 px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wide text-sky-700">
               Service Tiers
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
               Core Service Stack
             </h2>
-            <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600 text-pretty">
+            <p className="mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-slate-600 text-pretty">
               From idea to fully shipped product, choose the service tier that matches your current stage.
             </p>
           </div>
@@ -555,28 +580,28 @@ export default function ServicesClient() {
               {services.slice(0, 4).map((service, index) => (
                 <Link key={service.id} href={service.path} className="h-full">
                   <Card className="group h-full cursor-pointer border-slate-200 hover:border-sky-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                    <CardContent className="p-6 md:p-8 flex flex-col h-full">
-                      <div className="mb-6 flex items-start justify-between gap-4">
-                        <div className="flex items-center gap-4">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-emerald-500 text-white shadow-lg shadow-sky-500/20 group-hover:scale-110 transition-transform duration-300">
-                            <service.icon className="h-6 w-6" />
+                    <CardContent className="p-5 sm:p-6 md:p-8 flex flex-col h-full">
+                      <div className="mb-5 sm:mb-6 flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-emerald-500 text-white shadow-lg shadow-sky-500/20 group-hover:scale-110 transition-transform duration-300">
+                            <service.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                           </div>
                           <div>
-                            <p className="text-[10px] font-bold uppercase tracking-wider text-sky-600 mb-0.5">
+                            <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-sky-600 mb-0.5">
                               Tier {index + 1}
                             </p>
-                            <h3 className="text-lg font-bold text-slate-900 group-hover:text-sky-700 transition-colors">
+                            <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-sky-700 transition-colors">
                               {service.title}
                             </h3>
                           </div>
                         </div>
-                        <ArrowRight className="h-5 w-5 text-slate-300 group-hover:text-sky-500 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 text-slate-300 group-hover:text-sky-500 group-hover:translate-x-1 transition-all" />
                       </div>
-                      <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow">
+                      <p className="text-sm text-slate-600 leading-relaxed mb-5 sm:mb-6 flex-grow">
                         {service.shortDesc}
                       </p>
                       <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 group-hover:text-sky-600 transition-colors">
+                        <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400 group-hover:text-sky-600 transition-colors">
                           {service.category}
                         </span>
                         <span className="text-xs font-bold text-sky-600 group-hover:underline">
@@ -590,53 +615,60 @@ export default function ServicesClient() {
             </div>
 
             {/* Right: quick “at a glance” summary */}
-            <div className="sticky top-24 rounded-3xl border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/50">
-              <h3 className="text-xl font-bold text-slate-900 mb-4">
+            <div className="lg:sticky lg:top-24 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl shadow-slate-200/50">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4">
                 How customers use our stack
               </h3>
-              <p className="text-base text-slate-600 leading-relaxed mb-8">
-                Most OEMs start with <span className="font-bold text-slate-900">Rapid Prototyping</span>,
-                lock in the design with <span className="font-bold text-slate-900">Design Engineering</span>,
-                and then scale volumes with <span className="font-bold text-slate-900">PCB Assembly</span> +
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 sm:mb-8">
+                Most OEMs start with{" "}
+                <span className="font-bold text-slate-900">Rapid Prototyping</span>, lock in the design with{" "}
+                <span className="font-bold text-slate-900">Design Engineering</span>, and then scale volumes with{" "}
+                <span className="font-bold text-slate-900">PCB Assembly</span> +
                 <span className="font-bold text-slate-900"> Box Build</span>.
               </p>
 
-              <div className="space-y-6 relative">
+              <div className="space-y-5 sm:space-y-6 relative">
                 {/* Connecting line */}
                 <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-slate-100" />
 
                 <div className="relative flex gap-4">
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sky-600 ring-4 ring-white">
-                    <span className="text-sm font-bold">1</span>
+                  <div className="relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sky-600 ring-4 ring-white">
+                    <span className="text-xs sm:text-sm font-bold">1</span>
                   </div>
-                  <div className="pt-2">
-                    <h4 className="font-bold text-slate-900 text-sm">Idea / EVT</h4>
-                    <p className="text-sm text-slate-500 mt-1">Rapid Prototyping + Design Engineering</p>
-                  </div>
-                </div>
-
-                <div className="relative flex gap-4">
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 ring-4 ring-white">
-                    <span className="text-sm font-bold">2</span>
-                  </div>
-                  <div className="pt-2">
-                    <h4 className="font-bold text-slate-900 text-sm">DVT / PVT</h4>
-                    <p className="text-sm text-slate-500 mt-1">PCB Assembly + Testing & QA</p>
+                  <div className="pt-1.5 sm:pt-2">
+                    <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Idea / EVT</h4>
+                    <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                      Rapid Prototyping + Design Engineering
+                    </p>
                   </div>
                 </div>
 
                 <div className="relative flex gap-4">
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 ring-4 ring-white">
-                    <span className="text-sm font-bold">3</span>
+                  <div className="relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 ring-4 ring-white">
+                    <span className="text-xs sm:text-sm font-bold">2</span>
                   </div>
-                  <div className="pt-2">
-                    <h4 className="font-bold text-slate-900 text-sm">Mass Production</h4>
-                    <p className="text-sm text-slate-500 mt-1">Box Build & Supply Chain</p>
+                  <div className="pt-1.5 sm:pt-2">
+                    <h4 className="font-bold text-slate-900 text-xs sm:text-sm">DVT / PVT</h4>
+                    <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                      PCB Assembly + Testing & QA
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative flex gap-4">
+                  <div className="relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 ring-4 ring-white">
+                    <span className="text-xs sm:text-sm font-bold">3</span>
+                  </div>
+                  <div className="pt-1.5 sm:pt-2">
+                    <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Mass Production</h4>
+                    <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                      Box Build & Supply Chain
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 rounded-2xl bg-slate-50 p-6 border border-slate-100">
+              <div className="mt-6 sm:mt-8 rounded-2xl bg-slate-50 p-5 sm:p-6 border border-slate-100">
                 <p className="font-bold text-slate-900 mb-2 text-sm">
                   Not sure where to start?
                 </p>
@@ -644,7 +676,11 @@ export default function ServicesClient() {
                   Share your volumes, target markets, and current design maturity.
                   Our engineering team will map the right service stack for you.
                 </p>
-                <Button variant="outline" size="sm" className="w-full bg-white hover:bg-slate-50 text-slate-700 border-slate-200">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full bg-white hover:bg-slate-50 text-slate-700 border-slate-200"
+                >
                   Consult Engineering Team
                 </Button>
               </div>
@@ -654,39 +690,48 @@ export default function ServicesClient() {
       </section>
 
       {/* SERVICES OVERVIEW (IMAGE CARDS) */}
-      <section className="bg-white py-12 md:py-20">
+      <section className="bg-white py-10 sm:py-12 md:py-20">
         <div className="container max-w-[1600px] px-4 md:px-8 mx-auto">
-          <div className="mb-12 md:mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">Service Overview</h2>
-            <p className="mt-4 text-lg text-slate-600 text-pretty">
+          <div className="mb-10 md:mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+              Service Overview
+            </h2>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 text-pretty">
               Visual overview of our key EMS offerings—click any card to deep dive into a dedicated service page.
             </p>
           </div>
 
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {services.map((service) => (
               <Link key={service.id} href={service.path}>
                 <Card className="group h-full cursor-pointer overflow-hidden border-slate-200 bg-white hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                  <div className="relative h-48 sm:h-56 w-full overflow-hidden">
+                  <div className="relative h-40 sm:h-48 md:h-56 w-full overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                    <div className="absolute bottom-0 left-0 right-0 p-5">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 backdrop-blur-md border border-white/30">
-                          <service.icon className="h-4 w-4 text-white" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                      <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                        <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-white/20 backdrop-blur-md border border-white/30">
+                          <service.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
                         </div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-sky-300">{service.category}</p>
+                        <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-sky-300">
+                          {service.category}
+                        </p>
                       </div>
-                      <h3 className="text-xl font-bold text-white leading-tight group-hover:text-sky-200 transition-colors">{service.title}</h3>
+                      <h3 className="text-lg sm:text-xl font-bold text-white leading-tight group-hover:text-sky-200 transition-colors">
+                        {service.title}
+                      </h3>
                     </div>
                   </div>
-                  <CardContent className="p-5">
-                    <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4">{service.shortDesc}</p>
+                  <CardContent className="p-4 sm:p-5">
+                    <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed mb-3 sm:mb-4">
+                      {service.shortDesc}
+                    </p>
                     <div className="inline-flex items-center text-sm font-bold text-sky-600 group-hover:text-sky-700 group-hover:underline decoration-2 underline-offset-4 transition-all">
                       Learn More
                       <ArrowRight className="ml-1.5 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -700,82 +745,101 @@ export default function ServicesClient() {
       </section>
 
       {/* DETAILED SERVICE BREAKDOWN (TABS) */}
-      <section className="tabs-section bg-slate-50 py-12 md:py-20 border-t border-slate-200">
+      <section className="tabs-section bg-slate-50 py-10 sm:py-12 md:py-20 border-t border-slate-200">
         <div className="container max-w-[1600px] px-4 md:px-8 mx-auto">
-          <div className="mb-12 md:mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">Detailed Service Breakdown</h2>
-            <p className="mt-4 text-lg text-slate-600 text-pretty">
+          <div className="mb-10 md:mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+              Detailed Service Breakdown
+            </h2>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 text-pretty">
               Switch between services to explore features, process coverage, and typical use-cases.
             </p>
           </div>
 
-          <Tabs defaultValue="pcb" className="grid gap-6 lg:gap-10 lg:grid-cols-[300px_minmax(0,1fr)]">
-            <TabsList className="flex lg:flex-col justify-start lg:justify-stretch overflow-x-auto lg:overflow-visible rounded-2xl bg-white border border-slate-200 p-2 shadow-sm h-auto lg:h-fit sticky top-24 z-10">
+          <Tabs
+            defaultValue="pcb"
+            className="grid gap-6 lg:gap-10 lg:grid-cols-[minmax(0,280px)_minmax(0,1fr)]"
+          >
+            <TabsList className="flex lg:flex-col justify-start lg:justify-stretch overflow-x-auto lg:overflow-visible rounded-2xl bg-white border border-slate-200 p-2 shadow-sm h-auto lg:h-fit sticky lg:top-24 z-10 max-w-full gap-2">
               {services.map((service) => (
                 <TabsTrigger
                   key={service.id}
                   value={service.id}
-                  className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium data-[state=active]:bg-sky-50 data-[state=active]:text-sky-700 data-[state=active]:shadow-none w-full justify-start shrink-0 lg:shrink transition-all"
+                  className="flex items-center gap-2 sm:gap-3 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium data-[state=active]:bg-sky-50 data-[state=active]:text-sky-700 data-[state=active]:shadow-none w-auto lg:w-full justify-start shrink-0 lg:shrink transition-all"
                 >
-                  <service.icon className="h-4 w-4" />
+                  <service.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   <span className="whitespace-nowrap">{service.title}</span>
                 </TabsTrigger>
               ))}
             </TabsList>
 
-            <div className="min-h-[500px]">
+            <div className="min-h-[420px] sm:min-h-[480px] md:min-h-[500px]">
               {services.map((service) => (
-                <TabsContent key={service.id} value={service.id} className="mt-0 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <div className="grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-start">
+                <TabsContent
+                  key={service.id}
+                  value={service.id}
+                  className="mt-0 animate-in fade-in slide-in-from-bottom-4 duration-500"
+                >
+                  <div className="grid gap-6 lg:gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-start">
                     <div className="order-2 lg:order-1">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-emerald-500 text-white shadow-lg shadow-sky-500/20">
-                          <service.icon className="h-7 w-7" />
+                      <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+                        <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-emerald-500 text-white shadow-lg shadow-sky-500/20">
+                          <service.icon className="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-slate-900">{service.title}</h3>
-                          <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">
+                          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900">
+                            {service.title}
+                          </h3>
+                          <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">
                             {service.category}
                           </p>
                         </div>
                       </div>
-                      <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-8 text-pretty">
+                      <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed mb-6 sm:mb-8 text-pretty">
                         {service.fullDesc}
                       </p>
 
-                      <div className="mb-8">
-                        <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4">Key Features</h4>
+                      <div className="mb-6 sm:mb-8">
+                        <h4 className="text-xs sm:text-sm font-bold text-slate-900 uppercase tracking-wide mb-3 sm:mb-4">
+                          Key Features
+                        </h4>
                         <ul className="grid gap-3 sm:grid-cols-2">
                           {service.features.map((feature) => (
-                            <li key={feature} className="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-100 shadow-sm">
-                              <CheckCircle2 className="mt-0.5 h-5 w-5 text-emerald-500 shrink-0" />
-                              <span className="text-sm font-medium text-slate-700">{feature}</span>
+                            <li
+                              key={feature}
+                              className="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-100 shadow-sm"
+                            >
+                              <CheckCircle2 className="mt-0.5 h-4 w-4 sm:h-5 sm:w-5 text-emerald-500 shrink-0" />
+                              <span className="text-xs sm:text-sm font-medium text-slate-700">
+                                {feature}
+                              </span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="flex flex-wrap gap-4">
+                      <div className="flex flex-wrap gap-3 sm:gap-4">
                         <Link href={service.path}>
-                          <Button size="lg" className="bg-sky-600 hover:bg-sky-700 text-white shadow-lg shadow-sky-600/20">
+                          <Button className="bg-sky-600 hover:bg-sky-700 text-white shadow-lg shadow-sky-600/20 text-sm sm:text-base">
                             View Service Page
                           </Button>
                         </Link>
                         <Button
                           size="lg"
                           variant="outline"
-                          className="border-slate-300 text-slate-700 hover:border-sky-500 hover:text-sky-700 hover:bg-sky-50"
+                          className="border-slate-300 text-slate-700 hover:border-sky-500 hover:text-sky-700 hover:bg-sky-50 text-sm sm:text-base"
                         >
                           Request Quote
                         </Button>
                       </div>
                     </div>
 
-                    <div className="order-1 lg:order-2 relative h-64 sm:h-80 lg:h-[500px] w-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-xl">
+                    <div className="order-1 lg:order-2 relative h-56 sm:h-72 md:h-80 lg:h-[500px] w-full overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-xl">
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
@@ -789,16 +853,16 @@ export default function ServicesClient() {
       </section>
 
       {/* OUR CAPABILITIES (CLEAN, STATIC) */}
-      <section className="bg-white py-12 md:py-20">
+      <section className="bg-white py-10 sm:py-12 md:py-20">
         <div className="container max-w-[1600px] px-4 md:px-8 mx-auto">
-          <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
-            <span className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-emerald-700">
+          <div className="text-center mb-10 md:mb-16 max-w-3xl mx-auto">
+            <span className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wide text-emerald-700">
               Quality & Compliance
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+            <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
               Our Capabilities
             </h2>
-            <p className="mx-auto mt-4 text-lg text-slate-600 text-pretty">
+            <p className="mx-auto mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 text-pretty">
               Certifications, standards, and in-house controls that keep your builds repeatable, auditable, and
               production-ready at scale.
             </p>
@@ -806,18 +870,18 @@ export default function ServicesClient() {
 
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-start">
             {/* Left: capability cards */}
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
               {capabilities.slice(0, 4).map((capability) => (
                 <Card
                   key={capability.title}
                   className="border-slate-200 bg-slate-50 hover:bg-white hover:border-sky-400 hover:shadow-lg transition-all duration-300 group"
                 >
-                  <CardContent className="p-6 md:p-8">
-                    <div className="mb-4 flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                        <CheckCircle2 className="h-5 w-5" />
+                  <CardContent className="p-5 sm:p-6 md:p-8">
+                    <div className="mb-3 sm:mb-4 flex items-center gap-3">
+                      <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                        <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5" />
                       </div>
-                      <h3 className="font-bold text-lg text-slate-900">
+                      <h3 className="font-bold text-base sm:text-lg text-slate-900">
                         {capability.title}
                       </h3>
                     </div>
@@ -830,18 +894,18 @@ export default function ServicesClient() {
             </div>
 
             {/* Right: summary / reassurance panel */}
-            <div className="sticky top-24 rounded-3xl border border-slate-200 bg-slate-900 p-8 shadow-2xl shadow-slate-900/20 text-slate-100">
-              <h3 className="text-xl font-bold text-white mb-4">
+            <div className="lg:sticky lg:top-24 rounded-3xl border border-slate-200 bg-slate-900 p-6 sm:p-8 shadow-2xl shadow-slate-900/20 text-slate-100">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4">
                 Built for audited, high-reliability programs
               </h3>
-              <p className="text-base text-slate-300 leading-relaxed mb-8">
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6 sm:mb-8">
                 Whether you&apos;re building for automotive, industrial, or IoT,
                 our processes are aligned with <span className="font-bold text-white">IPC-A-610</span>,{" "}
                 <span className="font-bold text-white">RoHS</span>, and ISO-based quality
                 systems. That means fewer surprises in validation and field use.
               </p>
 
-              <ul className="space-y-4 text-sm border-t border-slate-800 pt-6">
+              <ul className="space-y-3 sm:space-y-4 text-sm border-t border-slate-800 pt-5 sm:pt-6">
                 {capabilities.slice(4).map((capability) => (
                   <li key={capability.title} className="flex gap-3">
                     <span className="mt-1.5 h-2 w-2 rounded-full bg-sky-500 shrink-0" />
@@ -853,7 +917,7 @@ export default function ServicesClient() {
                 ))}
               </ul>
 
-              <div className="mt-8 rounded-2xl border border-dashed border-slate-700 bg-slate-800/50 p-6">
+              <div className="mt-6 sm:mt-8 rounded-2xl border border-dashed border-slate-700 bg-slate-800/50 p-5 sm:p-6">
                 <p className="font-bold text-white mb-2 text-sm">
                   Need to match a specific standard?
                 </p>
@@ -869,42 +933,41 @@ export default function ServicesClient() {
         </div>
       </section>
 
-
-
-
-
       {/* GRAPH SECTION (DONUT CHART) */}
-      <section className="graph-section bg-slate-950 py-16 md:py-24 overflow-hidden">
+      <section className="graph-section bg-slate-950 py-14 sm:py-16 md:py-24 overflow-hidden">
         <div className="container max-w-[1600px] px-4 md:px-8 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 items-center">
             {/* Text Content */}
             <div className="order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 mb-6 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400">
+              <div className="inline-flex items-center gap-2 mb-5 sm:mb-6 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-emerald-400">
                 <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Cost Efficiency</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 Transparent <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
                   Cost Breakdown
                 </span>
               </h2>
-              <p className="text-lg text-slate-400 mb-8 leading-relaxed max-w-xl">
+              <p className="text-sm sm:text-base md:text-lg text-slate-400 mb-6 sm:mb-8 leading-relaxed max-w-xl">
                 We believe in complete transparency. Our optimized manufacturing processes significantly reduce overhead, putting more value into your actual product.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {[
                   { label: "Raw Materials & Components", value: "65%", color: "bg-emerald-500" },
                   { label: "Manufacturing & Assembly", value: "25%", color: "bg-sky-500" },
                   { label: "Quality Assurance & Testing", value: "10%", color: "bg-indigo-500" },
                 ].map((item, i) => (
-                  <div key={i} className="graph-legend-item flex items-center justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors">
-                    <div className="flex items-center gap-4">
+                  <div
+                    key={i}
+                    className="graph-legend-item flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors gap-2"
+                  >
+                    <div className="flex items-center gap-3 sm:gap-4">
                       <div className={`h-3 w-3 rounded-full ${item.color} shadow-[0_0_10px_currentColor]`} />
-                      <span className="font-medium text-slate-300">{item.label}</span>
+                      <span className="text-sm font-medium text-slate-300">{item.label}</span>
                     </div>
-                    <span className="text-xl font-bold text-white">{item.value}</span>
+                    <span className="text-lg sm:text-xl font-bold text-white">{item.value}</span>
                   </div>
                 ))}
               </div>
@@ -913,14 +976,13 @@ export default function ServicesClient() {
             {/* Chart Visualization */}
             <div className="order-1 lg:order-2 flex justify-center relative">
               {/* Background Glow */}
-              <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] rounded-full" />
+              <div className="absolute inset-0 bg-emerald-500/5 blur-[80px] sm:blur-[100px] rounded-full" />
 
-              <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
+              <div className="relative w-full max-w-[220px] sm:max-w-[260px] md:max-w-[320px] aspect-square">
                 <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
                   {/* Background Circle */}
                   <circle cx="50" cy="50" r="40" fill="none" stroke="#1e293b" strokeWidth="12" />
 
-                  {/* Segments - using stroke-dasharray for animation */}
                   {/* Segment 1: 65% (Emerald) */}
                   <circle
                     className="donut-segment"
@@ -930,11 +992,11 @@ export default function ServicesClient() {
                     fill="none"
                     stroke="#10b981"
                     strokeWidth="12"
-                    strokeDasharray="0 251.2" // 2 * PI * 40 = ~251.2
+                    strokeDasharray="0 251.2"
                     strokeLinecap="round"
-                    data-value="163.28" // 65% of 251.2
+                    data-value="163.28"
                   />
-                  {/* Segment 2: 25% (Sky) - Offset by 65% */}
+                  {/* Segment 2: 25% (Sky) */}
                   <circle
                     className="donut-segment"
                     cx="50"
@@ -946,9 +1008,9 @@ export default function ServicesClient() {
                     strokeDasharray="0 251.2"
                     strokeDashoffset="-163.28"
                     strokeLinecap="round"
-                    data-value="62.8" // 25% of 251.2
+                    data-value="62.8"
                   />
-                  {/* Segment 3: 10% (Indigo) - Offset by 90% */}
+                  {/* Segment 3: 10% (Indigo) */}
                   <circle
                     className="donut-segment"
                     cx="50"
@@ -960,14 +1022,18 @@ export default function ServicesClient() {
                     strokeDasharray="0 251.2"
                     strokeDashoffset="-226.08"
                     strokeLinecap="round"
-                    data-value="25.12" // 10% of 251.2
+                    data-value="25.12"
                   />
                 </svg>
 
                 {/* Center Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                  <span className="text-sm font-bold text-slate-400 uppercase tracking-wider">Total Value</span>
-                  <span className="text-4xl md:text-5xl font-bold text-white mt-2">100%</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    Total Value
+                  </span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-1 sm:mt-2">
+                    100%
+                  </span>
                 </div>
               </div>
             </div>
@@ -976,10 +1042,10 @@ export default function ServicesClient() {
       </section>
 
       {/* NEW CTA SECTION */}
-      <section className="cta-section relative py-24 md:py-32 overflow-hidden bg-slate-950">
+      <section className="cta-section relative py-16 sm:py-20 md:py-32 overflow-hidden bg-slate-950">
         {/* Animated Background Grid */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:3rem_3rem] sm:bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         </div>
 
         {/* Gradient Overlay */}
@@ -987,25 +1053,31 @@ export default function ServicesClient() {
 
         <div className="container max-w-[1600px] relative z-10 px-4 md:px-8 mx-auto text-center">
           <div className="cta-content max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-8 tracking-tight">
-              Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400">Scale Production?</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 sm:mb-8 tracking-tight">
+              Ready to{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400">
+                Scale Production?
+              </span>
             </h2>
-            <p className="text-xl text-slate-400 mb-12 leading-relaxed max-w-2xl mx-auto">
-              Join industry leaders who trust us with their mission-critical electronics. From prototype to mass production, we're ready to build.
+            <p className="text-base sm:text-lg md:text-xl text-slate-400 mb-8 sm:mb-12 leading-relaxed max-w-2xl mx-auto">
+              Join industry leaders who trust us with their mission-critical electronics. From prototype to mass production, we&apos;re ready to build.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-6">
-              <Link href="/contact?type=quote">
-                <Button size="lg" className="h-16 px-10 text-lg font-bold bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_30px_rgba(14,165,233,0.3)] hover:shadow-[0_0_50px_rgba(14,165,233,0.5)] transition-all duration-300 rounded-full hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6">
+              <Link href="/contact?type=quote" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="h-14 sm:h-16 w-full sm:w-auto px-8 sm:px-10 text-base sm:text-lg font-bold bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_30px_rgba(14,165,233,0.3)] hover:shadow-[0_0_50px_rgba(14,165,233,0.5)] transition-all duration-300 rounded-full hover:-translate-y-1"
+                >
                   Get a Quote
-                  <ArrowRight className="ml-2 h-6 w-6" />
+                  <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href="/contact" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-16 px-10 text-lg font-bold border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-500 transition-all duration-300 rounded-full backdrop-blur-sm"
+                  className="h-14 sm:h-16 w-full sm:w-auto px-8 sm:px-10 text-base sm:text-lg font-bold border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-500 transition-all duration-300 rounded-full backdrop-blur-sm"
                 >
                   Talk to Engineering
                 </Button>

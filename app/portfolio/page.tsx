@@ -105,7 +105,7 @@ export default function PortfolioPage() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]" />
         <div className="absolute inset-0 bg-linear-to-br from-[#0066CC]/20 via-transparent to-[#00A896]/20" />
 
-        <div className="relative mx-auto max-auto px-4 sm:px-3 lg:px-8 py-20 md:py-28">
+        <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             {/* Left Content */}
             <motion.div
@@ -230,7 +230,7 @@ export default function PortfolioPage() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8 }}
-                className="absolute -bottom-6 -left-6 bg-gradient-to-br from-[#00A896] to-[#008C7A] text-white px-6 py-4 rounded-2xl shadow-2xl border border-white/20"
+                className="absolute -bottom-6 left-4 sm:-left-6 bg-gradient-to-br from-[#00A896] to-[#008C7A] text-white px-6 py-4 rounded-2xl shadow-2xl border border-white/20"
               >
                 <div className="text-2xl font-bold">24/7</div>
                 <div className="text-sm">Support Available</div>
@@ -244,7 +244,7 @@ export default function PortfolioPage() {
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
             <path
               d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-              fill="rgb(249, 250, 251)"
+              fill="white"
             />
           </svg>
         </div>
@@ -252,7 +252,7 @@ export default function PortfolioPage() {
 
       {/* FILTERABLE GALLERY */}
       <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto max-w-screen-2xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Featured Projects</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
@@ -261,8 +261,8 @@ export default function PortfolioPage() {
           </div>
 
           <Tabs defaultValue="all" className="w-full" onValueChange={setActiveTab}>
-            <div className="flex justify-center mb-12">
-              <TabsList className="bg-white border border-slate-200 p-1 rounded-full shadow-sm">
+            <div className="flex justify-start md:justify-center mb-12 overflow-x-auto pb-4 md:pb-0 scrollbar-hide">
+              <TabsList className="bg-white border border-slate-200 p-1 rounded-full shadow-sm h-auto flex-nowrap">
                 <TabsTrigger value="all" className="rounded-full px-6 data-[state=active]:bg-slate-900 data-[state=active]:text-white">All</TabsTrigger>
                 <TabsTrigger value="prototyping" className="rounded-full px-6 data-[state=active]:bg-slate-900 data-[state=active]:text-white">Prototyping</TabsTrigger>
                 <TabsTrigger value="manufacturing" className="rounded-full px-6 data-[state=active]:bg-slate-900 data-[state=active]:text-white">Manufacturing</TabsTrigger>
@@ -289,11 +289,11 @@ export default function PortfolioPage() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                      {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <Button variant="secondary" size="sm" className="w-full font-semibold">
                           View Details
                         </Button>
-                      </div>
+                      </div> */}
                       <Badge className="absolute top-4 left-4 bg-white/90 text-slate-900 hover:bg-white">
                         {project.industry}
                       </Badge>
@@ -392,9 +392,9 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              <Button className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-6 text-lg rounded-full">
+              {/* <Button className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-6 text-lg rounded-full">
                 Read Full Case Study <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

@@ -67,7 +67,7 @@ export function Footer() {
         </svg>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 max-w-7xl py-12 md:py-16">
+      <div className="relative z-10 container mx-auto px-4 max-w-screen-2xl py-12 md:py-16">
         <div className="grid gap-12 grid-cols-1 md:grid-cols-[1fr_auto_auto_auto_1fr]">
           {/* Contact Information */}
           <div className="space-y-8">
@@ -107,7 +107,7 @@ export function Footer() {
                       +91 88669 68821
                     </a>
                   </p>
-                  
+
                 </div>
               </div>
             </div>
@@ -230,7 +230,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-             
+
               </li>
               <li>
                 <Link
@@ -241,7 +241,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-            
+
               </li>
             </ul>
           </div>

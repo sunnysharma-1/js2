@@ -228,7 +228,7 @@ export default function ContactPage() {
                         <p className="text-sm text-muted-foreground">
                           Monday - Friday: 9:00 AM - 6:00 PM
                           <br />
-                          Saturday: 9:00 AM - 6:00 PM
+                          Saturday: 9:00 AM - 1:00 PM
                           <br />
                           Sunday: Closed
                         </p>

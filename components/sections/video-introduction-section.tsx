@@ -3,11 +3,15 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { CheckCircle2, Award, Users, Zap } from "lucide-react"
+import { CheckCircle2, Award, Users, Zap, Play } from "lucide-react"
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+} from "@/components/ui/dialog"
 
 export default function VideoIntroductionSection() {
-  const [playing, setPlaying] = useState(false)
-
   const youtubeId = "dalCFsZGDGI"
   const poster =
     "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=675&fit=crop"
@@ -55,13 +59,27 @@ export default function VideoIntroductionSection() {
 
             {/* CTA Row */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
-                type="button"
-                onClick={() => setPlaying(true)}
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0066CC] to-[#00A896] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0066CC]/20 transition hover:translate-y-0.5 hover:shadow-xl"
-              >
-                ▶ Watch Company Introduction
-              </button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0066CC] to-[#00A896] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0066CC]/20 transition hover:translate-y-0.5 hover:shadow-xl"
+                  >
+                    <Play className="h-4 w-4 fill-current" />
+                    Watch Company Introduction
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-screen-xl border-none bg-black p-0 overflow-hidden aspect-video">
+                  <DialogTitle className="sr-only">Company Introduction Video</DialogTitle>
+                  <iframe
+                    title="Jayshree Instruments — Introduction"
+                    src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
+                    className="h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </DialogContent>
+              </Dialog>
               <span className="text-sm text-gray-500">
                 ~2 minute overview of our capabilities
               </span>
@@ -126,64 +144,56 @@ export default function VideoIntroductionSection() {
             className="relative order-first lg:order-last"
           >
             <div className="relative rounded-3xl border border-slate-100 bg-white/80 p-3 shadow-2xl shadow-slate-900/5">
-              <div className="relative h-64 w-full overflow-hidden rounded-2xl sm:h-72 lg:h-80">
-                {playing ? (
-                  <iframe
-                    title="Jayshree Instruments — Introduction"
-                    src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
-                    width="560"
-                    height="315"
-                    className="h-full w-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    aria-label="Play company introduction video"
-                    onClick={() => setPlaying(true)}
-                    className="relative h-full w-full cursor-pointer select-none"
-                  >
-                    <Image
-                      src={poster}
-                      alt="Jayshree Instruments video poster"
-                      fill
-                      className="object-cover"
-                    />
+              <div className="relative h-64 w-full overflow-hidden rounded-2xl sm:h-72 lg:h-[28rem]">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button
+                      type="button"
+                      aria-label="Play company introduction video"
+                      className="group relative h-full w-full cursor-pointer select-none overflow-hidden"
+                    >
+                      <Image
+                        src={poster}
+                        alt="Jayshree Instruments video poster"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
 
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
-                    {/* Play button + label */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center">
-                      <motion.div
-                        animate={{ scale: [1, 1.06, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 0.5 }}
-                        className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur-md"
-                      >
-                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#0066CC] to-[#00A896] shadow-xl shadow-[#0066CC]/40">
-                          <svg
-                            className="ml-1 h-8 w-8 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            aria-hidden
-                          >
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
+                      {/* Play button + label */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center">
+                        <div className="relative flex h-20 w-20 items-center justify-center">
+                          <div className="absolute inset-0 animate-ping rounded-full bg-white/30 opacity-75" />
+                          <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#0066CC] to-[#00A896] shadow-xl shadow-[#0066CC]/40">
+                              <Play className="ml-1 h-8 w-8 text-white fill-white" />
+                            </div>
+                          </div>
                         </div>
-                      </motion.div>
-                      <p className="text-sm font-medium text-white/90">
-                        Play Introduction Video
-                      </p>
-                    </div>
+                        <p className="text-sm font-medium text-white/90">
+                          Play Introduction Video
+                        </p>
+                      </div>
 
-                    {/* Corner badge */}
-                    <div className="absolute left-4 top-4 rounded-full bg-black/50 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
-                      EMS • PCB Assembly • Box Build
-                    </div>
-                  </button>
-                )}
+                      {/* Corner badge */}
+                      <div className="absolute left-4 top-4 rounded-full bg-black/50 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                        EMS • PCB Assembly • Box Build
+                      </div>
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-screen-xl border-none bg-black p-0 overflow-hidden aspect-video">
+                    <DialogTitle className="sr-only">Company Introduction Video</DialogTitle>
+                    <iframe
+                      title="Jayshree Instruments — Introduction"
+                      src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
 

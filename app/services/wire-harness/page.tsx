@@ -330,7 +330,7 @@ export default function PrototypingPage() {
         <div className="container max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#0066CC] to-[#00A896] bg-clip-text text-transparent">
-              Prototype Development Process
+              Wire Harness Process
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-pretty text-base">
               From initial concept to functional testing, see how we bring your prototypes to life.
@@ -346,8 +346,8 @@ export default function PrototypingPage() {
               transition={{ duration: 0.5 }}
             >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PCB20Assembly20Service202-y8Zbq9JjoN8qTcIpbvgblSldbQJHiF.png"
-                alt="Complex PCB Prototype Assembly"
+                src="/assets/Wire Harness 1.jpg"
+                alt="Wire Harness Assembly"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -364,8 +364,8 @@ export default function PrototypingPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PCB20Assembly20Service201-XQzv9BzVqptHJWP5jrnqVAwOKr7xcN.jpg"
-                alt="Prototype Component Assembly"
+                src="/assets/Wire Harness 2.jpg"
+                alt="Wire Harness Integration"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -382,8 +382,8 @@ export default function PrototypingPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PCB20Testing2-555hNJcGU9ucdbseOo8VBtN7611Ozl.jpg"
-                alt="Prototype Testing and Validation"
+                src="/assets/Wire Harness.jpg"
+                alt="Wire Harness Testing"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
               />

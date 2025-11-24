@@ -16,7 +16,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useEffect, useRef } from "react"
- 
+
 export default function PrototypingPage() {
   const heroRef = useRef<HTMLElement | null>(null)
 
@@ -86,7 +86,7 @@ export default function PrototypingPage() {
         {/* Background image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Prototype201-Ha8AzMi6OqmAUzwWFG0UhUYxbjZZC4.jpg"
+            src="/assets/image.png"
             alt="Prototyping background"
             fill
             priority
@@ -95,6 +95,7 @@ export default function PrototypingPage() {
           {/* Dark overlay so content pops */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-900/85 to-sky-900/75 backdrop-blur-[2px]" />
         </div>
+        
 
         {/* Soft glows */}
         <div className="pointer-events-none">
@@ -270,7 +271,7 @@ export default function PrototypingPage() {
               transition={{ duration: 0.6 }}
             >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Prototype201-Ha8AzMi6OqmAUzwWFG0UhUYxbjZZC4.jpg"
+                src="/assets/image.png"
                 alt="Prototyping Lab"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-500"
@@ -301,7 +302,7 @@ export default function PrototypingPage() {
               transition={{ duration: 0.5 }}
             >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PCB20Assembly20Service202-y8Zbq9JjoN8qTcIpbvgblSldbQJHiF.png"
+                src="/assets/image1p.png"
                 alt="Complex PCB Prototype Assembly"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -319,7 +320,7 @@ export default function PrototypingPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PCB20Assembly20Service201-XQzv9BzVqptHJWP5jrnqVAwOKr7xcN.jpg"
+                src="/assets/image2p.png"
                 alt="Prototype Component Assembly"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -337,7 +338,7 @@ export default function PrototypingPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PCB20Testing2-555hNJcGU9ucdbseOo8VBtN7611Ozl.jpg"
+                src="/assets/image3p.png"
                 alt="Prototype Testing and Validation"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"

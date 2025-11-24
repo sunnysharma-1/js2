@@ -229,7 +229,7 @@ export default function PCBAssemblyPage() {
           <div className="absolute bottom-0 left-10 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl" />
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-center">
             {/* LEFT – copy + CTAs */}
             <motion.div
@@ -375,55 +375,69 @@ export default function PCBAssemblyPage() {
         </div>
       </section>
 
-      {/* VIDEO – updated to YouTube usmDfGM2KmU */}
-      <section className="bg-white px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+      {/* TECHNICAL CAPABILITIES */}
+      <section className="relative bg-white px-4 py-16 sm:px-6 md:py-20 lg:px-8 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
+            <div className="absolute top-1/4 -left-64 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl mix-blend-multiply animate-blob" />
+            <div className="absolute top-1/3 -right-64 w-96 h-96 bg-emerald-100/50 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000" />
+          </div>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-screen-2xl">
           <motion.div {...fadeUp()} className="mb-10 text-center md:mb-12">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">
-              PROCESS WALKTHROUGH
+              SPECIFICATIONS
             </p>
-            <h2 className="mt-2 text-balance text-2xl font-semibold md:text-3xl">
-              See Our PCB Assembly in Motion
+            <h2 className="mt-2 text-balance text-2xl font-semibold md:text-3xl text-slate-900">
+              Technical Capabilities
             </h2>
             <p className="mt-3 max-w-2xl text-balance text-sm text-slate-600 md:mx-auto md:text-base">
-              From stencil printing to final testing, watch how each board
-              passes through a controlled, monitored production line.
+              Our manufacturing lines are configured to handle a wide range of
+              complex requirements, from prototype agility to production volume.
             </p>
           </motion.div>
 
-          <motion.div {...scaleIn(0.1)} className="mx-auto max-w-4xl">
-            <div className="relative aspect-video overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-lg">
-              {!isVideoPlaying ? (
-                <>
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-mikhail-nilov-9242894-Wsa5bNaFHM2ttQP85g7ZCB7zL8Kd00.jpg"
-                    alt="PCB assembly video preview"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-slate-900/40">
-                    <button
-                      type="button"
-                      onClick={() => setIsVideoPlaying(true)}
-                      className="group relative"
-                      aria-label="Play PCB assembly process video"
-                    >
-                      <div className="absolute inset-0 rounded-full bg-sky-500/30 blur-2xl transition-all group-hover:bg-sky-400/40" />
-                      <div className="relative rounded-full bg-white p-4 shadow-2xl transition-transform group-hover:scale-110">
-                        <Play className="h-9 w-9 text-sky-600" />
-                      </div>
-                    </button>
+          <motion.div
+            {...fadeUp(0.1)}
+            className="overflow-hidden rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow-xl ring-1 ring-slate-900/5"
+          >
+            <div className="grid divide-y divide-slate-200 md:grid-cols-2 md:divide-y-0 md:divide-x">
+              {/* Column 1 */}
+              <div className="divide-y divide-slate-200">
+                {[
+                  { label: "Layer Count", value: "1 – 40 Layers" },
+                  { label: "Board Types", value: "Rigid, Flex, Rigid-Flex, HDI, Aluminum, Rogers" },
+                  { label: "Max Board Size", value: "500mm × 600mm" },
+                  { label: "Min Trace / Space", value: "3mil / 3mil (0.075mm)" },
+                ].map((spec, i) => (
+                  <div key={i} className="flex items-center justify-between p-4 sm:px-6 hover:bg-slate-50/50 transition-colors">
+                    <span className="text-sm font-medium text-slate-500">{spec.label}</span>
+                    <span className="text-sm font-semibold text-slate-900 text-right">{spec.value}</span>
                   </div>
-                </>
-              ) : (
-                <iframe
-                  className="h-full w-full"
-                  src="https://www.youtube.com/embed/usmDfGM2KmU?autoplay=1&rel=0"
-                  title="PCB Assembly Process Walkthrough"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              )}
+                ))}
+              </div>
+
+              {/* Column 2 */}
+              <div className="divide-y divide-slate-200">
+                {[
+                  { label: "Min Component Size", value: "0201 (Imperial) / 008004 (Metric)" },
+                  { label: "Min BGA Pitch", value: "0.3mm (with X-Ray Inspection)" },
+                  { label: "Surface Finishes", value: "HASL, ENIG, Immersion Silver/Tin, OSP, Hard Gold" },
+                  { label: "Testing Capabilities", value: "3D AOI, X-Ray, ICT, Flying Probe, Functional Test" },
+                ].map((spec, i) => (
+                  <div key={i} className="flex items-center justify-between p-4 sm:px-6 hover:bg-slate-50/50 transition-colors">
+                    <span className="text-sm font-medium text-slate-500">{spec.label}</span>
+                    <span className="text-sm font-semibold text-slate-900 text-right">{spec.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-sky-50/50 p-4 text-center text-xs text-slate-500 sm:p-6 border-t border-slate-100">
+              * For specifications outside these standard ranges, please contact our engineering team for a custom feasibility review.
             </div>
           </motion.div>
         </div>
@@ -434,7 +448,7 @@ export default function PCBAssemblyPage() {
         id="capabilities"
         className="bg-slate-50 px-4 py-16 sm:px-6 md:py-20 lg:px-8"
       >
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr,0.9fr] lg:items-center">
+        <div className="mx-auto grid max-w-screen-2xl gap-12 lg:grid-cols-[1.1fr,0.9fr] lg:items-center">
           <motion.div {...fadeUp()}>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
               WHAT WE DO
@@ -506,7 +520,7 @@ export default function PCBAssemblyPage() {
 
       {/* INDUSTRIES */}
       <section className="bg-white px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-screen-2xl">
           <motion.div {...fadeUp()} className="mb-10 text-center md:mb-12">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">
               INDUSTRY FOCUS
@@ -542,7 +556,7 @@ export default function PCBAssemblyPage() {
 
       {/* COST OPTIMIZATION */}
       <section className="bg-slate-50 px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.95fr,1.05fr] lg:items-center">
+        <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[0.95fr,1.05fr] lg:items-center">
           <motion.div
             {...scaleIn()}
             className="relative h-[260px] rounded-2xl border border-slate-200 bg-white shadow-lg sm:h-[320px]"
@@ -607,7 +621,7 @@ export default function PCBAssemblyPage() {
 
       {/* PROCESS */}
       <section className="bg-white px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-screen-2xl">
           <motion.div {...fadeUp()} className="mb-10 text-center md:mb-12">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">
               HOW WE WORK
@@ -656,7 +670,7 @@ export default function PCBAssemblyPage() {
 
       {/* TECHNOLOGY */}
       <section className="bg-slate-50 px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-screen-2xl">
           <motion.div {...fadeUp()} className="mb-10 text-center md:mb-12">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
               EQUIPMENT
@@ -699,7 +713,7 @@ export default function PCBAssemblyPage() {
 
       {/* OFFERINGS */}
       <section className="bg-white px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-screen-2xl">
           <motion.div {...fadeUp()} className="mb-10 text-center md:mb-12">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">
               SERVICE MENU
@@ -741,7 +755,7 @@ export default function PCBAssemblyPage() {
 
       {/* QUALITY */}
       <section className="bg-slate-50 px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.05fr,0.95fr] lg:items-center">
+        <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[1.05fr,0.95fr] lg:items-center">
           <motion.div
             {...scaleIn()}
             className="relative h-[260px] rounded-2xl border border-slate-200 bg-white shadow-lg sm:h-[320px]"
@@ -828,4 +842,3 @@ export default function PCBAssemblyPage() {
     </main>
   )
 }
- 

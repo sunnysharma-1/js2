@@ -3,10 +3,16 @@
 import React, { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useLayoutEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Footer() {
   const [formData, setFormData] = useState({
@@ -24,12 +30,57 @@ export function Footer() {
     setFormData({ name: "", contact: "", email: "", message: "" });
   };
 
+  const footerRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate Background Pattern
+      gsap.to(".footer-pattern", {
+        y: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+
+      // Staggered Content Reveal
+      gsap.from(".footer-col", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Copyright Reveal
+      gsap.from(".footer-copyright", {
+        opacity: 0,
+        duration: 1,
+        delay: 0.5,
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 80%",
+        },
+      });
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <footer className="relative border-t bg-white text-slate-800">
+    <footer ref={footerRef} className="relative border-t bg-white text-slate-800 overflow-hidden">
       {/* subtle PCB SVG background */}
       <div
         aria-hidden
-        className="absolute inset-0 overflow-hidden pointer-events-none opacity-20"
+        className="footer-pattern absolute inset-0 overflow-hidden pointer-events-none opacity-20"
       >
         <svg
           className="w-full h-full"
@@ -70,7 +121,7 @@ export function Footer() {
       <div className="relative z-10 container mx-auto px-4 max-w-screen-2xl py-12 md:py-16">
         <div className="grid gap-12 grid-cols-1 md:grid-cols-[1fr_auto_auto_auto_1fr]">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="footer-col space-y-8">
             <div className="space-y-2">
               <div className="flex items-start gap-3">
                 <Mail className="h-6 w-6 shrink-0 text-teal-600" />
@@ -147,7 +198,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div className="space-y-4">
+          <div className="footer-col space-y-4">
             <h3 className="font-semibold text-slate-800">Services</h3>
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
@@ -218,7 +269,7 @@ export function Footer() {
           </div>
 
           {/* About */}
-          <div className="space-y-4">
+          <div className="footer-col space-y-4">
             <h3 className="font-semibold text-slate-800">About</h3>
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
@@ -247,7 +298,7 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
+          <div className="footer-col space-y-4">
             <h3 className="font-semibold text-slate-800">Quick Links</h3>
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
@@ -278,7 +329,7 @@ export function Footer() {
           </div>
 
           {/* Contact Form */}
-          <div className="space-y-4">
+          <div className="footer-col space-y-4">
             <h2 className="text-2xl font-bold text-slate-800">Get in Touch</h2>
 
             <form
@@ -353,7 +404,7 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-200 text-center">
+        <div className="footer-copyright mt-12 pt-8 border-t border-gray-200 text-center">
           <p className="text-sm text-slate-600">
             © {new Date().getFullYear()} Jayshree Instruments. All rights
             reserved.

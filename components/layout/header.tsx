@@ -63,7 +63,7 @@ export function Header() {
     },
     {
       href: "/services/box-build",
-      label: "Box Build",
+      label: "Build Box",
       icon: Grid3x3,
       description: "Complete box assembly",
     },
@@ -218,9 +218,6 @@ export function Header() {
 
                 {/* Content */}
                 <span className="relative flex items-center gap-3">
-                  <span className="text-xs font-bold tracking-widest uppercase bg-gradient-to-r from-[#0066CC] to-[#00A896] bg-clip-text text-transparent transition-colors duration-300 group-hover:text-white group-hover:bg-none">
-                    Menu
-                  </span>
                   {/* Custom Hamburger Icon */}
                   <div className="flex flex-col gap-[4px] items-end justify-center py-1">
                     <span className="w-5 h-0.5 bg-[#0066CC] rounded-full group-hover:bg-white transition-all duration-300" />

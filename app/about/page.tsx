@@ -1529,7 +1529,7 @@ export default function AboutPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
             {[
               {
-                year: "2005",
+             
                 name: "ISO 9001:2015",
                 fullName: "Quality Management System",
                 color: "from-blue-500 to-cyan-500",
@@ -1538,7 +1538,7 @@ export default function AboutPage() {
                 benefits: ["Quality Assurance", "Process Optimization", "Customer Focus"],
               },
               {
-                year: "2010",
+               
                 name: "ISO 14001:2015",
                 fullName: "Environmental Management",
                 color: "from-green-500 to-teal-500",
@@ -1547,7 +1547,7 @@ export default function AboutPage() {
                 benefits: ["Eco-Friendly", "Waste Reduction", "Sustainability"],
               },
               {
-                year: "2020",
+                
                 name: "RoHS Compliant",
                 fullName: "Restriction of Hazardous Substances",
                 color: "from-yellow-500 to-orange-500",
@@ -1567,11 +1567,11 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
                 <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700 group-hover:border-[#0066CC]/50 transition-all duration-300 h-full flex flex-col">
                   {/* Year Badge */}
-                  <div className="inline-flex items-center gap-2 mb-4 w-fit">
+                  {/* <div className="inline-flex items-center gap-2 mb-4 w-fit">
                     <span className="text-xs font-bold text-[#00A896] bg-[#00A896]/10 px-3 py-1 rounded-full">
                       {cert.year}
                     </span>
-                  </div>
+                  </div> */}
 
                   {/* Icon */}
                   <div

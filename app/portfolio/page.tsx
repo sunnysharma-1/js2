@@ -76,7 +76,7 @@ export default function PortfolioPage() {
       category: "box-build",
       description:
         "Full system integration including PCB assembly, mechanical housing, power supplies, and final testing. Complete turnkey solution from component sourcing to final product delivery.",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Prototype-Q7ZiAHET4axkKd48srOWiJdcfhxaZ2.jpg",
+      image: "https://ecelectronics.com/wp-content/uploads/2019/08/MG_5326-scaled.jpg",
       specs: ["Turnkey solution", "System integration", "Complete testing"],
       industry: "Medical Devices",
     },
@@ -329,7 +329,7 @@ export default function PortfolioPage() {
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-lg opacity-30" />
               <div className="relative rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
                 <Image
-                  src="/assets/image1p.png"
+                  src="https://www.pcbelec.com/wp-content/uploads/2024/01/Medical-PCB-manufacturing.jpg.webp"
                   alt="Featured Case Study"
                   width={800}
                   height={600}
@@ -500,20 +500,103 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-br from-[#0066CC] to-[#00A896] text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Scale Your Production?</h2>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10">
-            From prototype to mass production, we have the expertise and capacity to deliver.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-[#0066CC] hover:bg-slate-100 text-lg px-8 py-6 rounded-full font-bold shadow-xl">
-              <Link href="/contact">Get a Quote</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-[#0066CC] text-lg px-8 py-6 rounded-full font-bold">
-              <Link href="/services">View Capabilities</Link>
-            </Button>
-          </div>
+      {/* CTA - Dark Premium Tech Redesign */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[#020617]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1e293b_0%,_#020617_100%)] opacity-50" />
+          {/* Animated Grid */}
+          <div className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+              backgroundSize: '40px 40px'
+            }}
+          />
+          {/* Glowing Orbs */}
+          <motion.div
+            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-0 left-1/4 w-96 h-96 bg-[#0066CC] rounded-full blur-[120px] opacity-20"
+          />
+          <motion.div
+            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1.2, 1, 1.2] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00A896] rounded-full blur-[120px] opacity-20"
+          />
+        </div>
+
+        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/50"
+          >
+            {/* Glass Shine Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
+
+            <div className="grid md:grid-cols-2 gap-10 p-8 md:p-12 lg:p-16 items-center">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 border border-white/10 backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-xs font-medium text-emerald-300 tracking-wide uppercase">Capacity Available</span>
+                </div>
+
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                  Ready to Scale Your <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4CC2FF] to-[#00A896]">
+                    Production?
+                  </span>
+                </h2>
+
+                <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-md">
+                  From prototype to mass production, we have the expertise and capacity to deliver. Let's discuss your manufacturing needs.
+                </p>
+
+                <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Rapid Prototyping
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Mass Production
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Global Shipping
+                  </span>
+                </div>
+              </div>
+
+              <div className="relative flex flex-col gap-4 justify-center items-center md:items-start">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0066CC] to-[#00A896] rounded-full opacity-10 blur-3xl" />
+
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full sm:w-auto h-14 px-8 text-lg bg-gradient-to-r from-[#0066CC] to-[#00A896] hover:from-[#005bb5] hover:to-[#008c7d] text-white font-semibold rounded-2xl shadow-lg shadow-blue-900/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <Link href="/contact">
+                    Get a Quote
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto h-14 px-8 text-lg border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-2xl backdrop-blur-sm transition-all duration-300"
+                >
+                  <Link href="/services">
+                    View Capabilities
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

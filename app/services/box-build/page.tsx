@@ -35,13 +35,13 @@ export default function BoxBuildPage() {
       title: "Packaging & Labeling",
       description: "Professional packaging, labeling, and documentation for distribution.",
       image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Global%20Purchasing%202-7FHY3dWqix92oGFzI5wjCrPrlII6i6.jpg",
+        "https://blog.epectec.com/hs-fs/hubfs/Blog/hmi-product-packed-before-delivery.jpg?width=600&name=hmi-product-packed-before-delivery.jpg",
     },
     {
       title: "Quality Assurance",
       description: "Rigorous QA processes ensuring every unit meets specifications.",
       image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PCB%20Assembly%20Service%201-yNMX76IpPNFKbqaM0Gm8DDcluiwQuI.jpg",
+        "https://www.protoexpress.com/wp-content/uploads/2021/12/image4-6.png",
     },
   ]
 
@@ -453,7 +453,7 @@ export default function BoxBuildPage() {
               transition={{ duration: 0.6 }}
             >
               <Image
-                src="https://www.nai-group.com/wp-content/uploads/2023/01/NAI-Box-Build-Assembly-Benefits-Blog-1.jpg"
+                src="/assets/Build Box 1.jpg"
                 alt="Industry Applications"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-500"

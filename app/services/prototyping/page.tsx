@@ -86,7 +86,7 @@ export default function PrototypingPage() {
         {/* Background image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/assets/image.png"
+            src="https://ecelectronics.com/wp-content/uploads/2019/08/MG_5326-scaled.jpg"
             alt="Prototyping background"
             fill
             priority
@@ -271,7 +271,7 @@ export default function PrototypingPage() {
               transition={{ duration: 0.6 }}
             >
               <Image
-                src="/assets/image.png"
+                src="https://sooneasy.com/wp-content/uploads/2023/05/PCB-prototyping.png"
                 alt="Prototyping Lab"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-500"

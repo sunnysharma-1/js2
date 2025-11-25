@@ -115,7 +115,7 @@ const process = [
     title: "Delivery",
     description: "Secure packaging and on-time global shipment.",
     image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Build%20Box-aiyxQtzdWBTgljQYq0nr9qcvSOfmOE.jpg",
+      "https://www.pcbinternational.com/images/shippingPCB.jpg",
   },
 ]
 

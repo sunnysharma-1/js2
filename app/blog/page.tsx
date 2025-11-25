@@ -139,8 +139,8 @@ export default function BlogPage() {
         term.length === 0
           ? true
           : post.title.toLowerCase().includes(term) ||
-            post.excerpt.toLowerCase().includes(term) ||
-            post.author.toLowerCase().includes(term)
+          post.excerpt.toLowerCase().includes(term) ||
+          post.author.toLowerCase().includes(term)
 
       return matchCategory && matchSearch
     })
@@ -233,11 +233,10 @@ export default function BlogPage() {
                         key={category}
                         type="button"
                         onClick={() => setSelectedCategory(category)}
-                        className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
-                          isActive
+                        className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${isActive
                             ? "bg-gradient-to-r from-[#0066CC] to-[#00A896] text-white shadow-md shadow-emerald-500/25"
                             : "border border-slate-600/80 bg-slate-950/70 text-slate-200 hover:border-slate-400 hover:text-slate-50"
-                        }`}
+                          }`}
                       >
                         {category}
                       </button>
@@ -446,35 +445,107 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="bg-gradient-to-br from-[#0066CC] via-[#0077D9] to-[#00A896] py-14 text-white md:py-18">
-        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-white/10 p-8 shadow-2xl shadow-black/40 backdrop-blur md:p-10">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="mb-3 text-2xl font-semibold md:text-3xl">
-                Subscribe to the JINST Tech Brief
-              </h2>
-              <p className="mb-6 text-sm text-white/90 md:text-base">
-                One email per week with curated articles on PCB assembly, wire harnessing, design for manufacturing,
-                and production best practices.
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <Input
-                  type="email"
-                  placeholder="Enter your work email"
-                  className="bg-white text-slate-900 placeholder:text-slate-500 sm:w-80"
-                />
-                <Button
-                  size="lg"
-                  className="bg-slate-950 text-white hover:bg-slate-900"
-                >
-                  Subscribe
-                </Button>
+      {/* Newsletter Section - Dark Premium Tech Redesign */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[#020617]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1e293b_0%,_#020617_100%)] opacity-50" />
+          {/* Animated Grid */}
+          <div className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+              backgroundSize: '40px 40px'
+            }}
+          />
+          {/* Glowing Orbs */}
+          <motion.div
+            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-0 left-1/4 w-96 h-96 bg-[#0066CC] rounded-full blur-[120px] opacity-20"
+          />
+          <motion.div
+            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1.2, 1, 1.2] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00A896] rounded-full blur-[120px] opacity-20"
+          />
+        </div>
+
+        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/50"
+          >
+            {/* Glass Shine Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
+
+            <div className="grid md:grid-cols-2 gap-10 p-8 md:p-12 lg:p-16 items-center">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 border border-white/10 backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-xs font-medium text-emerald-300 tracking-wide uppercase">Weekly Tech Brief</span>
+                </div>
+
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                  Stay Ahead of the <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4CC2FF] to-[#00A896]">
+                    Manufacturing Curve
+                  </span>
+                </h2>
+
+                <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-md">
+                  Join 50,000+ engineers and industry leaders. Get exclusive insights on PCB assembly, DFM strategies, and emerging tech delivered to your inbox.
+                </p>
+
+                <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> No spam
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Unsubscribe anytime
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Free forever
+                  </span>
+                </div>
               </div>
-              <p className="mt-3 text-[11px] text-white/80">
-                No spam. Unsubscribe anytime with one click.
-              </p>
+
+              <div className="relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#0066CC] to-[#00A896] rounded-2xl opacity-20 blur-lg" />
+                <div className="relative bg-slate-950/50 border border-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-md">
+                  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-xs font-semibold text-slate-300 uppercase tracking-wider ml-1">
+                        Work Email
+                      </label>
+                      <div className="relative group">
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#0066CC] to-[#00A896] rounded-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 blur-[2px]" />
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="name@company.com"
+                          className="relative h-12 bg-slate-900/80 border-slate-700 text-white placeholder:text-slate-500 rounded-xl focus:border-transparent focus:ring-0 transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <Button
+                      size="lg"
+                      className="w-full h-12 bg-gradient-to-r from-[#0066CC] to-[#00A896] hover:from-[#005bb5] hover:to-[#008c7d] text-white font-semibold rounded-xl shadow-lg shadow-blue-900/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      Subscribe Now
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </form>
+                </div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>

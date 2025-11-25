@@ -466,16 +466,15 @@ export default function CareersPage() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                    selectedCategory === category
+                  className={`rounded-full px-3 py-1 text-xs font-medium transition ${selectedCategory === category
                       ? "bg-blue-600 text-white shadow-sm"
                       : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
               ))}
-              
+
               {departments
                 .filter((d) => d !== "All")
                 .map((dept) => {
@@ -484,11 +483,10 @@ export default function CareersPage() {
                     <button
                       key={dept}
                       onClick={() => setSelectedDepartment(dept)}
-                      className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                        isActive
+                      className={`rounded-full px-3 py-1 text-xs font-medium transition ${isActive
                           ? "bg-blue-600 text-white shadow-sm"
                           : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
-                      }`}
+                        }`}
                     >
                       {dept}
                     </button>
@@ -539,11 +537,10 @@ export default function CareersPage() {
                             {position.type}
                           </span>
                           <span
-                            className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                              position.category === "Technical"
+                            className={`rounded-full px-3 py-1 text-xs font-semibold ${position.category === "Technical"
                                 ? "bg-purple-50 text-purple-700"
                                 : "bg-green-50 text-green-700"
-                            }`}
+                              }`}
                           >
                             {position.category}
                           </span>
@@ -630,36 +627,99 @@ export default function CareersPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-4 py-20 text-white sm:px-6 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Ready to join{" "}
-            <span className="underline decoration-white/50 decoration-2 underline-offset-4">
-              Electronics Hero
-            </span>
-            ?
-          </h2>
-          <p className="mt-4 text-base text-indigo-100 sm:text-lg">
-            Send us your resume and portfolio. We review every application carefully and reach out to candidates whose
-            profiles match current or upcoming roles.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => handleApplyClick("")}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-6 text-base font-semibold text-blue-700 hover:bg-slate-100"
-            >
-              Send your application
-              <ArrowRight className="h-5 w-5" />
-            </button>
-            <a href="#open-positions">
-              <Button
-                variant="outline"
-                className="rounded-full border-white/70 bg-transparent px-7 py-6 text-base text-white hover:bg-white/10"
-              >
-                View open roles
-              </Button>
-            </a>
-          </div>
+      {/* FINAL CTA - Dark Premium Tech Redesign */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[#020617]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1e293b_0%,_#020617_100%)] opacity-50" />
+          {/* Animated Grid */}
+          <div className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+              backgroundSize: '40px 40px'
+            }}
+          />
+          {/* Glowing Orbs */}
+          <motion.div
+            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-0 left-1/4 w-96 h-96 bg-[#0066CC] rounded-full blur-[120px] opacity-20"
+          />
+          <motion.div
+            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1.2, 1, 1.2] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00A896] rounded-full blur-[120px] opacity-20"
+          />
+        </div>
+
+        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/50"
+          >
+            {/* Glass Shine Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
+
+            <div className="grid md:grid-cols-2 gap-10 p-8 md:p-12 lg:p-16 items-center">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 border border-white/10 backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-xs font-medium text-emerald-300 tracking-wide uppercase">Join the Team</span>
+                </div>
+
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                  Ready to Join <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4CC2FF] to-[#00A896]">
+                    Electronics Hero?
+                  </span>
+                </h2>
+
+                <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-md">
+                  Send us your resume and portfolio. We review every application carefully and reach out to candidates whose profiles match current or upcoming roles.
+                </p>
+
+                <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Great Culture
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Growth Opportunities
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Impactful Work
+                  </span>
+                </div>
+              </div>
+
+              <div className="relative flex flex-col gap-4 justify-center items-center md:items-start">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0066CC] to-[#00A896] rounded-full opacity-10 blur-3xl" />
+
+                <button
+                  onClick={() => handleApplyClick("")}
+                  className="w-full sm:w-auto h-14 px-8 text-lg bg-gradient-to-r from-[#0066CC] to-[#00A896] hover:from-[#005bb5] hover:to-[#008c7d] text-white font-semibold rounded-2xl shadow-lg shadow-blue-900/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] inline-flex items-center justify-center gap-2"
+                >
+                  Send Application
+                  <ArrowRight className="h-5 w-5" />
+                </button>
+
+                <a href="#open-positions" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full h-14 px-8 text-lg border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-2xl backdrop-blur-sm transition-all duration-300"
+                  >
+                    View Open Roles
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

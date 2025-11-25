@@ -501,7 +501,7 @@ export default function PortfolioPage() {
 
       {/* CTA */}
       {/* CTA - Dark Premium Tech Redesign */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
+      <section className="relative py-12 md:py-16 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 bg-[#020617]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1e293b_0%,_#020617_100%)] opacity-50" />
@@ -536,7 +536,7 @@ export default function PortfolioPage() {
             {/* Glass Shine Effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
 
-            <div className="grid md:grid-cols-2 gap-10 p-8 md:p-12 lg:p-16 items-center">
+            <div className="grid md:grid-cols-2 gap-6 p-6 md:p-10 items-center">
               <div className="space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 border border-white/10 backdrop-blur-sm">
                   <span className="relative flex h-2 w-2">
@@ -553,7 +553,7 @@ export default function PortfolioPage() {
                   </span>
                 </h2>
 
-                <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-md">
+                <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-lg">
                   From prototype to mass production, we have the expertise and capacity to deliver. Let's discuss your manufacturing needs.
                 </p>
 

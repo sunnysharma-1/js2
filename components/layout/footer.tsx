@@ -33,46 +33,52 @@ export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate Background Pattern
-      gsap.to(".footer-pattern", {
-        y: -50,
-        ease: "none",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
+    const mm = gsap.matchMedia();
 
-      // Staggered Content Reveal
-      gsap.from(".footer-col", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
+    mm.add(
+      "(min-width: 768px)",
+      () => {
+        // Animate Background Pattern
+        gsap.to(".footer-pattern", {
+          y: -50,
+          ease: "none",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
 
-      // Copyright Reveal
-      gsap.from(".footer-copyright", {
-        opacity: 0,
-        duration: 1,
-        delay: 0.5,
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 80%",
-        },
-      });
-    }, footerRef);
+        // Staggered Content Reveal
+        gsap.from(".footer-col", {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
 
-    return () => ctx.revert();
+        // Copyright Reveal
+        gsap.from(".footer-copyright", {
+          opacity: 0,
+          duration: 1,
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 80%",
+          },
+        });
+      },
+      footerRef
+    );
+
+    return () => mm.revert();
   }, []);
 
   return (

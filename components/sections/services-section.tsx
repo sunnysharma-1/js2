@@ -58,7 +58,7 @@ export function ServicesSection() {
    */
   const slugMap: Record<string, string> = {
     "pcb": "/services/pcb",
-    "design": "/services/design",
+    "design": "/services/design-engineering",
     "testing": "/services/prototyping", // change to /services/pcb-testing or /services/quality if you prefer
     "sourcing": "/services/global-purchasing", // change to match your route
     "wire-harness": "/services/wire-harness",
@@ -110,13 +110,9 @@ export function ServicesSection() {
                     <Button
                       variant="secondary"
                       className="bg-white text-gray-900 hover:bg-gray-100 rounded-full px-6 shadow-sm"
-                      // keep the link behavior (the card is already a Link), the button acts as visual affordance
-                      onClick={(e) => {
-                        /* prevent double navigation issues on nested clickable elements:
-                           Link handles navigation; allow default. If you need client-side logic, implement here. */
-                      }}
+                      asChild
                     >
-                      Read More
+                      <div>Read More</div>
                     </Button>
                   </div>
                 </div>

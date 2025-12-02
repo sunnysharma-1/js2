@@ -268,7 +268,7 @@ export default function AboutPage() {
                 transition={{ delay: 0.2 }}
                 className="inline-block px-4 py-2 bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 rounded-full border border-[#0066CC]/40 backdrop-blur-sm"
               >
-                <span className="text-sm font-semibold text-sky-100">Since 2001</span>
+                <span className="text-xl font-semibold text-sky-100">Since 2001</span>
               </motion.div>
 
               <div>

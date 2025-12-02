@@ -165,7 +165,7 @@ export default function BlogPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1f2937_0,_#020617_55%)] opacity-95" />
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-[1600px] px-4 sm:px-6">
           <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.1fr)]">
             {/* Left: copy, search, category pills */}
             <motion.div
@@ -234,8 +234,8 @@ export default function BlogPage() {
                         type="button"
                         onClick={() => setSelectedCategory(category)}
                         className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${isActive
-                            ? "bg-gradient-to-r from-[#0066CC] to-[#00A896] text-white shadow-md shadow-emerald-500/25"
-                            : "border border-slate-600/80 bg-slate-950/70 text-slate-200 hover:border-slate-400 hover:text-slate-50"
+                          ? "bg-gradient-to-r from-[#0066CC] to-[#00A896] text-white shadow-md shadow-emerald-500/25"
+                          : "border border-slate-600/80 bg-slate-950/70 text-slate-200 hover:border-slate-400 hover:text-slate-50"
                           }`}
                       >
                         {category}
@@ -317,7 +317,7 @@ export default function BlogPage() {
 
       {/* LATEST ARTICLES – LIGHT SECTION */}
       <section className="bg-gradient-to-b from-white to-slate-100 py-16 md:py-20">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6">
           {/* Header */}
           <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div>
@@ -470,7 +470,7 @@ export default function BlogPage() {
           />
         </div>
 
-        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

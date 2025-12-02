@@ -113,7 +113,7 @@ export function Footer() {
                 <div>
                   <h3 className="font-semibold text-slate-800">Call Us</h3>
                   <p className="text-sm text-slate-600">
-                    Mon–Fri from 8am to 8pm
+                    Mon–Fri from 9am to 6pm
                   </p>
                   <p className="text-sm">
                     <a
@@ -216,7 +216,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/services/design"
+                  href="/services/design-engineering"
                   className="text-teal-600 hover:text-teal-700 transition-colors"
                 >
                   Design Engineering

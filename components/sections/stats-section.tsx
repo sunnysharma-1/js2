@@ -1,82 +1,110 @@
-import { Shield, Award, Globe2, TrendingUp } from "lucide-react"
+"use client"
+
+import { Shield, Award, Globe2, TrendingUp, CheckCircle2 } from "lucide-react"
+import { motion } from "framer-motion"
 
 export function StatsSection() {
+  const stats = [
+    {
+      id: 1,
+      label: "EMS Experience",
+      value: "25+",
+      suffix: "Years",
+      description: "Two decades of excellence in electronic manufacturing services",
+      icon: Shield,
+      color: "blue"
+    },
+    {
+      id: 2,
+      label: "Certified Quality",
+      value: "ISO",
+      suffix: "& IATF",
+      description: "Internationally recognized quality management standards",
+      icon: Award,
+      color: "emerald"
+    },
+    {
+      id: 3,
+      label: "Diverse Expertise",
+      value: "10+",
+      suffix: "Industries",
+      description: "Automotive, Medical, Consumer Electronics, and Industrial",
+      icon: TrendingUp,
+      color: "purple"
+    },
+    {
+      id: 4,
+      label: "Worldwide Service",
+      value: "Global",
+      suffix: "Reach",
+      description: "Serving clients across international markets with excellence",
+      icon: Globe2,
+      color: "cyan"
+    }
+  ]
+
   return (
-    <section className="bg-white py-20 lg:py-28 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-blue-50/50 blur-3xl" />
-        <div className="absolute top-[20%] -left-[10%] w-[40%] h-[40%] rounded-full bg-teal-50/50 blur-3xl" />
-      </div>
+    <section className="relative py-24 lg:py-32 overflow-hidden bg-slate-50">
+      {/* Background Elements */}
+
 
       <div className="container mx-auto max-w-screen-2xl px-6 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 text-balance">Why Trust Us</h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto text-balance">
-            Industry-leading expertise backed by proven results
-          </p>
+        <div className="text-center mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 bg-white/50 backdrop-blur-sm mb-6 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <span className="text-xs font-medium text-slate-600 uppercase tracking-wider">Proven Excellence</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              Why Industry Leaders <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600">
+                Trust Jayshree Instruments
+              </span>
+            </h2>
+
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              We combine decades of experience with cutting-edge technology to deliver
+              manufacturing solutions that meet the highest global standards.
+            </p>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
-                <Shield className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-slate-900 mb-1">22+ Years</div>
-                <div className="text-slate-900 font-semibold mb-2">EMS Experience</div>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Two decades of excellence in electronic manufacturing services
-                </p>
-              </div>
-            </div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-emerald-500/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          <div className="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center group-hover:bg-teal-600 transition-colors duration-300">
-                <Award className="w-8 h-8 text-teal-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-slate-900 mb-1">ISO & IATF</div>
-                <div className="text-slate-900 font-semibold mb-2">Certified Quality</div>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Internationally recognized quality management standards
-                </p>
-              </div>
-            </div>
-          </div>
+              <div className="relative h-full bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-1">
+                <div className={`w-14 h-14 rounded-xl bg-${stat.color}-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <stat.icon className={`w-7 h-7 text-${stat.color}-600`} strokeWidth={1.5} />
+                </div>
 
-          <div className="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-300">
-                <TrendingUp className="w-8 h-8 text-indigo-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-slate-900 mb-1">10+ Industries</div>
-                <div className="text-slate-900 font-semibold mb-2">Diverse Expertise</div>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Automotive, Medical, Consumer Electronics, and Industrial
-                </p>
-              </div>
-            </div>
-          </div>
+                <div className="mb-2">
+                  <span className="text-4xl font-bold text-slate-900 tracking-tight">{stat.value}</span>
+                  <span className={`text-lg font-medium text-${stat.color}-600 ml-2`}>{stat.suffix}</span>
+                </div>
 
-          <div className="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center group-hover:bg-cyan-600 transition-colors duration-300">
-                <Globe2 className="w-8 h-8 text-cyan-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-slate-900 mb-1">Global Reach</div>
-                <div className="text-slate-900 font-semibold mb-2">Worldwide Service</div>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Serving clients across international markets with excellence
+                <h3 className="text-lg font-semibold text-slate-800 mb-3">{stat.label}</h3>
+
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {stat.description}
                 </p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

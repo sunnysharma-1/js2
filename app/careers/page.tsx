@@ -135,7 +135,21 @@ export default function CareersPage() {
   const [search, setSearch] = useState<string>("")
   const [isApplicationOpen, setIsApplicationOpen] = useState(false)
   const [selectedPosition, setSelectedPosition] = useState<string | null>(null)
-  const [formData, setFormData] = useState({ name: "", position: "", cv: null as File | null })
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    position: "",
+    cv: null as File | null
+  })
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    position: "",
+    cv: ""
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const departments = useMemo(
     () => ["All", ...Array.from(new Set(openPositions.map((p) => p.department)))],
@@ -156,7 +170,8 @@ export default function CareersPage() {
 
   const handleApplyClick = (positionTitle: string) => {
     setSelectedPosition(positionTitle)
-    setFormData({ name: "", position: positionTitle, cv: null })
+    setFormData({ name: "", email: "", phone: "", position: positionTitle, cv: null })
+    setErrors({ name: "", email: "", phone: "", position: "", cv: "" })
     setIsApplicationOpen(true)
   }
 
@@ -171,132 +186,175 @@ export default function CareersPage() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    let isValid = true
+    const newErrors = { name: "", email: "", phone: "", position: "", cv: "" }
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Full Name is required"
+      isValid = false
+    } else if (formData.name.length < 2) {
+      newErrors.name = "Name must be at least 2 characters"
+      isValid = false
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+      isValid = false
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address"
+      isValid = false
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required"
+      isValid = false
+    } else if (!/^\+?[\d\s-]{10,}$/.test(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number (min 10 digits)"
+      isValid = false
+    }
+
+    if (!formData.position) {
+      newErrors.position = "Please select a position"
+      isValid = false
+    }
+
+    if (!formData.cv) {
+      newErrors.cv = "Please upload your CV"
+      isValid = false
+    } else {
+      const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+      if (!validTypes.includes(formData.cv.type)) {
+        newErrors.cv = "Only PDF and Word documents are allowed"
+        isValid = false
+      } else if (formData.cv.size > 5 * 1024 * 1024) { // 5MB limit
+        newErrors.cv = "File size must be less than 5MB"
+        isValid = false
+      }
+    }
+
+    setErrors(newErrors)
+    return isValid
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500))
+
     console.log("Application submitted:", formData)
-    alert(`Application submitted! We'll review your CV and get back to you soon.`)
+    alert(`Application submitted successfully! We'll review your CV and get back to you soon.`)
     setIsApplicationOpen(false)
-    setFormData({ name: "", position: "", cv: null })
+    setFormData({ name: "", email: "", phone: "", position: "", cv: null })
+    setErrors({ name: "", email: "", phone: "", position: "", cv: "" })
+    setIsSubmitting(false)
   }
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-        <div className="absolute inset-0 opacity-60">
-          <div className="h-full w-full bg-[linear-gradient(to_right,#e0f2fe_1px,transparent_1px),linear-gradient(to_bottom,#e0f2fe_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <section className="relative overflow-hidden bg-[#020617] py-24 sm:py-32 lg:pb-40">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]" />
         </div>
 
-        <div className="relative mx-auto flex max-w-7xl flex-col gap-12 px-4 py-20 sm:px-6 lg:flex-row lg:items-center lg:py-28 lg:px-8">
-          {/* Left: Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="z-10 max-w-xl space-y-6"
-          >
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/70 bg-white/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-md">
-              <Briefcase className="h-4 w-4 text-blue-600" />
-              <span>Careers at Jayshree Instruments</span>
-            </div>
+        {/* Gradient Orbs */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2" />
 
-            <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              Build your next
-              <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                chapter with us
-              </span>
-            </h1>
-
-            <p className="max-w-xl text-base text-slate-700 sm:text-lg">
-              Join a team that designs, builds, and ships real hardware to customers worldwide. Work on meaningful
-              electronics, grow your skills, and see your work come to life.
-            </p>
-
-            <div className="flex flex-wrap gap-3">
-              <a href="#open-positions">
-                <Button className="gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-7 py-6 text-base font-semibold text-white shadow-lg hover:from-blue-700 hover:to-indigo-700">
-                  Explore opportunities
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </a>
-              <Link href="/contact">
-                {/* <Button
-                  variant="outline"
-                  className="rounded-full border-blue-600 bg-white px-7 py-6 text-base text-blue-700 hover:bg-blue-50"
-                >
-                  Share your CV
-                </Button> */}
-              </Link>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-6 text-sm text-slate-700">
-              <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-indigo-500" />
-                <span>Cross-functional teams · Engineering, Ops, Sales</span>
+        <div className="relative mx-auto max-w-[1600px] px-4 lg:px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-8 backdrop-blur-sm">
+                <Briefcase className="h-4 w-4" />
+                <span>Careers at Jayshree Instruments</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Award className="h-4 w-4 text-purple-500" />
-                <span>Merit-based growth & recognition</span>
+
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
+                Build the Future of <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                  Electronics Manufacturing
+                </span>
+              </h1>
+
+              <p className="mt-6 text-lg leading-8 text-slate-300">
+                Join a team of innovators, engineers, and problem solvers. We're shaping the world of electronics with precision, quality, and passion.
+              </p>
+
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <a href="#open-positions">
+                  <Button className="rounded-full bg-blue-600 px-8 py-6 text-base font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all duration-300 hover:scale-105">
+                    View Open Positions
+                  </Button>
+                </a>
+                <Link href="/about" className="text-sm font-semibold leading-6 text-white hover:text-blue-400 transition-colors">
+                  Learn more about us <span aria-hidden="true">→</span>
+                </Link>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Right: Highlight Card */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="z-10 flex-1"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-16 flow-root sm:mt-24"
           >
-            <div className="relative mx-auto max-w-md">
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-blue-400/40 via-indigo-400/30 to-purple-400/40 blur-3xl" />
-              <Card className="relative overflow-hidden rounded-3xl border-slate-200 bg-white shadow-2xl">
-                <div className="grid gap-0 sm:grid-cols-5">
-                  <div className="relative sm:col-span-3">
-                    <div className="relative h-64 sm:h-full">
-                      <Image
-                        src="https://img.freepik.com/premium-photo/technician-team-working-electronics-repair-shop_53876-70409.jpg"
-                        alt="Team working at Electronics Hero"
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/10 to-transparent" />
-                    </div>
-                    <div className="absolute bottom-4 left-4 rounded-full bg-slate-900/80 px-3 py-1.5 text-xs text-white shadow-md">
-                      <span className="font-medium">On the floor · Real builds, real impact</span>
-                    </div>
-                  </div>
+            <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                <Image
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+                  alt="App screenshot"
+                  width={2432}
+                  height={1442}
+                  className="w-full rounded-xl bg-gray-900/5 object-cover shadow-2xl ring-1 ring-gray-900/10"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
 
-                  <div className="flex flex-col justify-between border-t border-slate-200 bg-slate-50 p-4 sm:col-span-2 sm:border-l sm:border-t-0">
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-center justify-between">
-                        <span className="text-slate-500">Team size</span>
-                        <span className="font-semibold text-slate-900">150+</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-slate-500">Locations</span>
-                        <span className="font-semibold text-slate-900">Gandhinagar · Ahmedabad</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-slate-500">Active roles</span>
-                        <span className="font-semibold text-slate-900">{openPositions.length}</span>
-                      </div>
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white">
+                    <div>
+                      <div className="text-3xl font-bold text-blue-400">150+</div>
+                      <div className="text-sm text-slate-400 mt-1">Team Members</div>
                     </div>
-                    <div className="mt-4 flex items-center gap-2 rounded-2xl bg-blue-50 p-3 text-xs text-slate-800 ring-1 ring-blue-200">
-                      <CheckCircle2 className="h-4 w-4 text-blue-500" />
-                      <p>Work on end-to-end product life cycles — from idea to shipped hardware.</p>
+                    <div>
+                      <div className="text-3xl font-bold text-indigo-400">25+</div>
+                      <div className="text-sm text-slate-400 mt-1">Years of Excellence</div>
+                    </div>
+                    <div>
+                      <div className="text-3xl font-bold text-purple-400">2</div>
+                      <div className="text-sm text-slate-400 mt-1">Global Locations</div>
+                    </div>
+                    <div>
+                      <div className="text-3xl font-bold text-emerald-400">100%</div>
+                      <div className="text-sm text-slate-400 mt-1">Employee Satisfaction</div>
                     </div>
                   </div>
                 </div>
-              </Card>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* WHY JOIN US */}
-      <section className="bg-white px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-7xl">
+      <section className="relative overflow-hidden bg-[#0B1120] px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+        {/* Background Gradients */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
+
+        <div className="relative mx-auto max-w-[1600px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -304,20 +362,20 @@ export default function CareersPage() {
             transition={{ duration: 0.6 }}
             className="mb-14 text-center"
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Why join
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
                 {" "}
                 Jayshree Instruments
               </span>
             </h2>
-            <p className="mt-4 text-base text-slate-600 sm:text-lg max-w-3xl mx-auto">
+            <p className="mt-4 text-base text-slate-400 sm:text-lg max-w-3xl mx-auto">
               We focus on doing great work, learning fast, and keeping the environment transparent, human, and
               collaborative.
             </p>
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon
               return (
@@ -328,15 +386,15 @@ export default function CareersPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
                 >
-                  <Card className="h-full border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg">
-                    <CardContent className="p-7">
-                      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
-                        <Icon className="h-6 w-6 text-blue-600" />
-                      </div>
-                      <h3 className="mb-2 text-lg font-semibold text-slate-900">{benefit.title}</h3>
-                      <p className="text-sm text-slate-600">{benefit.description}</p>
-                    </CardContent>
-                  </Card>
+                  <div className="group relative h-full overflow-hidden rounded-2xl border border-white/5 bg-white/5 p-8 transition-all hover:border-blue-500/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-500/10">
+                    <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mb-3 text-xl font-semibold text-white">{benefit.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                      {benefit.description}
+                    </p>
+                  </div>
                 </motion.div>
               )
             })}
@@ -345,27 +403,31 @@ export default function CareersPage() {
       </section>
 
       {/* VALUES + LIFE AT EH */}
-      <section className="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mx-auto flex max-w-7xl flex-col gap-12 lg:flex-row">
+      <section className="bg-white px-4 py-20 sm:px-6 lg:px-8 lg:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-50" />
+
+        <div className="mx-auto flex max-w-[1600px] flex-col gap-16 lg:flex-row relative z-10">
           {/* Values */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="max-w-xl space-y-6"
+            className="max-w-xl space-y-8"
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Our{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                core values
-              </span>
-            </h2>
-            <p className="text-sm text-slate-600 sm:text-base">
-              These principles guide how we work together, how we treat customers, and how we build products.
-            </p>
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-4">
+                Our{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  core values
+                </span>
+              </h2>
+              <p className="text-base text-slate-600 leading-relaxed">
+                These principles guide how we work together, how we treat customers, and how we build products.
+              </p>
+            </div>
 
-            <div className="space-y-4">
+            <div className="grid gap-4">
               {values.map((value, index) => (
                 <motion.div
                   key={value.title}
@@ -373,10 +435,10 @@ export default function CareersPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.06 }}
-                  className="rounded-xl border border-blue-100 bg-white p-5 shadow-sm hover:border-blue-400"
+                  className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-blue-200 hover:shadow-md hover:shadow-blue-500/5"
                 >
-                  <h3 className="text-base font-semibold text-slate-900">{value.title}</h3>
-                  <p className="mt-1 text-sm text-slate-600">{value.description}</p>
+                  <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">{value.title}</h3>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">{value.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -390,64 +452,66 @@ export default function CareersPage() {
             transition={{ duration: 0.5 }}
             className="flex-1"
           >
-            <Card className="overflow-hidden border-slate-200 bg-white shadow-sm">
-              <div className="grid gap-0 md:grid-cols-2">
-                <div className="relative h-60 md:h-full">
-                  <Image
-                    src="https://laiblogstorage.blob.core.windows.net/posts/_638155443138816303.jpeg"
-                    alt="Life at Electronics Hero"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/55 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 text-xs font-medium text-white drop-shadow">
-                    Team stand-ups, builds & demos
-                  </div>
-                </div>
-                <CardContent className="space-y-4 p-6 text-sm text-slate-700">
-                  <h3 className="text-base font-semibold text-slate-900">Life at Jayshree Instruments</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                      <span>Hands-on work with real boards, harnesses, and hardware builds.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                      <span>Transparent goals with regular 1:1s and feedback loops.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                      <span>Celebrations for milestones, launches, and team wins.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
-                      <span>Learning budget for courses, certifications, and conferences.</span>
-                    </li>
-                  </ul>
-                </CardContent>
+            <div className="relative h-full overflow-hidden rounded-3xl bg-slate-900 shadow-2xl">
+              <Image
+                src="https://laiblogstorage.blob.core.windows.net/posts/_638155443138816303.jpeg"
+                alt="Life at Electronics Hero"
+                fill
+                className="object-cover opacity-80 transition-transform duration-700 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <h3 className="text-2xl font-bold text-white mb-6">Life at Jayshree Instruments</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <div className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-slate-200 text-sm">Hands-on work with real boards, harnesses, and hardware builds.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-slate-200 text-sm">Transparent goals with regular 1:1s and feedback loops.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-slate-200 text-sm">Celebrations for milestones, launches, and team wins.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-slate-200 text-sm">Learning budget for courses, certifications, and conferences.</span>
+                  </li>
+                </ul>
               </div>
-            </Card>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* OPEN POSITIONS */}
-      <section id="open-positions" className="bg-white px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-7xl">
+      <section id="open-positions" className="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-[1600px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-10 text-center"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Open{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                 positions
               </span>
             </h2>
-            <p className="mt-3 text-base text-slate-600 sm:text-lg max-w-3xl mx-auto">
+            <p className="mt-4 text-base text-slate-600 sm:text-lg max-w-3xl mx-auto">
               Browse current openings or reach out if your profile doesn&apos;t fit perfectly — we&apos;d still love to
               hear from you.
             </p>
@@ -459,21 +523,23 @@ export default function CareersPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="mb-8 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:flex-row sm:items-center sm:justify-between"
+            className="mb-10 flex flex-col gap-6 rounded-3xl border border-white bg-white p-6 shadow-xl shadow-slate-200/50 sm:flex-row sm:items-center sm:justify-between"
           >
             <div className="flex flex-wrap gap-2">
               {["All", "Technical", "Non-Technical"].map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`rounded-full px-3 py-1 text-xs font-medium transition ${selectedCategory === category
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
+                  className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 ${selectedCategory === category
+                    ? "bg-slate-900 text-white shadow-lg shadow-slate-900/20"
+                    : "bg-slate-50 text-slate-600 hover:bg-slate-100"
                     }`}
                 >
                   {category}
                 </button>
               ))}
+
+              <div className="h-8 w-px bg-slate-200 mx-2 hidden sm:block" />
 
               {departments
                 .filter((d) => d !== "All")
@@ -483,9 +549,9 @@ export default function CareersPage() {
                     <button
                       key={dept}
                       onClick={() => setSelectedDepartment(dept)}
-                      className={`rounded-full px-3 py-1 text-xs font-medium transition ${isActive
-                        ? "bg-blue-600 text-white shadow-sm"
-                        : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
+                      className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 ${isActive
+                        ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
+                        : "bg-slate-50 text-slate-600 hover:bg-slate-100"
                         }`}
                     >
                       {dept}
@@ -494,28 +560,34 @@ export default function CareersPage() {
                 })}
             </div>
 
-            <div className="w-full sm:w-auto">
-              <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm">
+            <div className="w-full sm:w-72">
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Target className="h-4 w-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+                </div>
                 <input
                   type="text"
-                  placeholder="Search by role, location…"
+                  placeholder="Search roles..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
+                  className="w-full rounded-full border-0 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-900 ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-all"
                 />
               </div>
             </div>
           </motion.div>
 
           {/* Positions list */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             {filteredPositions.length === 0 && (
-              <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center text-sm text-slate-600">
-                No roles match your filters right now. Try clearing the filters or{" "}
-                <Link href="/contact" className="font-semibold text-blue-600 underline underline-offset-4">
-                  send us your CV
+              <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center">
+                <div className="mx-auto h-12 w-12 rounded-full bg-slate-50 flex items-center justify-center mb-4">
+                  <Briefcase className="h-6 w-6 text-slate-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-slate-900 mb-1">No roles found</h3>
+                <p className="text-slate-500 mb-6">Try adjusting your filters or search terms.</p>
+                <Link href="/contact" className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
+                  Send us your CV anyway <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
-                .
               </div>
             )}
 
@@ -527,60 +599,53 @@ export default function CareersPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
               >
-                <Card className="cursor-pointer border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg">
-                  <CardContent className="p-7">
-                    <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                      <div className="flex-1">
-                        <div className="mb-3 flex flex-wrap items-center gap-3">
-                          <h3 className="text-xl font-semibold text-slate-900">{position.title}</h3>
-                          <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                            {position.type}
-                          </span>
-                          <span
-                            className={`rounded-full px-3 py-1 text-xs font-semibold ${position.category === "Technical"
-                              ? "bg-purple-50 text-purple-700"
-                              : "bg-green-50 text-green-700"
-                              }`}
-                          >
-                            {position.category}
-                          </span>
-                        </div>
-
-                        <p className="mb-4 text-sm text-slate-600">{position.description}</p>
-
-                        <div className="mb-4 flex flex-wrap gap-4 text-xs text-slate-600">
-                          <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
-                            <span>{position.location}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Briefcase className="h-4 w-4" />
-                            <span>{position.department}</span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2">
-                          {position.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              className="rounded-lg bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
+                <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/5">
+                  <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                    <div className="flex-1">
+                      <div className="mb-4 flex flex-wrap items-center gap-3">
+                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{position.title}</h3>
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
+                          {position.type}
+                        </span>
+                        <span
+                          className={`rounded-full px-3 py-1 text-xs font-semibold ${position.category === "Technical"
+                            ? "bg-purple-50 text-purple-700 border border-purple-100"
+                            : "bg-emerald-50 text-emerald-700 border border-emerald-100"
+                            }`}
+                        >
+                          {position.category}
+                        </span>
                       </div>
 
+                      <p className="mb-6 text-sm text-slate-600 max-w-2xl leading-relaxed">{position.description}</p>
+
+                      <div className="flex flex-wrap gap-6 text-xs font-medium text-slate-500">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4" />
+                          <span>{position.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Briefcase className="h-4 w-4" />
+                          <span>{position.department}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-4 w-4" />
+                          <span>{position.experience}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                       <button
                         onClick={() => handleApplyClick(position.title)}
-                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:from-blue-700 hover:to-indigo-700 md:w-auto"
+                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-600/20 active:scale-95"
                       >
-                        Apply now
+                        Apply Now
                         <ArrowRight className="h-4 w-4" />
                       </button>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -588,136 +653,118 @@ export default function CareersPage() {
       </section>
 
       {/* SIMPLE HIRING PROCESS */}
-      <section className="bg-slate-900 px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+      <section className="bg-[#0B1120] px-4 py-20 sm:px-6 lg:px-8 lg:py-28 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
+
+        <div className="mx-auto max-w-5xl text-center relative z-10">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Simple{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-300 bg-clip-text text-transparent">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
               hiring process
             </span>
           </h2>
-          <p className="mt-3 text-sm text-slate-300 sm:text-base">
+          <p className="mt-4 text-base text-slate-400 sm:text-lg">
             We move fast but keep things human and transparent at every step.
           </p>
 
-          <div className="mt-10 grid gap-6 text-left sm:grid-cols-2 md:grid-cols-4">
-            {[
-              { step: "01", title: "Apply", text: "Share your CV and a short note about what you'd like to work on." },
-              { step: "02", title: "Talk", text: "Intro call to understand your experience, goals, and fit." },
-              { step: "03", title: "Task", text: "Role-specific assignment or technical discussion where relevant." },
-              {
-                step: "04",
-                title: "Offer",
-                text: "We share a clear offer, expectations, and growth plan before you join.",
-              },
-            ].map((item) => (
-              <div
-                key={item.step}
-                className="rounded-2xl border border-slate-700 bg-slate-900/40 p-4 text-sm"
-              >
-                <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-xs font-semibold text-white">
-                  {item.step}
+          <div className="mt-16 relative">
+            {/* Connecting Line */}
+            <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent hidden md:block -translate-y-1/2" />
+
+            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+              {[
+                { step: "01", title: "Apply", text: "Share your CV and a short note about what you'd like to work on." },
+                { step: "02", title: "Talk", text: "Intro call to understand your experience, goals, and fit." },
+                { step: "03", title: "Task", text: "Role-specific assignment or technical discussion where relevant." },
+                {
+                  step: "04",
+                  title: "Offer",
+                  text: "We share a clear offer, expectations, and growth plan before you join.",
+                },
+              ].map((item, index) => (
+                <div
+                  key={item.step}
+                  className="relative group"
+                >
+                  <div className="relative z-10 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-900 border border-slate-800 shadow-xl group-hover:border-blue-500/50 group-hover:shadow-blue-500/20 transition-all duration-300">
+                    <span className="text-xl font-bold text-blue-500 group-hover:text-blue-400">{item.step}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed">{item.text}</p>
                 </div>
-                <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-                <p className="mt-1 text-xs text-slate-300">{item.text}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* FINAL CTA */}
       {/* FINAL CTA - Dark Premium Tech Redesign */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 bg-[#020617]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#1e293b_0%,_#020617_100%)] opacity-50" />
-          {/* Animated Grid */}
-          <div className="absolute inset-0 opacity-[0.05]"
-            style={{
-              backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-              backgroundSize: '40px 40px'
-            }}
-          />
-          {/* Glowing Orbs */}
-          <motion.div
-            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-0 left-1/4 w-96 h-96 bg-[#0066CC] rounded-full blur-[120px] opacity-20"
-          />
-          <motion.div
-            animate={{ opacity: [0.3, 0.6, 0.3], scale: [1.2, 1, 1.2] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00A896] rounded-full blur-[120px] opacity-20"
-          />
+      {/* FINAL CTA - Clean & Bold Engineering */}
+      <section className="relative overflow-hidden bg-slate-950 py-24 sm:py-32">
+        {/* Technical Grid Background */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:40px_40px]" />
         </div>
 
-        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Decorative Circuit Lines */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50" />
+
+        <div className="absolute top-1/2 left-0 w-24 h-24 border-t border-r border-blue-500/30 rounded-tr-3xl -translate-y-1/2" />
+        <div className="absolute top-1/2 right-0 w-24 h-24 border-b border-l border-blue-500/30 rounded-bl-3xl -translate-y-1/2" />
+
+        <div className="relative mx-auto max-w-[1200px] px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/50"
+            transition={{ duration: 0.5 }}
           >
-            {/* Glass Shine Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
+            <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm">
+              <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+              <span className="text-sm font-mono font-medium text-blue-400 uppercase tracking-wider">Engineering The Future</span>
+            </div>
 
-            <div className="grid md:grid-cols-2 gap-10 p-8 md:p-12 lg:p-16 items-center">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 border border-white/10 backdrop-blur-sm">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <span className="text-xs font-medium text-emerald-300 tracking-wide uppercase">Join the Team</span>
-                </div>
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
+              Ready to <span className="text-blue-500">Engineer</span> <br />
+              Your Next Chapter?
+            </h2>
 
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  Ready to Join <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4CC2FF] to-[#00A896]">
-                    Jayshree Instruments?
-                  </span>
-                </h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-10 leading-relaxed">
+              Join a team where precision meets passion. We are building the next generation of electronics with advanced manufacturing and cutting-edge design.
+            </p>
 
-                <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-md">
-                  Send us your resume and portfolio. We review every application carefully and reach out to candidates whose profiles match current or upcoming roles.
-                </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <button
+                onClick={() => handleApplyClick("")}
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold text-slate-950 bg-blue-500 rounded-lg overflow-hidden transition-transform active:scale-95 hover:bg-blue-400"
+              >
+                <span className="relative z-10">Start Your Application</span>
+                <ArrowRight className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </button>
 
-                <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
-                  <span className="flex items-center gap-1.5">
-                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Great Culture
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Growth Opportunities
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <div className="w-1 h-1 rounded-full bg-slate-400" /> Impactful Work
-                  </span>
-                </div>
-              </div>
-
-              <div className="relative flex flex-col gap-4 justify-center items-center md:items-start">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0066CC] to-[#00A896] rounded-full opacity-10 blur-3xl" />
-
-                <button
-                  onClick={() => handleApplyClick("")}
-                  className="w-full sm:w-auto h-14 px-8 text-lg bg-gradient-to-r from-[#0066CC] to-[#00A896] hover:from-[#005bb5] hover:to-[#008c7d] text-white font-semibold rounded-2xl shadow-lg shadow-blue-900/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] inline-flex items-center justify-center gap-2"
-                >
-                  Send Application
-                  <ArrowRight className="h-5 w-5" />
+              <a href="#open-positions">
+                <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold text-white border border-slate-700 rounded-lg hover:border-blue-500/50 hover:bg-blue-500/5 transition-all">
+                  View Open Roles
                 </button>
+              </a>
+            </div>
 
-                <a href="#open-positions" className="w-full sm:w-auto">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="w-full h-14 px-8 text-lg border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-2xl backdrop-blur-sm transition-all duration-300"
-                  >
-                    View Open Roles
-                  </Button>
-                </a>
-              </div>
+            <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4 border-t border-slate-800 pt-10">
+              {[
+                { label: "Growth", value: "Unlimited" },
+                { label: "Culture", value: "Innovative" },
+                { label: "Impact", value: "Global" },
+                { label: "Team", value: "World-class" },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center">
+                  <dt className="text-sm font-mono text-slate-500 uppercase tracking-wider mb-1">{stat.label}</dt>
+                  <dd className="text-xl font-bold text-white">{stat.value}</dd>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -753,9 +800,37 @@ export default function CareersPage() {
                   value={formData.name}
                   onChange={handleFormChange}
                   placeholder="Enter your full name"
-                  className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                  required
+                  className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.name ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
                 />
+                {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name}</p>}
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-900">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  placeholder="Enter your email"
+                  className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
+                />
+                {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-900">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleFormChange}
+                  placeholder="Enter your phone number"
+                  className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.phone ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
+                />
+                {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
               </div>
 
               {/* Position */}
@@ -765,8 +840,7 @@ export default function CareersPage() {
                   name="position"
                   value={formData.position}
                   onChange={handleFormChange}
-                  className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                  required
+                  className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.position ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
                 >
                   <option value="">Select a position</option>
                   {openPositions.map((pos) => (
@@ -775,11 +849,12 @@ export default function CareersPage() {
                     </option>
                   ))}
                 </select>
+                {errors.position && <p className="mt-1 text-xs text-red-500">{errors.position}</p>}
               </div>
 
               {/* CV Upload */}
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-900">Upload CV</label>
+                <label className="mb-2 block text-sm font-semibold text-slate-900">Upload CV (PDF/Word, max 5MB)</label>
                 <div className="relative">
                   <input
                     type="file"
@@ -788,30 +863,38 @@ export default function CareersPage() {
                     accept=".pdf,.doc,.docx"
                     className="hidden"
                     id="cv-upload"
-                    required
                   />
                   <label
                     htmlFor="cv-upload"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-blue-300 bg-blue-50 px-4 py-6 text-center transition hover:border-blue-500 hover:bg-blue-100"
+                    className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed px-4 py-6 text-center transition ${errors.cv ? 'border-red-300 bg-red-50 hover:bg-red-100' : 'border-blue-300 bg-blue-50 hover:border-blue-500 hover:bg-blue-100'}`}
                   >
-                    <Upload className="h-5 w-5 text-blue-600" />
+                    <Upload className={`h-5 w-5 ${errors.cv ? 'text-red-500' : 'text-blue-600'}`} />
                     <div className="text-sm">
-                      <p className="font-medium text-blue-700">
+                      <p className={`font-medium ${errors.cv ? 'text-red-700' : 'text-blue-700'}`}>
                         {formData.cv ? formData.cv.name : "Click to upload CV"}
                       </p>
-                      <p className="text-xs text-blue-600">PDF, DOC, or DOCX</p>
                     </div>
                   </label>
                 </div>
+                {errors.cv && <p className="mt-1 text-xs text-red-500">{errors.cv}</p>}
               </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 font-semibold text-white transition hover:from-blue-700 hover:to-indigo-700"
-              >
-                Submit Application
-              </button>
+              <div className="pt-2">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-base font-semibold disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      Submitting...
+                    </span>
+                  ) : (
+                    "Submit Application"
+                  )}
+                </Button>
+              </div>
             </form>
           </motion.div>
         </div>

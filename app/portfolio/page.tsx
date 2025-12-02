@@ -100,74 +100,52 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* HERO */}
-      <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-slate-800 to-slate-900">
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]" />
-        <div className="absolute inset-0 bg-linear-to-br from-[#0066CC]/20 via-transparent to-[#00A896]/20" />
+      <section className="relative overflow-hidden bg-slate-950 pt-20 pb-32 lg:pt-32 lg:pb-40">
+        {/* Technical Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.1]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-30%,#1e293b,transparent)]" />
+        </div>
 
-        <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        {/* Animated Circuit Lines */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+
+        <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="relative z-10"
             >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-flex items-auto gap-2 rounded-full bg-linear-to-r from-[#0066CC]/20 to-[#00A896]/20 px-6 py-3 backdrop-blur-sm border border-white/10"
-              >
-                <Sparkles className="h-4 w-4 text-[#00A896]" />
-                <span className="text-sm font-semibold text-white">Excellence in Every Project</span>
-              </motion.div>
-
-              <div className="space-y-4 max-w-2xl">
-                <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl leading-tight">
-                  Transforming Ideas Into
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#0066CC] to-[#00A896]">
-                    Manufacturing Reality
-                  </span>
-                </h1>
-                <p className="text-lg text-gray-300 md:text-xl leading-relaxed">
-                  Explore our portfolio of cutting-edge electronics manufacturing projects. From rapid prototyping to
-                  high-volume production, we deliver precision, quality, and innovation across every industry.
-                </p>
-              </div>
-
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-6 max-w-xl">
-                {[
-                  { value: "10M+", label: "PCBs Manufactured" },
-                  { value: "500+", label: "Active Clients" },
-                  { value: "99.9%", label: "Quality Rate" },
-                  { value: "22+", label: "Years Experience" },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="space-y-1"
-                  >
-                    <div className="text-3xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm text-gray-400">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex flex-col gap-4 sm:flex-row"
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-8"
               >
+                <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                <span>Engineering Excellence</span>
+              </motion.div>
+
+              <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-8">
+                Transforming <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400">
+                  Ideas Into Reality
+                </span>
+              </h1>
+
+              <p className="text-lg text-slate-400 mb-10 max-w-xl leading-relaxed">
+                From rapid prototyping to high-volume manufacturing, we deliver precision-engineered electronics solutions for the world's most demanding industries.
+              </p>
+
+              <div className="flex flex-wrap gap-4 mb-16">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-linear-to-r from-[#0066CC] to-[#0052A3] hover:from-[#0052A3] hover:to-[#003D7A] text-white font-semibold text-lg px-8 py-6 shadow-lg shadow-[#0066CC]/50"
+                  className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-6 text-lg rounded-full shadow-lg shadow-blue-600/25 transition-all hover:scale-105"
                 >
                   <Link href="/contact">
                     Start Your Project <ArrowRight className="ml-2 h-5 w-5" />
@@ -177,74 +155,85 @@ export default function PortfolioPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white/20 text-white hover:bg-white/10 font-semibold text-lg px-8 py-6 bg-white/5 backdrop-blur-sm"
+                  className="border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg rounded-full transition-all backdrop-blur-sm"
                 >
-                  <Link href="/services">Explore Services</Link>
+                  <Link href="/services">Explore Capabilities</Link>
                 </Button>
-              </motion.div>
-            </motion.div>
-
-            {/* Right Image Grid */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
-            >
-              <div className="grid grid-cols-2 gap-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="space-y-4"
-                >
-                  <div className="relative h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
-                    <Image src="/images/design-mode/PCB.webp" alt="PCB Assembly" fill className="object-cover" />
-                  </div>
-                  <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
-                    <Image src="/images/design-mode/Prototype201.jpg" alt="Prototype" fill className="object-cover" />
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="space-y-4 pt-8"
-                >
-                  <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
-                    <Image
-                      src="https://cdn.prod.website-files.com/6624daae3f39ffabcd0c74a9/68146f9116395333148fe5c8_DSCN5980.JPG"
-                      alt="Testing"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="relative h-48 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
-                    <Image src="/images/design-mode/Testing.jpg" alt="Wire Harness" fill className="object-cover" />
-                  </div>
-                </motion.div>
               </div>
 
-              {/* Floating badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 }}
-                className="absolute -bottom-6 left-4 sm:-left-6 bg-gradient-to-br from-[#00A896] to-[#008C7A] text-white px-6 py-4 rounded-2xl shadow-2xl border border-white/20"
-              >
-                <div className="text-2xl font-bold">24/7</div>
-                <div className="text-sm">Support Available</div>
-              </motion.div>
+              {/* Stats Bar */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 border-t border-slate-800 pt-8">
+                {[
+                  { value: "10M+", label: "PCBs Made" },
+                  { value: "500+", label: "Clients" },
+                  { value: "99.9%", label: "Quality" },
+                  { value: "22+", label: "Years" },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 + index * 0.1 }}
+                  >
+                    <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-xs text-slate-500 uppercase tracking-wider">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right Content - Holographic Stack */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative lg:h-[600px] flex items-center justify-center"
+            >
+              <div className="relative w-full max-w-md aspect-[4/5]">
+                {/* Decorative Glow */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-emerald-500/20 rounded-3xl blur-3xl" />
+
+                {/* Main Image Card */}
+                <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/10 bg-slate-900/50 backdrop-blur-sm shadow-2xl">
+                  <Image
+                    src="/images/design-mode/PCB.webp"
+                    alt="Advanced PCB Manufacturing"
+                    fill
+                    className="object-cover opacity-80"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+
+                  {/* Floating Elements */}
+                  <div className="absolute bottom-8 left-8 right-8">
+                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+                          <Cpu className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <div className="text-white font-semibold">Advanced SMT</div>
+                          <div className="text-xs text-slate-400">Precision Assembly</div>
+                        </div>
+                      </div>
+                      <div className="h-1 w-full bg-slate-700 rounded-full overflow-hidden">
+                        <div className="h-full w-[90%] bg-gradient-to-r from-blue-500 to-emerald-500" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Bottom wave */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+        {/* Bottom Wave Separator */}
+        <div className="absolute bottom-0 left-0 right-0 translate-y-[1px]">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block">
             <path
               d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-              fill="white"
+              fill="#f8fafc"
             />
           </svg>
         </div>
@@ -252,7 +241,7 @@ export default function PortfolioPage() {
 
       {/* FILTERABLE GALLERY */}
       <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-screen-2xl">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Featured Projects</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
@@ -323,7 +312,7 @@ export default function PortfolioPage() {
 
       {/* FEATURED CASE STUDY */}
       <section className="py-20 bg-slate-900 text-white overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative order-2 lg:order-1">
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-lg opacity-30" />
@@ -402,7 +391,7 @@ export default function PortfolioPage() {
 
       {/* TECHNOLOGY SHOWCASE */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Powered by Technology</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
@@ -454,12 +443,12 @@ export default function PortfolioPage() {
 
       {/* TESTIMONIALS */}
       <section className="py-20 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Trusted by Innovators</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {[
               {
                 quote: "Jayshree Instruments delivered our prototypes in record time. Their engineering feedback actually improved our final design significantly.",

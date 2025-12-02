@@ -80,7 +80,7 @@ export function Header() {
       description: "Parts sourcing & procurement",
     },
     {
-      href: "/services/design",
+      href: "/services/design-engineering",
       label: "Design Engineering",
       icon: Pencil,
       description: "PCB design & engineering",

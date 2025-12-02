@@ -1079,7 +1079,7 @@ export default function ServicesClient() {
                   <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
                 </Button>
               </Link>
-              <Link href="/contact" className="w-full sm:w-auto">
+              {/* <Link href="/contact" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
@@ -1087,7 +1087,7 @@ export default function ServicesClient() {
                 >
                   Talk to Engineering
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

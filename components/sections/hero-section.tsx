@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import { useState, useEffect } from "react"
 
 export function HeroSection() {
@@ -86,7 +87,7 @@ export function HeroSection() {
                 size="lg"
                 className="bg-white text-[#1e5a8e] hover:bg-white/90 font-semibold"
               >
-                <a href="/contact">Get Started</a>
+                <Link href="/contact">Get Started</Link>
               </Button>
               {/* Updated Button to link to /services */}
               <Button
@@ -95,7 +96,7 @@ export function HeroSection() {
                 variant="outline"
                 className="border-2 border-white text-white hover:bg-white/10 font-semibold bg-transparent"
               >
-                <a href="/services">View Services</a>
+                <Link href="/services">View Services</Link>
               </Button>
             </div>
           </div>

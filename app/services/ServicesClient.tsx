@@ -407,7 +407,7 @@ export default function ServicesClient() {
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                   </Link>
                 </Button>
-                <Button
+                {/* <Button
                   asChild
                   size="lg"
                   variant="outline"
@@ -416,7 +416,7 @@ export default function ServicesClient() {
                   <Link href="#core-services">
                     Explore Capabilities
                   </Link>
-                </Button>
+                </Button> */}
               </div>
 
               {/* Stats Row */}
@@ -887,17 +887,7 @@ export default function ServicesClient() {
                 ))}
               </ul>
 
-              <div className="mt-6 sm:mt-8 rounded-2xl border border-dashed border-slate-700 bg-slate-800/50 p-5 sm:p-6">
-                <p className="font-bold text-white mb-2 text-sm">
-                  Need to match a specific standard?
-                </p>
-                <p className="text-sm text-slate-400 mb-4">
-                  We can adapt our quality plans to meet specific industry requirements.
-                </p>
-                <Button variant="secondary" size="sm" className="w-full font-semibold">
-                  View Quality Manual
-                </Button>
-              </div>
+              
             </div>
           </div>
         </div>

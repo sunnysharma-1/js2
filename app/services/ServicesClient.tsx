@@ -29,7 +29,7 @@ const services = [
     id: "pcb",
     icon: Cpu,
     title: "PCB Assembly",
-    path: "/services/pcb-assembly",
+    path: "/services/pcb",
     shortDesc: "High-quality PCB assembly with SMT & THT capabilities.",
     fullDesc:
       "Our PCB assembly services combine advanced technology with expert craftsmanship to deliver superior quality boards. We handle both surface mount (SMT) and through-hole assembly with precision.",
@@ -125,46 +125,8 @@ const services = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7rUuP0nbmi1FthU_e9zVr83qyDHq2fcvGSg&s",
     category: "Core Manufacturing",
   },
-  {
-    id: "component-sourcing",
-    icon: Globe,
-    title: "Component Sourcing & Supply Chain",
-    path: "/services/component-sourcing",
-    shortDesc: "End-to-end component procurement & inventory management.",
-    fullDesc:
-      "We manage your entire component supply chain, from sourcing and vendor management to inventory optimization, ensuring cost-efficiency and reliability.",
-    features: [
-      "Global Sourcing Network",
-      "Vendor Qualification",
-      "Cost Optimization",
-      "Inventory Management",
-      "Obsolescence Management",
-      "Traceability & Compliance",
-    ],
-    image:
-      "https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    category: "Supply Chain",
-  },
-  {
-    id: "testing",
-    icon: TestTube,
-    title: "Testing & Quality Assurance",
-    path: "/services/testing-qa",
-    shortDesc: "Comprehensive functional & in-circuit testing services.",
-    fullDesc:
-      "Our testing and quality assurance services ensure that every product leaving our facility meets rigorous performance and reliability standards.",
-    features: [
-      "In-Circuit Testing (ICT)",
-      "Functional Testing",
-      "Boundary Scan",
-      "Environmental & Thermal Testing",
-      "Burn-In Testing",
-      "Full Traceability Reporting",
-    ],
-    image:
-      "https://maguselectronics.co.uk/wp-content/uploads/2025/08/Testing-Electroless-Nickel-unit.jpg",
-    category: "Quality & Reliability",
-  },
+
+
   {
     id: "after-sales",
     icon: Shield,
@@ -695,55 +657,57 @@ export default function ServicesClient() {
         </div>
       </section>
 
-      {/* SERVICES OVERVIEW (IMAGE CARDS) */}
-      <section className="bg-white py-10 sm:py-12 md:py-20">
+      {/* SERVICES OVERVIEW (TECHNICAL CARDS) */}
+      <section className="bg-white py-16 sm:py-20 md:py-24">
         <div className="container max-w-[1600px] px-4 md:px-8 mx-auto">
-          <div className="mb-10 md:mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
-              Service Overview
+          <div className="mb-12 md:mb-20 text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">
+              Engineering Excellence
             </h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 text-pretty">
-              Visual overview of our key EMS offerings—click any card to deep dive into a dedicated service page.
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Comprehensive manufacturing solutions designed for scalability, precision, and reliability.
             </p>
           </div>
 
-          <div className="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {services.map((service) => (
-              <Link key={service.id} href={service.path}>
-                <Card className="group h-full cursor-pointer overflow-hidden border-slate-200 bg-white hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                  <div className="relative h-40 sm:h-48 md:h-56 w-full overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                      <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
-                        <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-white/20 backdrop-blur-md border border-white/30">
-                          <service.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
-                        </div>
-                        <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-sky-300">
-                          {service.category}
-                        </p>
+          <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, index) => (
+              <Link key={service.id} href={service.path} className="group">
+                <div className="h-full bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-sky-200 hover:bg-white hover:shadow-xl hover:shadow-sky-100/50 transition-all duration-300 relative overflow-hidden">
+
+                  {/* Hover Gradient Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-sky-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Header */}
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="h-14 w-14 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-sky-600 shadow-sm group-hover:scale-110 group-hover:border-sky-200 transition-all duration-300">
+                        <service.icon className="h-7 w-7" strokeWidth={1.5} />
                       </div>
-                      <h3 className="text-lg sm:text-xl font-bold text-white leading-tight group-hover:text-sky-200 transition-colors">
-                        {service.title}
-                      </h3>
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider group-hover:text-sky-600 transition-colors">
+                        0{index + 1}
+                      </span>
                     </div>
-                  </div>
-                  <CardContent className="p-4 sm:p-5">
-                    <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed mb-3 sm:mb-4">
+
+                    {/* Content */}
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-sky-700 transition-colors">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
                       {service.shortDesc}
                     </p>
-                    <div className="inline-flex items-center text-sm font-bold text-sky-600 group-hover:text-sky-700 group-hover:underline decoration-2 underline-offset-4 transition-all">
-                      Learn More
-                      <ArrowRight className="ml-1.5 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+
+                    {/* Footer */}
+                    <div className="pt-6 border-t border-slate-200/60 flex items-center justify-between group-hover:border-sky-100 transition-colors">
+                      <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                        {service.category}
+                      </span>
+                      <div className="h-8 w-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:bg-sky-500 group-hover:border-sky-500 group-hover:text-white transition-all duration-300">
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>

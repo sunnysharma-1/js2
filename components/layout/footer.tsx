@@ -83,49 +83,8 @@ export function Footer() {
 
   return (
     <footer ref={footerRef} className="relative border-t bg-white text-slate-800 overflow-hidden">
-      {/* subtle PCB SVG background */}
-      <div
-        aria-hidden
-        className="footer-pattern absolute inset-0 overflow-hidden pointer-events-none opacity-20"
-      >
-        <svg
-          className="w-full h-full"
-          preserveAspectRatio="none"
-          viewBox="0 0 1200 400"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient id="pcbFooterGrad" x1="0" x2="1">
-              <stop offset="0%" stopColor="#002b2b" stopOpacity="0.02" />
-              <stop offset="100%" stopColor="#004d40" stopOpacity="0.03" />
-            </linearGradient>
-            <pattern
-              id="pcbFooterPattern"
-              width="120"
-              height="120"
-              patternUnits="userSpaceOnUse"
-            >
-              <rect width="120" height="120" fill="url(#pcbFooterGrad)" />
-              <g
-                stroke="#00a896"
-                strokeWidth="1"
-                strokeOpacity="0.06"
-                fill="none"
-              >
-                <path d="M12 20 H108" />
-                <path d="M20 12 V108" />
-                <circle cx="30" cy="30" r="2.5" />
-                <circle cx="90" cy="90" r="2.5" />
-              </g>
-            </pattern>
-          </defs>
-
-          <rect width="100%" height="100%" fill="url(#pcbFooterPattern)" />
-        </svg>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 max-w-screen-2xl py-12 md:py-16">
-        <div className="grid gap-12 grid-cols-1 md:grid-cols-[1fr_auto_auto_auto_1fr]">
+      <div className="relative z-10 container mx-auto px-4 max-w-screen-2xl py-8 md:py-10">
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-[1fr_auto_auto_auto_1fr]">
           {/* Contact Information */}
           <div className="footer-col space-y-8">
             <div className="space-y-2">
@@ -410,7 +369,7 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="footer-copyright mt-12 pt-8 border-t border-gray-200 text-center">
+        <div className="footer-copyright mt-8 pt-6 border-t border-gray-200 text-center">
           <p className="text-sm text-slate-600">
             © {new Date().getFullYear()} Jayshree Instruments. All rights
             reserved.

@@ -100,17 +100,7 @@ export function Header() {
       <div className="container mx-auto flex h-24 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <motion.div
-            className="relative h-50 w-56 md:h-60 md:w-64"
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            whileHover={{
-              scale: 1.05,
-              rotate: 2,
-              filter: "drop-shadow(0 0 8px rgba(74, 144, 226, 0.3))"
-            }}
-          >
+          <div className="relative h-50 w-56 md:h-60 md:w-64">
             <Image
               src="/images/design-mode/Black_and_White_Circular_Art___Design_Logo__1_-removebg-preview.png"
               alt="Jayshree Instruments Logo"
@@ -118,7 +108,7 @@ export function Header() {
               className="object-contain"
               priority
             />
-          </motion.div>
+          </div>
         </Link>
 
         {/* Desktop Navigation - Center */}

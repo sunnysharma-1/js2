@@ -13,7 +13,7 @@ export default function CareersPage() {
     {
       title: "PCB Design Engineer",
       department: "Engineering",
-      location: "Bangalore, India",
+      location: "Gandhinagar, Gujarat",
       type: "Full-time",
       experience: "3-5 years",
       category: "Technical",
@@ -57,7 +57,7 @@ export default function CareersPage() {
     {
       title: "Sales Engineer",
       department: "Sales",
-      location: "Remote",
+      location: "Ahmedabad, Gujarat",
       type: "Full-time",
       experience: "3-7 years",
       category: "Non-Technical",
@@ -197,7 +197,7 @@ export default function CareersPage() {
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/70 bg-white/80 px-4 py-1.5 text-xs font-semibold text-blue-700 shadow-md">
               <Briefcase className="h-4 w-4 text-blue-600" />
-              <span>Careers at Electronics Hero</span>
+              <span>Careers at Jayshree Instruments</span>
             </div>
 
             <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
@@ -275,7 +275,7 @@ export default function CareersPage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-slate-500">Locations</span>
-                        <span className="font-semibold text-slate-900">Bangalore · Remote</span>
+                        <span className="font-semibold text-slate-900">Gandhinagar · Ahmedabad</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-slate-500">Active roles</span>
@@ -308,7 +308,7 @@ export default function CareersPage() {
               Why join
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 {" "}
-                Electronics Hero
+                Jayshree Instruments
               </span>
             </h2>
             <p className="mt-4 text-base text-slate-600 sm:text-lg max-w-3xl mx-auto">
@@ -405,7 +405,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <CardContent className="space-y-4 p-6 text-sm text-slate-700">
-                  <h3 className="text-base font-semibold text-slate-900">Life at Electronics Hero</h3>
+                  <h3 className="text-base font-semibold text-slate-900">Life at Jayshree Instruments</h3>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500" />
@@ -467,8 +467,8 @@ export default function CareersPage() {
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`rounded-full px-3 py-1 text-xs font-medium transition ${selectedCategory === category
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
                     }`}
                 >
                   {category}
@@ -484,8 +484,8 @@ export default function CareersPage() {
                       key={dept}
                       onClick={() => setSelectedDepartment(dept)}
                       className={`rounded-full px-3 py-1 text-xs font-medium transition ${isActive
-                          ? "bg-blue-600 text-white shadow-sm"
-                          : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
+                        ? "bg-blue-600 text-white shadow-sm"
+                        : "bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-700"
                         }`}
                     >
                       {dept}
@@ -538,8 +538,8 @@ export default function CareersPage() {
                           </span>
                           <span
                             className={`rounded-full px-3 py-1 text-xs font-semibold ${position.category === "Technical"
-                                ? "bg-purple-50 text-purple-700"
-                                : "bg-green-50 text-green-700"
+                              ? "bg-purple-50 text-purple-700"
+                              : "bg-green-50 text-green-700"
                               }`}
                           >
                             {position.category}
@@ -676,7 +676,7 @@ export default function CareersPage() {
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                   Ready to Join <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4CC2FF] to-[#00A896]">
-                    Electronics Hero?
+                    Jayshree Instruments?
                   </span>
                 </h2>
 

@@ -130,7 +130,7 @@ export default function AboutPage() {
   }, [])
 
   // 🔹 Updated to 22 years
-  const yearsCounter = useCounter(22, 2)
+  const yearsCounter = useCounter(25, 2)
   const industriesCounter = useCounter(10, 2)
   const projectsCounter = useCounter(500, 2.5)
 
@@ -268,7 +268,7 @@ export default function AboutPage() {
                 transition={{ delay: 0.2 }}
                 className="inline-block px-4 py-2 bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 rounded-full border border-[#0066CC]/40 backdrop-blur-sm"
               >
-                <span className="text-sm font-semibold text-sky-100">🏭 Since 2001</span>
+                <span className="text-sm font-semibold text-sky-100">Since 2001</span>
               </motion.div>
 
               <div>
@@ -281,7 +281,7 @@ export default function AboutPage() {
                 <p className="text-base md:text-lg leading-relaxed text-slate-200 text-pretty mb-6">
                   For over{" "}
                   <span className="font-semibold text-[#38bdf8]">
-                    22+ years
+                    25+ years
                   </span>
                   , Jayshree Instruments has been at the forefront of electronics manufacturing, delivering
                   innovative EMS solutions to startups, corporates, and OEMs worldwide.
@@ -573,7 +573,7 @@ export default function AboutPage() {
                 <div className="text-center lg:text-right">
                   <p className="text-sm font-semibold text-sky-300 mb-2">Meet Our Team</p>
                   <p className="text-slate-300 text-sm">
-                    Experts with 22+ years of combined experience
+                    Experts with 25+ years of combined experience
                   </p>
                 </div>
 
@@ -1529,7 +1529,7 @@ export default function AboutPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
             {[
               {
-             
+
                 name: "ISO 9001:2015",
                 fullName: "Quality Management System",
                 color: "from-blue-500 to-cyan-500",
@@ -1538,7 +1538,7 @@ export default function AboutPage() {
                 benefits: ["Quality Assurance", "Process Optimization", "Customer Focus"],
               },
               {
-               
+
                 name: "ISO 14001:2015",
                 fullName: "Environmental Management",
                 color: "from-green-500 to-teal-500",
@@ -1547,7 +1547,7 @@ export default function AboutPage() {
                 benefits: ["Eco-Friendly", "Waste Reduction", "Sustainability"],
               },
               {
-                
+
                 name: "RoHS Compliant",
                 fullName: "Restriction of Hazardous Substances",
                 color: "from-yellow-500 to-orange-500",

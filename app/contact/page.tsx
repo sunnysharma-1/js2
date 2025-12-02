@@ -7,8 +7,51 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { motion } from "framer-motion"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
+import { useState } from "react"
+
+const formSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z
+    .string()
+    .min(1, "Phone number is required")
+    .regex(/^\d+$/, "Phone number must contain only digits")
+    .max(10, "Phone number cannot exceed 10 digits"),
+  company: z.string().optional(),
+  service: z.string().optional(),
+  message: z.string().min(1, "Message is required"),
+})
+
+type FormData = z.infer<typeof formSchema>
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+  })
+
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true)
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    console.log("Form submitted:", data)
+    setIsSubmitting(false)
+    setSubmitSuccess(true)
+    reset()
+    setTimeout(() => setSubmitSuccess(false), 3000)
+  }
+
   return (
     <main className="min-h-screen bg-slate-50">
       {/* Hero Section */}
@@ -47,37 +90,72 @@ export default function ContactPage() {
                   <p className="mb-6 text-sm text-muted-foreground">
                     Share your details and requirements, and our team will get back to you with the next steps.
                   </p>
-                  <form className="space-y-6">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid gap-4 md:grid-cols-2">
                       <div className="space-y-2">
                         <Label htmlFor="firstName">First Name *</Label>
-                        <Input id="firstName" placeholder="John" required />
+                        <Input
+                          id="firstName"
+                          placeholder="John"
+                          {...register("firstName")}
+                          className={errors.firstName ? "border-red-500" : ""}
+                        />
+                        {errors.firstName && (
+                          <p className="text-xs text-red-500">{errors.firstName.message}</p>
+                        )}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="lastName">Last Name *</Label>
-                        <Input id="lastName" placeholder="Doe" required />
+                        <Input
+                          id="lastName"
+                          placeholder="Doe"
+                          {...register("lastName")}
+                          className={errors.lastName ? "border-red-500" : ""}
+                        />
+                        {errors.lastName && (
+                          <p className="text-xs text-red-500">{errors.lastName.message}</p>
+                        )}
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="email">Email *</Label>
-                      <Input id="email" type="email" placeholder="john@example.com" required />
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="john@example.com"
+                        {...register("email")}
+                        className={errors.email ? "border-red-500" : ""}
+                      />
+                      {errors.email && (
+                        <p className="text-xs text-red-500">{errors.email.message}</p>
+                      )}
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input id="phone" type="tel" placeholder="+91 98765 43210" />
+                      <Label htmlFor="phone">Phone Number *</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="9876543210"
+                        {...register("phone")}
+                        className={errors.phone ? "border-red-500" : ""}
+                      />
+                      {errors.phone && (
+                        <p className="text-xs text-red-500">{errors.phone.message}</p>
+                      )}
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="company">Company Name</Label>
-                      <Input id="company" placeholder="Your Company" />
+                      <Input id="company" placeholder="Your Company" {...register("company")} />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="service">Service Interested In</Label>
                       <select
                         id="service"
+                        {...register("service")}
                         className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
                         <option value="">Select a service</option>
@@ -104,17 +182,27 @@ export default function ContactPage() {
                         id="message"
                         placeholder="Tell us about your project requirements..."
                         rows={5}
-                        required
+                        {...register("message")}
+                        className={errors.message ? "border-red-500" : ""}
                       />
+                      {errors.message && (
+                        <p className="text-xs text-red-500">{errors.message.message}</p>
+                      )}
                     </div>
 
                     <Button
                       type="submit"
                       size="lg"
                       className="w-full bg-gradient-to-r from-[#0066CC] to-[#00A896]"
+                      disabled={isSubmitting}
                     >
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
+                    {submitSuccess && (
+                      <p className="text-center text-sm text-green-600 font-medium">
+                        Message sent successfully!
+                      </p>
+                    )}
                   </form>
                 </CardContent>
               </Card>

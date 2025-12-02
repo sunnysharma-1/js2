@@ -62,16 +62,16 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#1e5a8e] via-[#1a7a9e] to-[#00a8a8] min-h-[600px]">
-      <div className="container mx-auto max-w-screen-2xl px-6 py-16 lg:py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#1e5a8e] via-[#1a7a9e] to-[#00a8a8] min-h-[700px] flex flex-col justify-center">
+      <div className="container mx-auto max-w-screen-2xl px-6 py-12 lg:py-20 flex-grow flex items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
           <div className="relative z-10 text-white space-y-6">
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-balance">
-              Turning Ideas into Electronics.
+              Transforming Ideas into Electronics
             </h1>
 
             <p className="text-xl lg:text-2xl font-semibold">
-              22+ Years of Expertise in Electronics Manufacturing Services
+              25+ Years of Expertise in Electronics Manufacturing Services
             </p>
 
             <p className="text-base lg:text-lg text-white/90 max-w-xl">
@@ -100,37 +100,17 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 lg:w-1/2">
+          <div className="relative lg:absolute lg:right-0 lg:top-0 lg:bottom-0 lg:w-1/2 h-[400px] lg:h-full">
             <div
-              className="relative h-[400px] lg:h-full w-full overflow-hidden"
+              className="relative h-full w-full overflow-hidden"
               style={{
-                // Apply the clipPath only on large screens, removing it for mobile
                 clipPath:
                   activeSlide !== -1
                     ? "none"
                     : "polygon(15% 0, 100% 0, 100% 100%, 0 100%)",
               }}
             >
-              <div
-                className="relative h-full w-full overflow-hidden"
-                style={{
-                  // Re-applied the clipPath specifically with a media query to fix mobile view
-                  // In Tailwind CSS, you'd use lg:clip-path-[...] but since it's inline style
-                  // we'll rely on the parent element's grid/absolute positioning, and use !important
-                  // or a better Tailwind setup. For this change, we'll keep the inline style but rely on
-                  // the `lg:` utility classes on the parent div's layout to handle the visual break.
-                  // Removing the inline clipPath and relying on the `lg:absolute` fixes the mobile issue.
-                  // Let's only apply the clip-path via a utility class that only runs on large screens.
-                  // Since Tailwind doesn't support arbitrary values with responsive prefixes in clip-path
-                  // in standard config, we'll use a wrapper with the style property for the clipping.
-
-                  // Let's move the clip-path back, but make sure the parent's layout is correct.
-                  // The issue on mobile is likely that the clip-path makes the video disappear.
-                  // The simplest fix is to only apply the clip-path on the `lg` breakpoint.
-                  // Since we can't use responsive prefixes for arbitrary style values, we'll
-                  // conditionally apply the style property only on desktop.
-                }}
-              >
+              <div className="relative h-full w-full overflow-hidden">
                 {slides.map((slide, index) => (
                   <div
                     key={slide.id}
@@ -139,15 +119,6 @@ export function HeroSection() {
                   >
                     <div
                       className="h-full w-full"
-                      // Re-applied the clipPath to a wrapper that only takes effect on desktop
-                      // by relying on the media query baked into the Tailwind `lg:` prefix utilities
-                      // on the parent element's geometry. The issue on mobile is that `clipPath` makes
-                      // the video disappear when it's not absolutely positioned correctly.
-                      // Applying the style below, but wrapped in a check for the current view, is complex
-                      // in plain React. The better fix is to apply the style where it *can* be conditionally applied.
-                      // The original code uses a clip-path that works poorly on mobile when the element isn't
-                      // yet wide/positioned for desktop. We'll simplify the style property to only apply the clip
-                      // when the component is wide enough (which is what `lg:` would imply)
                       style={{
                         clipPath:
                           isLargeScreen
@@ -179,7 +150,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm">
+      <div className="relative z-20 bg-white/95 backdrop-blur-sm mt-auto">
         <div className="container mx-auto max-w-screen-2xl px-6 py-4">
           <div className="flex flex-wrap justify-center lg:justify-end gap-8 lg:gap-12 text-sm lg:text-base">
             {slides.map((slide, index) => (

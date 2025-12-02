@@ -2,26 +2,30 @@ import { Shield, Award, Globe2, TrendingUp } from "lucide-react"
 
 export function StatsSection() {
   return (
-    <section className="bg-slate-50 py-24 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+    <section className="bg-white py-20 lg:py-28 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-blue-50/50 blur-3xl" />
+        <div className="absolute top-[20%] -left-[10%] w-[40%] h-[40%] rounded-full bg-teal-50/50 blur-3xl" />
+      </div>
 
       <div className="container mx-auto max-w-screen-2xl px-6 relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4 text-balance">Why Trust Us</h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto text-balance">
             Industry-leading expertise backed by proven results
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          <div className="group bg-white p-8 rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
-            <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center">
-                <Shield className="w-7 h-7 text-white" strokeWidth={1.5} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+                <Shield className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
               </div>
-              <div className="flex-1">
-                <div className="text-3xl font-bold text-slate-900 mb-2">22+ Years</div>
-                <div className="text-slate-900 font-semibold mb-1">EMS Experience</div>
+              <div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">22+ Years</div>
+                <div className="text-slate-900 font-semibold mb-2">EMS Experience</div>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   Two decades of excellence in electronic manufacturing services
                 </p>
@@ -29,14 +33,14 @@ export function StatsSection() {
             </div>
           </div>
 
-          <div className="group bg-white p-8 rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
-            <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center">
-                <Award className="w-7 h-7 text-white" strokeWidth={1.5} />
+          <div className="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center group-hover:bg-teal-600 transition-colors duration-300">
+                <Award className="w-8 h-8 text-teal-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
               </div>
-              <div className="flex-1">
-                <div className="text-3xl font-bold text-slate-900 mb-2">ISO & IATF</div>
-                <div className="text-slate-900 font-semibold mb-1">Certified Quality</div>
+              <div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">ISO & IATF</div>
+                <div className="text-slate-900 font-semibold mb-2">Certified Quality</div>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   Internationally recognized quality management standards
                 </p>
@@ -44,14 +48,14 @@ export function StatsSection() {
             </div>
           </div>
 
-          <div className="group bg-white p-8 rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
-            <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-7 h-7 text-white" strokeWidth={1.5} />
+          <div className="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-300">
+                <TrendingUp className="w-8 h-8 text-indigo-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
               </div>
-              <div className="flex-1">
-                <div className="text-3xl font-bold text-slate-900 mb-2">10+ Industries</div>
-                <div className="text-slate-900 font-semibold mb-1">Diverse Expertise</div>
+              <div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">10+ Industries</div>
+                <div className="text-slate-900 font-semibold mb-2">Diverse Expertise</div>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   Automotive, Medical, Consumer Electronics, and Industrial
                 </p>
@@ -59,14 +63,14 @@ export function StatsSection() {
             </div>
           </div>
 
-          <div className="group bg-white p-8 rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
-            <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center">
-                <Globe2 className="w-7 h-7 text-white" strokeWidth={1.5} />
+          <div className="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center group-hover:bg-cyan-600 transition-colors duration-300">
+                <Globe2 className="w-8 h-8 text-cyan-600 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
               </div>
-              <div className="flex-1">
-                <div className="text-3xl font-bold text-slate-900 mb-2">Global Reach</div>
-                <div className="text-slate-900 font-semibold mb-1">Worldwide Service</div>
+              <div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">Global Reach</div>
+                <div className="text-slate-900 font-semibold mb-2">Worldwide Service</div>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   Serving clients across international markets with excellence
                 </p>

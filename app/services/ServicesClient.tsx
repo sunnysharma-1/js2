@@ -436,18 +436,24 @@ export default function ServicesClient() {
 
               <div className="hero-cta flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 w-full sm:w-auto">
                 <Button
+                  asChild
                   size="lg"
                   className="h-12 sm:h-14 w-full sm:w-auto px-6 sm:px-8 text-sm sm:text-base font-bold bg-sky-500 hover:bg-sky-400 text-white shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:shadow-[0_0_30px_rgba(14,165,233,0.6)] transition-all duration-300 rounded-full"
                 >
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <Link href="/contact">
+                    Start Your Project
+                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  </Link>
                 </Button>
                 <Button
+                  asChild
                   size="lg"
                   variant="outline"
                   className="h-12 sm:h-14 w-full sm:w-auto px-6 sm:px-8 text-sm sm:text-base font-bold border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-600 transition-all duration-300 rounded-full backdrop-blur-sm"
                 >
-                  Explore Capabilities
+                  <Link href="#core-services">
+                    Explore Capabilities
+                  </Link>
                 </Button>
               </div>
 
@@ -560,7 +566,7 @@ export default function ServicesClient() {
       </section>
 
       {/* CORE SERVICE STACK (CLEAN DESIGN, NO SCROLL EFFECT) */}
-      <section className="bg-slate-50 py-10 sm:py-12 md:py-20">
+      <section id="core-services" className="bg-slate-50 py-10 sm:py-12 md:py-20">
         <div className="container max-w-[1600px] px-4 md:px-8 mx-auto">
           <div className="mb-10 md:mb-16 flex flex-col items-center text-center">
             <span className="mb-3 inline-flex items-center rounded-full bg-sky-100 px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wide text-sky-700">

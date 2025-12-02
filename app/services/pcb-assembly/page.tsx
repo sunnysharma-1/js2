@@ -194,7 +194,7 @@ export default function PCBAssemblyPage() {
                 {/* Main image card */}
                 <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl border border-sky-100 bg-white/90 backdrop-blur">
                   <Image
-                    src="/images/design-mode/PCB%20Testing2.jpg"
+                    src="/images/design-mode/PCB-Testing2.jpg"
                     alt="Automated PCB assembly line"
                     fill
                     className="object-cover"
@@ -297,7 +297,7 @@ export default function PCBAssemblyPage() {
               transition={{ duration: 0.6 }}
             >
               <Image
-                src="/images/design-mode/PCB%20Testing2.jpg"
+                src="/images/design-mode/PCB-Testing2.jpg"
                 alt="PCB Assembly Process"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-500"
@@ -346,7 +346,7 @@ export default function PCBAssemblyPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <Image
-                src="/images/design-mode/PCB%20Testing2.jpg"
+                src="/images/design-mode/PCB-Testing2.jpg"
                 alt="PCB testing and inspection"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"

@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import type { FormEvent } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
@@ -15,65 +18,42 @@ import { useRef, useLayoutEffect } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 export function Footer() {
-  const [formData, setFormData] = useState({
-    name: "",
-    contact: "",
-    email: "",
-    message: "",
+  const formSchema = z.object({
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    contact: z.string().regex(/^\+?[\d\s-]{10,}$/, "Please enter a valid 10-digit mobile number"),
+    email: z.string().email("Please enter a valid email address"),
+    message: z.string().min(10, "Message must be at least 10 characters"),
   });
-  const [errors, setErrors] = useState({
-    name: "",
-    contact: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  type FormData = z.infer<typeof formSchema>;
+
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const validateForm = () => {
-    let isValid = true;
-    const newErrors = { name: "", contact: "", email: "", message: "" };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      contact: "",
+      email: "",
+      message: "",
+    },
+  });
 
-    if (formData.name.trim().length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
-      isValid = false;
-    }
-
-    // Indian phone number validation (10 digits)
-    const phoneRegex = /^[6-9]\d{9}$/;
-    if (formData.contact && !phoneRegex.test(formData.contact.replace(/\D/g, ''))) {
-      newErrors.contact = "Please enter a valid 10-digit mobile number";
-      isValid = false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-      isValid = false;
-    }
-
-    if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
 
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    console.log("Form submitted:", formData);
+    console.log("Form submitted:", data);
     setSubmitStatus("success");
-    setFormData({ name: "", contact: "", email: "", message: "" });
+    reset();
     setIsSubmitting(false);
 
     // Reset success message after 3 seconds
@@ -184,29 +164,29 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="h-6 w-6 shrink-0 text-teal-600" />
                 <div>
-                  <h3 className="font-semibold text-slate-800">Visit Us</h3>
+                  <h3 className="font-semibold text-slate-800">Visit Us | See Our Manufacturing Unit</h3>
                   <p className="text-sm text-slate-600">
-                    Come say hello at our locations
-                  </p>
-
-                  {/* Head Office */}
-                  <p className="text-sm font-semibold text-slate-800 mt-2">
-                    Head Office:
-                  </p>
-                  <p className="text-sm text-slate-700 leading-tight">
-                    61/D, Omkar Bhavan, Madalpur, Ellisbridge,
-                    <br />
-                    Ahmedabad, Gujarat 380006
+                    Come see our process
                   </p>
 
                   {/* Manufacturing Unit */}
-                  <p className="text-sm font-semibold text-slate-800 mt-3">
+                  <p className="text-sm font-semibold text-slate-800 mt-2">
                     Manufacturing Unit:
                   </p>
                   <p className="text-sm text-slate-700 leading-tight">
                     B122, GIDC Rd, Electronic Zone, Sector 25,
                     <br />
                     Gandhinagar, Gujarat 382044
+                  </p>
+
+                  {/* Head Office */}
+                  <p className="text-sm font-semibold text-slate-800 mt-3">
+                    Head Office (Administration):
+                  </p>
+                  <p className="text-sm text-slate-700 leading-tight">
+                    61/D, Omkar Bhavan, Madalpur, Ellisbridge,
+                    <br />
+                    Ahmedabad, Gujarat 380006
                   </p>
                 </div>
               </div>
@@ -349,7 +329,7 @@ export function Footer() {
             <h2 className="text-2xl font-bold text-slate-800">Get in Touch</h2>
 
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(onSubmit)}
               className="space-y-3"
               aria-label="Contact form"
               noValidate
@@ -361,14 +341,10 @@ export function Footer() {
                 <Input
                   id="footer-name"
                   placeholder="Your Name"
-                  value={formData.name}
-                  onChange={(e) => {
-                    setFormData({ ...formData, name: e.target.value });
-                    if (errors.name) setErrors({ ...errors, name: "" });
-                  }}
+                  {...register("name")}
                   className={`bg-gray-50 border-gray-200 ${errors.name ? "border-red-500 focus-visible:ring-red-500" : ""}`}
                 />
-                {errors.name && <p className="text-xs text-red-500 ml-1">{errors.name}</p>}
+                {errors.name && <p className="text-xs text-red-500 ml-1">{errors.name.message}</p>}
               </div>
 
               <div className="space-y-1">
@@ -378,16 +354,10 @@ export function Footer() {
                 <Input
                   id="footer-contact"
                   placeholder="Your Contact (10 digits)"
-                  value={formData.contact}
-                  onChange={(e) => {
-                    // Only allow numeric input
-                    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
-                    setFormData({ ...formData, contact: value });
-                    if (errors.contact) setErrors({ ...errors, contact: "" });
-                  }}
+                  {...register("contact")}
                   className={`bg-gray-50 border-gray-200 ${errors.contact ? "border-red-500 focus-visible:ring-red-500" : ""}`}
                 />
-                {errors.contact && <p className="text-xs text-red-500 ml-1">{errors.contact}</p>}
+                {errors.contact && <p className="text-xs text-red-500 ml-1">{errors.contact.message}</p>}
               </div>
 
               <div className="space-y-1">
@@ -398,14 +368,10 @@ export function Footer() {
                   id="footer-email"
                   type="email"
                   placeholder="Your Email"
-                  value={formData.email}
-                  onChange={(e) => {
-                    setFormData({ ...formData, email: e.target.value });
-                    if (errors.email) setErrors({ ...errors, email: "" });
-                  }}
+                  {...register("email")}
                   className={`bg-gray-50 border-gray-200 ${errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}`}
                 />
-                {errors.email && <p className="text-xs text-red-500 ml-1">{errors.email}</p>}
+                {errors.email && <p className="text-xs text-red-500 ml-1">{errors.email.message}</p>}
               </div>
 
               <div className="space-y-1">
@@ -415,14 +381,10 @@ export function Footer() {
                 <Textarea
                   id="footer-message"
                   placeholder="Your Message"
-                  value={formData.message}
-                  onChange={(e) => {
-                    setFormData({ ...formData, message: e.target.value });
-                    if (errors.message) setErrors({ ...errors, message: "" });
-                  }}
+                  {...register("message")}
                   className={`bg-gray-50 border-gray-200 min-h-[100px] ${errors.message ? "border-red-500 focus-visible:ring-red-500" : ""}`}
                 />
-                {errors.message && <p className="text-xs text-red-500 ml-1">{errors.message}</p>}
+                {errors.message && <p className="text-xs text-red-500 ml-1">{errors.message.message}</p>}
               </div>
 
               <Button

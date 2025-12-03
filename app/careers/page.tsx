@@ -6,7 +6,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, Briefcase, Users, Heart, TrendingUp, Target, Award, CheckCircle2, MapPin, Clock, X, Upload } from 'lucide-react'
+import { ArrowRight, Briefcase, Users, Heart, TrendingUp, Target, Award, CheckCircle2, MapPin, Clock, X, Upload, Linkedin, Globe } from 'lucide-react'
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 
 export default function CareersPage() {
   const openPositions = [
@@ -130,26 +133,57 @@ export default function CareersPage() {
     },
   ]
 
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  const ACCEPTED_FILE_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+  const formSchema = z.object({
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    email: z.string().email("Please enter a valid email address"),
+    phone: z.string().regex(/^\+?[\d\s-]{10,}$/, "Please enter a valid phone number (min 10 digits)"),
+    position: z.string().min(1, "Please select a position"),
+    experience: z.string().min(1, "Please enter your years of experience"),
+    linkedin: z.string().url("Please enter a valid LinkedIn URL").optional().or(z.literal("")),
+    portfolio: z.string().url("Please enter a valid Portfolio URL").optional().or(z.literal("")),
+    cv: z
+      .any()
+      .refine((files) => files?.length > 0, "CV is required")
+      .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
+      .refine(
+        (files) => ACCEPTED_FILE_TYPES.includes(files?.[0]?.type),
+        "Only .pdf, .doc, and .docx formats are supported."
+      ),
+  })
+
+  type FormData = z.infer<typeof formSchema>
+
   const [selectedDepartment, setSelectedDepartment] = useState<string>("All")
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
   const [search, setSearch] = useState<string>("")
   const [isApplicationOpen, setIsApplicationOpen] = useState(false)
   const [selectedPosition, setSelectedPosition] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    position: "",
-    cv: null as File | null
-  })
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    position: "",
-    cv: ""
-  })
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+    watch,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      position: "",
+      experience: "",
+      linkedin: "",
+      portfolio: "",
+    }
+  })
+
+  const cvFile = watch("cv");
 
   const departments = useMemo(
     () => ["All", ...Array.from(new Set(openPositions.map((p) => p.department)))],
@@ -170,90 +204,18 @@ export default function CareersPage() {
 
   const handleApplyClick = (positionTitle: string) => {
     setSelectedPosition(positionTitle)
-    setFormData({ name: "", email: "", phone: "", position: positionTitle, cv: null })
-    setErrors({ name: "", email: "", phone: "", position: "", cv: "" })
+    setValue("position", positionTitle)
     setIsApplicationOpen(true)
   }
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFormData((prev) => ({ ...prev, cv: e.target.files![0] }))
-    }
-  }
-
-  const validateForm = () => {
-    let isValid = true
-    const newErrors = { name: "", email: "", phone: "", position: "", cv: "" }
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Full Name is required"
-      isValid = false
-    } else if (formData.name.length < 2) {
-      newErrors.name = "Name must be at least 2 characters"
-      isValid = false
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
-      isValid = false
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address"
-      isValid = false
-    }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required"
-      isValid = false
-    } else if (!/^\+?[\d\s-]{10,}$/.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid phone number (min 10 digits)"
-      isValid = false
-    }
-
-    if (!formData.position) {
-      newErrors.position = "Please select a position"
-      isValid = false
-    }
-
-    if (!formData.cv) {
-      newErrors.cv = "Please upload your CV"
-      isValid = false
-    } else {
-      const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
-      if (!validTypes.includes(formData.cv.type)) {
-        newErrors.cv = "Only PDF and Word documents are allowed"
-        isValid = false
-      } else if (formData.cv.size > 5 * 1024 * 1024) { // 5MB limit
-        newErrors.cv = "File size must be less than 5MB"
-        isValid = false
-      }
-    }
-
-    setErrors(newErrors)
-    return isValid
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateForm()) {
-      return
-    }
-
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
-
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500))
-
-    console.log("Application submitted:", formData)
+    console.log("Application submitted:", data)
     alert(`Application submitted successfully! We'll review your CV and get back to you soon.`)
     setIsApplicationOpen(false)
-    setFormData({ name: "", email: "", phone: "", position: "", cv: null })
-    setErrors({ name: "", email: "", phone: "", position: "", cv: "" })
+    reset()
     setIsSubmitting(false)
   }
 
@@ -790,76 +752,112 @@ export default function CareersPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 p-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 max-h-[80vh] overflow-y-auto">
               {/* Full Name */}
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-900">Full Name</label>
+                <label className="mb-2 block text-sm font-semibold text-slate-900">Full Name *</label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleFormChange}
+                  {...register("name")}
                   placeholder="Enter your full name"
                   className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.name ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
                 />
-                {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name}</p>}
+                {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
               </div>
 
-              {/* Email */}
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-900">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleFormChange}
-                  placeholder="Enter your email"
-                  className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
-                />
-                {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Email */}
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-900">Email Address *</label>
+                  <input
+                    type="email"
+                    {...register("email")}
+                    placeholder="Enter your email"
+                    className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
+                  />
+                  {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-900">Phone Number *</label>
+                  <input
+                    type="tel"
+                    {...register("phone")}
+                    placeholder="Enter your phone number"
+                    className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.phone ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
+                  />
+                  {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
+                </div>
               </div>
 
-              {/* Phone */}
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-900">Phone Number</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleFormChange}
-                  placeholder="Enter your phone number"
-                  className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.phone ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
-                />
-                {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Position */}
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-900">Position *</label>
+                  <select
+                    {...register("position")}
+                    className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.position ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
+                  >
+                    <option value="">Select a position</option>
+                    {openPositions.map((pos) => (
+                      <option key={pos.title} value={pos.title}>
+                        {pos.title}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.position && <p className="mt-1 text-xs text-red-500">{errors.position.message}</p>}
+                </div>
+
+                {/* Experience */}
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-900">Experience (Years) *</label>
+                  <input
+                    type="number"
+                    {...register("experience")}
+                    placeholder="e.g. 3"
+                    className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.experience ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
+                  />
+                  {errors.experience && <p className="mt-1 text-xs text-red-500">{errors.experience.message}</p>}
+                </div>
               </div>
 
-              {/* Position */}
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-900">Position</label>
-                <select
-                  name="position"
-                  value={formData.position}
-                  onChange={handleFormChange}
-                  className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.position ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
-                >
-                  <option value="">Select a position</option>
-                  {openPositions.map((pos) => (
-                    <option key={pos.title} value={pos.title}>
-                      {pos.title} - {pos.category}
-                    </option>
-                  ))}
-                </select>
-                {errors.position && <p className="mt-1 text-xs text-red-500">{errors.position}</p>}
+              {/* LinkedIn & Portfolio */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-900 flex items-center gap-2">
+                    <Linkedin className="h-4 w-4 text-blue-600" /> LinkedIn Profile
+                  </label>
+                  <input
+                    type="url"
+                    {...register("linkedin")}
+                    placeholder="https://linkedin.com/in/..."
+                    className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.linkedin ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
+                  />
+                  {errors.linkedin && <p className="mt-1 text-xs text-red-500">{errors.linkedin.message}</p>}
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-slate-900 flex items-center gap-2">
+                    <Globe className="h-4 w-4 text-emerald-600" /> Portfolio URL
+                  </label>
+                  <input
+                    type="url"
+                    {...register("portfolio")}
+                    placeholder="https://..."
+                    className={`w-full rounded-lg border px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${errors.portfolio ? 'border-red-500 focus:border-red-500' : 'border-slate-200 focus:border-blue-500'}`}
+                  />
+                  {errors.portfolio && <p className="mt-1 text-xs text-red-500">{errors.portfolio.message}</p>}
+                </div>
               </div>
 
               {/* CV Upload */}
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-900">Upload CV (PDF/Word, max 5MB)</label>
+                <label className="mb-2 block text-sm font-semibold text-slate-900">Upload CV (PDF/Word, max 5MB) *</label>
                 <div className="relative">
                   <input
                     type="file"
-                    name="cv"
-                    onChange={handleFileChange}
+                    {...register("cv")}
                     accept=".pdf,.doc,.docx"
                     className="hidden"
                     id="cv-upload"
@@ -871,12 +869,12 @@ export default function CareersPage() {
                     <Upload className={`h-5 w-5 ${errors.cv ? 'text-red-500' : 'text-blue-600'}`} />
                     <div className="text-sm">
                       <p className={`font-medium ${errors.cv ? 'text-red-700' : 'text-blue-700'}`}>
-                        {formData.cv ? formData.cv.name : "Click to upload CV"}
+                        {cvFile && cvFile.length > 0 ? cvFile[0].name : "Click to upload CV"}
                       </p>
                     </div>
                   </label>
                 </div>
-                {errors.cv && <p className="mt-1 text-xs text-red-500">{errors.cv}</p>}
+                {errors.cv && <p className="mt-1 text-xs text-red-500">{errors.cv.message as string}</p>}
               </div>
 
               <div className="pt-2">

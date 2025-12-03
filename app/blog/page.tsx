@@ -193,25 +193,7 @@ export default function BlogPage() {
                 </p>
               </div>
 
-              {/* Stats */}
-              <div className="grid max-w-lg gap-4 sm:grid-cols-3">
-                {[
-                  { number: "150+", label: "Technical Articles" },
-                  { number: "50K+", label: "Annual Readers" },
-                  { number: "Weekly", label: "New Posts" },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + index * 0.08, duration: 0.5 }}
-                    className="rounded-2xl border border-white/12 bg-white/10 px-4 py-3 text-center shadow-sm shadow-black/40"
-                  >
-                    <div className="text-lg font-semibold text-slate-50 md:text-2xl">{stat.number}</div>
-                    <div className="text-[11px] text-slate-200 md:text-xs">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
+
 
               {/* Search + categories (desktop search here) */}
               <div className="space-y-4">
@@ -499,7 +481,7 @@ export default function BlogPage() {
                 </h2>
 
                 <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-md">
-                  Join 50,000+ engineers and industry leaders. Get exclusive insights on PCB assembly, DFM strategies, and emerging tech delivered to your inbox.
+                  Join 5,000+ engineers and industry leaders. Get exclusive insights on PCB assembly, DFM strategies, and emerging tech delivered to your inbox.
                 </p>
 
                 <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">

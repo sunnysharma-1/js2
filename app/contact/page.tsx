@@ -19,8 +19,7 @@ const formSchema = z.object({
   phone: z
     .string()
     .min(1, "Phone number is required")
-    .regex(/^\d+$/, "Phone number must contain only digits")
-    .max(10, "Phone number cannot exceed 10 digits"),
+    .regex(/^\+?[\d\s-]{10,}$/, "Please enter a valid phone number (min 10 digits)"),
   company: z.string().optional(),
   service: z.string().optional(),
   message: z.string().min(1, "Message is required"),
@@ -236,18 +235,18 @@ export default function ContactPage() {
                         <p className="text-sm text-muted-foreground">
                           <span className="font-semibold">Jayshree Instruments</span>
                           <br />
-                          <span className="font-semibold">Head Office:</span>
-                          <br />
-                          61/D, Omkar Bhavan, Madalpur, Ellisbridge,
-                          <br />
-                          Ahmedabad, Gujarat 380006
-                          <br />
-                          <br />
-                          <span className="font-semibold">Manufacturing Unit:</span>
+                          <span className="font-semibold">Manufacturing Unit (Come See Our Process):</span>
                           <br />
                           B122, GIDC Rd, Electronic Zone, Sector 25,
                           <br />
                           Gandhinagar, Gujarat 382044
+                          <br />
+                          <br />
+                          <span className="font-semibold">Head Office (Administration):</span>
+                          <br />
+                          61/D, Omkar Bhavan, Madalpur, Ellisbridge,
+                          <br />
+                          Ahmedabad, Gujarat 380006
                           <br />
                           India
                         </p>

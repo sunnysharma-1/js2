@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,14 +21,65 @@ export function Footer() {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState({
+    name: "",
+    contact: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    // TODO: wire up real submission (API / third-party)
-    // Clear form for now:
-    setFormData({ name: "", contact: "", email: "", message: "" });
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { name: "", contact: "", email: "", message: "" };
+
+    if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+      isValid = false;
+    }
+
+    // Indian phone number validation (10 digits)
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (formData.contact && !phoneRegex.test(formData.contact.replace(/\D/g, ''))) {
+      newErrors.contact = "Please enter a valid 10-digit mobile number";
+      isValid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+      isValid = false;
+    }
+
+    if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    console.log("Form submitted:", formData);
+    setSubmitStatus("success");
+    setFormData({ name: "", contact: "", email: "", message: "" });
+    setIsSubmitting(false);
+
+    // Reset success message after 3 seconds
+    setTimeout(() => setSubmitStatus("idle"), 3000);
+  };
+
 
   const footerRef = useRef<HTMLElement>(null);
 
@@ -83,7 +134,7 @@ export function Footer() {
 
   return (
     <footer ref={footerRef} className="relative border-t bg-white text-slate-800 overflow-hidden">
-      <div className="relative z-10 container mx-auto px-4 max-w-screen-2xl py-8 md:py-10">
+      <div className="relative z-10 container mx-auto px-4 max-w-screen-2xl py-6 md:py-8">
         <div className="grid gap-8 grid-cols-1 md:grid-cols-[1fr_auto_auto_auto_1fr]">
           {/* Contact Information */}
           <div className="footer-col space-y-8">
@@ -301,75 +352,101 @@ export function Footer() {
               onSubmit={handleSubmit}
               className="space-y-3"
               aria-label="Contact form"
+              noValidate
             >
-              <label className="sr-only" htmlFor="footer-name">
-                Your name
-              </label>
-              <Input
-                id="footer-name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                className="bg-gray-50 border-gray-200"
-                required
-              />
+              <div className="space-y-1">
+                <label className="sr-only" htmlFor="footer-name">
+                  Your name
+                </label>
+                <Input
+                  id="footer-name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={(e) => {
+                    setFormData({ ...formData, name: e.target.value });
+                    if (errors.name) setErrors({ ...errors, name: "" });
+                  }}
+                  className={`bg-gray-50 border-gray-200 ${errors.name ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+                />
+                {errors.name && <p className="text-xs text-red-500 ml-1">{errors.name}</p>}
+              </div>
 
-              <label className="sr-only" htmlFor="footer-contact">
-                Your contact number
-              </label>
-              <Input
-                id="footer-contact"
-                placeholder="Your Contact"
-                value={formData.contact}
-                onChange={(e) =>
-                  setFormData({ ...formData, contact: e.target.value })
-                }
-                className="bg-gray-50 border-gray-200"
-              />
+              <div className="space-y-1">
+                <label className="sr-only" htmlFor="footer-contact">
+                  Your contact number
+                </label>
+                <Input
+                  id="footer-contact"
+                  placeholder="Your Contact (10 digits)"
+                  value={formData.contact}
+                  onChange={(e) => {
+                    // Only allow numeric input
+                    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                    setFormData({ ...formData, contact: value });
+                    if (errors.contact) setErrors({ ...errors, contact: "" });
+                  }}
+                  className={`bg-gray-50 border-gray-200 ${errors.contact ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+                />
+                {errors.contact && <p className="text-xs text-red-500 ml-1">{errors.contact}</p>}
+              </div>
 
-              <label className="sr-only" htmlFor="footer-email">
-                Your email
-              </label>
-              <Input
-                id="footer-email"
-                type="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                className="bg-gray-50 border-gray-200"
-                required
-              />
+              <div className="space-y-1">
+                <label className="sr-only" htmlFor="footer-email">
+                  Your email
+                </label>
+                <Input
+                  id="footer-email"
+                  type="email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={(e) => {
+                    setFormData({ ...formData, email: e.target.value });
+                    if (errors.email) setErrors({ ...errors, email: "" });
+                  }}
+                  className={`bg-gray-50 border-gray-200 ${errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+                />
+                {errors.email && <p className="text-xs text-red-500 ml-1">{errors.email}</p>}
+              </div>
 
-              <label className="sr-only" htmlFor="footer-message">
-                Your message
-              </label>
-              <Textarea
-                id="footer-message"
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-                className="bg-gray-50 border-gray-200 min-h-[100px]"
-                required
-              />
+              <div className="space-y-1">
+                <label className="sr-only" htmlFor="footer-message">
+                  Your message
+                </label>
+                <Textarea
+                  id="footer-message"
+                  placeholder="Your Message"
+                  value={formData.message}
+                  onChange={(e) => {
+                    setFormData({ ...formData, message: e.target.value });
+                    if (errors.message) setErrors({ ...errors, message: "" });
+                  }}
+                  className={`bg-gray-50 border-gray-200 min-h-[100px] ${errors.message ? "border-red-500 focus-visible:ring-red-500" : ""}`}
+                />
+                {errors.message && <p className="text-xs text-red-500 ml-1">{errors.message}</p>}
+              </div>
 
               <Button
                 type="submit"
-                className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+                disabled={isSubmitting}
+                className={`w-full text-white transition-all ${submitStatus === "success"
+                  ? "bg-emerald-600 hover:bg-emerald-700"
+                  : "bg-teal-600 hover:bg-teal-700"
+                  }`}
               >
-                Send Message <Send className="ml-2 h-4 w-4" />
+                {isSubmitting ? (
+                  "Sending..."
+                ) : submitStatus === "success" ? (
+                  <>Message Sent <CheckCircle2 className="ml-2 h-4 w-4" /></>
+                ) : (
+                  <>Send Message <Send className="ml-2 h-4 w-4" /></>
+                )}
               </Button>
             </form>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="footer-copyright mt-8 pt-6 border-t border-gray-200 text-center">
+        <div className="footer-copyright mt-6 pt-4 border-t border-gray-200 text-center">
           <p className="text-sm text-slate-600">
             © {new Date().getFullYear()} Jayshree Instruments. All rights
             reserved.

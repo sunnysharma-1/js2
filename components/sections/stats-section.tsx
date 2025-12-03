@@ -44,7 +44,7 @@ export function StatsSection() {
   ]
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden bg-slate-50">
+    <section className="relative py-16 lg:py-24 overflow-hidden bg-slate-50">
       {/* Background Elements */}
 
 

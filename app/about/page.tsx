@@ -1526,7 +1526,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
+          <div className="flex overflow-x-auto pb-6 gap-4 snap-x snap-mandatory md:grid md:gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16 no-scrollbar">
             {[
               {
 
@@ -1562,10 +1562,10 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="group relative"
+                className="group relative min-w-[85vw] md:min-w-0 snap-center first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-                <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700 group-hover:border-[#0066CC]/50 transition-all duration-300 h-full flex flex-col">
+                <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 md:p-8 border border-slate-700 group-hover:border-[#0066CC]/50 transition-all duration-300 h-full flex flex-col">
                   {/* Year Badge */}
                   {/* <div className="inline-flex items-center gap-2 mb-4 w-fit">
                     <span className="text-xs font-bold text-[#00A896] bg-[#00A896]/10 px-3 py-1 rounded-full">
@@ -1575,13 +1575,13 @@ export default function AboutPage() {
 
                   {/* Icon */}
                   <div
-                    className={`w-16 h-16 rounded-xl bg-gradient-to-br ${cert.color} flex items-center justify-center text-2xl mb-4 shadow-lg group-hover:scale-110 transition-transform`}
+                    className={`w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${cert.color} flex items-center justify-center text-xl md:text-2xl mb-4 shadow-lg group-hover:scale-110 transition-transform`}
                   >
                     {cert.icon}
                   </div>
 
                   {/* Certification Name */}
-                  <h3 className="text-2xl font-bold text-white mb-2">{cert.name}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{cert.name}</h3>
                   <p className="text-sm text-[#00A896] font-semibold mb-4">{cert.fullName}</p>
 
                   {/* Description */}
@@ -1613,7 +1613,7 @@ export default function AboutPage() {
             <div className="relative z-10">
               <h3 className="text-3xl font-bold text-white mb-8 text-center">Our Certification Portfolio</h3>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center justify-items-center">
+              <div className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory md:grid md:grid-cols-3 md:gap-8 items-center md:justify-items-center no-scrollbar">
                 {[
                   {
                     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9001-xwLQ0mNZ14VJTQAoYgagrqVfirAT95.webp",
@@ -1638,7 +1638,7 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     whileHover={{ scale: 1.05, y: -8 }}
-                    className="group relative w-full max-w-xs"
+                    className="group relative min-w-[280px] md:min-w-0 w-full max-w-xs snap-center flex-shrink-0"
                   >
                     <div className="relative h-72 rounded-2xl overflow-hidden shadow-xl border-2 border-slate-700 group-hover:border-[#0066CC]/50 transition-all bg-white p-6 flex items-center justify-center">
                       <Image

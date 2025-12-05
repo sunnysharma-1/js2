@@ -645,11 +645,12 @@ export default function ServicesClient() {
                   Our engineering team will map the right service stack for you.
                 </p>
                 <Button
+                  asChild
                   variant="outline"
                   size="sm"
                   className="w-full bg-white hover:bg-slate-50 text-slate-700 border-slate-200"
                 >
-                  Consult Engineering Team
+                  <Link href="/contact">Consult Engineering Team</Link>
                 </Button>
               </div>
             </div>
@@ -795,11 +796,12 @@ export default function ServicesClient() {
                           </Button>
                         </Link>
                         <Button
+                          asChild
                           size="lg"
                           variant="outline"
                           className="border-slate-300 text-slate-700 hover:border-sky-500 hover:text-sky-700 hover:bg-sky-50 text-sm sm:text-base"
                         >
-                          Request Quote
+                          <Link href="/contact?type=quote">Request Quote</Link>
                         </Button>
                       </div>
                     </div>
@@ -887,7 +889,7 @@ export default function ServicesClient() {
                 ))}
               </ul>
 
-              
+
             </div>
           </div>
         </div>

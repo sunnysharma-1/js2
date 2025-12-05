@@ -11,6 +11,12 @@ import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useLayoutEffect } from "react";
@@ -112,6 +118,28 @@ export function Footer() {
     return () => mm.revert();
   }, []);
 
+  const footerLinks = {
+    services: [
+      { label: "All Services", href: "/services" },
+      { label: "PCB Assembly", href: "/services/pcb" },
+      { label: "Prototype – Development & Support", href: "/services/prototyping" },
+      { label: "Build Box", href: "/services/box-build" },
+      { label: "Wire Harness & Cable Harness", href: "/services/wire-harness" },
+      { label: "Global Purchase", href: "/services/global-purchasing" },
+      { label: "Design Engineering", href: "/services/design-engineering" },
+      { label: "After Sales Support", href: "/services/after-sales-support" },
+    ],
+    about: [
+      { label: "About Us", href: "/about" },
+      { label: "Career", href: "/careers" },
+    ],
+    quickLinks: [
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "Blog", href: "/blog" },
+      { label: "Reach Us", href: "/contact" },
+    ],
+  };
+
   return (
     <footer ref={footerRef} className="relative border-t bg-white text-slate-800 overflow-hidden">
       <div className="relative z-10 container mx-auto px-4 max-w-screen-2xl py-6 md:py-8">
@@ -193,135 +221,97 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Services */}
-          <div className="footer-col space-y-4">
-            <h3 className="font-semibold text-slate-800">Services</h3>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li>
-                <Link
-                  href="/services"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  All Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/pcb"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  PCB Assembly
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/prototyping"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Prototype – Development &amp; Support
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/box-build"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Build Box
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/wire-harness"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Wire Harness &amp; Cable Harness
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/global-purchasing"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Global Purchase
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/design-engineering"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Design Engineering
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/after-sales-support"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  After Sales Support
-                </Link>
-              </li>
-            </ul>
+          {/* Mobile Accordion Navigation */}
+          <div className="md:hidden space-y-4">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="services">
+                <AccordionTrigger className="text-slate-800 font-semibold">Services</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="space-y-2 text-sm text-slate-600 pt-2">
+                    {footerLinks.services.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className="text-teal-600 hover:text-teal-700 transition-colors">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="about">
+                <AccordionTrigger className="text-slate-800 font-semibold">About</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="space-y-2 text-sm text-slate-600 pt-2">
+                    {footerLinks.about.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className="text-teal-600 hover:text-teal-700 transition-colors">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="quickLinks">
+                <AccordionTrigger className="text-slate-800 font-semibold">Quick Links</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="space-y-2 text-sm text-slate-600 pt-2">
+                    {footerLinks.quickLinks.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className="text-teal-600 hover:text-teal-700 transition-colors">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
 
-          {/* About */}
-          <div className="footer-col space-y-4">
-            <h3 className="font-semibold text-slate-800">About</h3>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
+          {/* Desktop Navigation */}
+          <div className="hidden md:contents">
+            {/* Services */}
+            <div className="footer-col space-y-4">
+              <h3 className="font-semibold text-slate-800">Services</h3>
+              <ul className="space-y-2 text-sm text-slate-600">
+                {footerLinks.services.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-teal-600 hover:text-teal-700 transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Career
-                </Link>
-              </li>
-              <li>
+            {/* About */}
+            <div className="footer-col space-y-4">
+              <h3 className="font-semibold text-slate-800">About</h3>
+              <ul className="space-y-2 text-sm text-slate-600">
+                {footerLinks.about.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-teal-600 hover:text-teal-700 transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              </li>
-            </ul>
-          </div>
-
-          {/* Quick Links */}
-          <div className="footer-col space-y-4">
-            <h3 className="font-semibold text-slate-800">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li>
-                <Link
-                  href="/portfolio"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  Reach Us
-                </Link>
-              </li>
-            </ul>
+            {/* Quick Links */}
+            <div className="footer-col space-y-4">
+              <h3 className="font-semibold text-slate-800">Quick Links</h3>
+              <ul className="space-y-2 text-sm text-slate-600">
+                {footerLinks.quickLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-teal-600 hover:text-teal-700 transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Contact Form */}

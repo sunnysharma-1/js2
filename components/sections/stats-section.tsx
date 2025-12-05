@@ -75,7 +75,7 @@ export function StatsSection() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.id}
@@ -87,19 +87,19 @@ export function StatsSection() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-emerald-500/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="relative h-full bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-1">
-                <div className={`w-14 h-14 rounded-xl bg-${stat.color}-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <stat.icon className={`w-7 h-7 text-${stat.color}-600`} strokeWidth={1.5} />
+              <div className="relative h-full bg-white border border-slate-200 rounded-2xl p-4 md:p-8 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-1">
+                <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl bg-${stat.color}-50 flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <stat.icon className={`w-5 h-5 md:w-7 md:h-7 text-${stat.color}-600`} strokeWidth={1.5} />
                 </div>
 
                 <div className="mb-2">
-                  <span className="text-4xl font-bold text-slate-900 tracking-tight">{stat.value}</span>
-                  <span className={`text-lg font-medium text-${stat.color}-600 ml-2`}>{stat.suffix}</span>
+                  <span className="text-2xl md:text-4xl font-bold text-slate-900 tracking-tight">{stat.value}</span>
+                  <span className={`text-sm md:text-lg font-medium text-${stat.color}-600 ml-1 md:ml-2`}>{stat.suffix}</span>
                 </div>
 
-                <h3 className="text-lg font-semibold text-slate-800 mb-3">{stat.label}</h3>
+                <h3 className="text-sm md:text-lg font-semibold text-slate-800 mb-2 md:mb-3">{stat.label}</h3>
 
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <p className="text-xs md:text-sm text-slate-500 leading-relaxed">
                   {stat.description}
                 </p>
               </div>

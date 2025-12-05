@@ -260,13 +260,13 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-8 text-center lg:text-left"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-block px-4 py-2 bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 rounded-full border border-[#0066CC]/40 backdrop-blur-sm"
+                className="inline-block mx-auto lg:mx-0 px-4 py-2 bg-gradient-to-r from-[#0066CC]/20 to-[#00A896]/20 rounded-full border border-[#0066CC]/40 backdrop-blur-sm"
               >
                 <span className="text-xl font-semibold text-sky-100">Since 2001</span>
               </motion.div>
@@ -319,17 +319,17 @@ export default function AboutPage() {
               </motion.div>
 
               {/* Animated Stats Grid */}
-              <div ref={yearsCounter.ref} className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-4">
+              <div ref={yearsCounter.ref} className="grid grid-cols-3 gap-2 md:gap-6 pt-4">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
+                  className="text-center p-2 md:p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
                 >
-                  <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
+                  <div className="text-xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-1 md:mb-2">
                     {yearsCounter.count}+
                   </div>
-                  <div className="text-sm text-slate-300 font-medium">
+                  <div className="text-[10px] md:text-sm text-slate-300 font-medium">
                     Years Experience
                   </div>
                 </motion.div>
@@ -339,12 +339,12 @@ export default function AboutPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                   ref={projectsCounter.ref}
-                  className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
+                  className="text-center p-2 md:p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
                 >
-                  <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
+                  <div className="text-xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-1 md:mb-2">
                     {projectsCounter.count}+
                   </div>
-                  <div className="text-sm text-slate-300 font-medium">
+                  <div className="text-[10px] md:text-sm text-slate-300 font-medium">
                     Projects Delivered
                   </div>
                 </motion.div>
@@ -354,12 +354,12 @@ export default function AboutPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                   ref={industriesCounter.ref}
-                  className="text-center p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
+                  className="text-center p-2 md:p-4 rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.85)] border border-slate-700/70 bg-slate-900/80 hover:border-sky-400/50 hover:shadow-[0_22px_60px_rgba(15,23,42,0.95)] transition-all"
                 >
-                  <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-2">
+                  <div className="text-xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-[#22c55e] mb-1 md:mb-2">
                     {industriesCounter.count}+
                   </div>
-                  <div className="text-sm text-slate-300 font-medium">
+                  <div className="text-[10px] md:text-sm text-slate-300 font-medium">
                     Industries Served
                   </div>
                 </motion.div>
@@ -370,7 +370,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="flex flex-wrap gap-3"
+                className="flex flex-wrap gap-3 justify-center lg:justify-start"
               >
                 {["ISO 9001", "ISO 14001", "ISO 45001"].map((cert, index) => (
                   <motion.div

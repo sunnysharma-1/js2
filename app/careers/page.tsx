@@ -284,23 +284,23 @@ export default function CareersPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
 
-                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white">
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-12">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-white">
                     <div>
-                      <div className="text-3xl font-bold text-blue-400">150+</div>
-                      <div className="text-sm text-slate-400 mt-1">Team Members</div>
+                      <div className="text-xl md:text-3xl font-bold text-blue-400">150+</div>
+                      <div className="text-xs md:text-sm text-slate-400 mt-1">Team Members</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-bold text-indigo-400">25+</div>
-                      <div className="text-sm text-slate-400 mt-1">Years of Excellence</div>
+                      <div className="text-xl md:text-3xl font-bold text-indigo-400">25+</div>
+                      <div className="text-xs md:text-sm text-slate-400 mt-1">Years of Excellence</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-bold text-purple-400">2</div>
-                      <div className="text-sm text-slate-400 mt-1">Global Locations</div>
+                      <div className="text-xl md:text-3xl font-bold text-purple-400">2</div>
+                      <div className="text-xs md:text-sm text-slate-400 mt-1">Global Locations</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-bold text-emerald-400">100%</div>
-                      <div className="text-sm text-slate-400 mt-1">Employee Satisfaction</div>
+                      <div className="text-xl md:text-3xl font-bold text-emerald-400">100%</div>
+                      <div className="text-xs md:text-sm text-slate-400 mt-1">Employee Satisfaction</div>
                     </div>
                   </div>
                 </div>

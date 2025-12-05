@@ -172,7 +172,7 @@ export default function BlogPage() {
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-8 text-center lg:text-left"
             >
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-100 backdrop-blur">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -187,7 +187,7 @@ export default function BlogPage() {
                   </span>{" "}
                   floor.
                 </h1>
-                <p className="max-w-xl text-pretty text-sm md:text-base text-slate-200">
+                <p className="max-w-xl mx-auto lg:mx-0 text-pretty text-sm md:text-base text-slate-200">
                   Deep dives on PCB assembly, wire harnessing, box build, and more—written by engineers and
                   practitioners at Jayshree Instruments.
                 </p>
@@ -207,7 +207,7 @@ export default function BlogPage() {
                   />
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                   {categories.map((category) => {
                     const isActive = category === selectedCategory
                     return (

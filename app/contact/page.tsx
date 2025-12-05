@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useState } from "react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -27,7 +28,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>
 
-export default function ContactPage() {
+function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
 
@@ -51,6 +52,271 @@ export default function ContactPage() {
     setTimeout(() => setSubmitSuccess(false), 3000)
   }
 
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <Card className="shadow-md">
+        <CardContent className="p-6 md:p-8">
+          <h2 className="mb-2 text-2xl font-bold md:text-3xl">Send Us a Message</h2>
+          <p className="mb-6 text-sm text-muted-foreground">
+            Share your details and requirements, and our team will get back to you with the next steps.
+          </p>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="firstName">First Name *</Label>
+                <Input
+                  id="firstName"
+                  placeholder="John"
+                  {...register("firstName")}
+                  className={errors.firstName ? "border-red-500" : ""}
+                />
+                {errors.firstName && (
+                  <p className="text-xs text-red-500">{errors.firstName.message}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="lastName">Last Name *</Label>
+                <Input
+                  id="lastName"
+                  placeholder="Doe"
+                  {...register("lastName")}
+                  className={errors.lastName ? "border-red-500" : ""}
+                />
+                {errors.lastName && (
+                  <p className="text-xs text-red-500">{errors.lastName.message}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="email">Email *</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="john@example.com"
+                {...register("email")}
+                className={errors.email ? "border-red-500" : ""}
+              />
+              {errors.email && (
+                <p className="text-xs text-red-500">{errors.email.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number *</Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="9876543210"
+                {...register("phone")}
+                className={errors.phone ? "border-red-500" : ""}
+              />
+              {errors.phone && (
+                <p className="text-xs text-red-500">{errors.phone.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="company">Company Name</Label>
+              <Input id="company" placeholder="Your Company" {...register("company")} />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="service">Service Interested In</Label>
+              <select
+                id="service"
+                {...register("service")}
+                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <option value="">Select a service</option>
+                <option value="pcb">PCB Assembly</option>
+                <option value="prototyping">Prototyping</option>
+                <option value="wire-harness">Wire Harness &amp; Box Build</option>
+                <option value="design">Design Engineering</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            {/* New: File Upload */}
+            <div className="space-y-2">
+              <Label htmlFor="file">Upload File (Optional)</Label>
+              <Input id="file" type="file" />
+              <p className="text-xs text-muted-foreground">
+                You can attach BOM, Gerber files, drawings, or project documents.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="message">Message *</Label>
+              <Textarea
+                id="message"
+                placeholder="Tell us about your project requirements..."
+                rows={5}
+                {...register("message")}
+                className={errors.message ? "border-red-500" : ""}
+              />
+              {errors.message && (
+                <p className="text-xs text-red-500">{errors.message.message}</p>
+              )}
+            </div>
+
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full bg-gradient-to-r from-[#0066CC] to-[#00A896]"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </Button>
+            {submitSuccess && (
+              <p className="text-center text-sm text-green-600 font-medium">
+                Message sent successfully!
+              </p>
+            )}
+          </form>
+        </CardContent>
+      </Card>
+    </motion.div>
+  )
+}
+
+function ContactInfo() {
+  return (
+    <motion.div
+      className="space-y-6"
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div>
+        <h2 className="mb-3 text-2xl font-bold md:text-3xl">Contact Information</h2>
+        <p className="mb-6 text-sm text-muted-foreground md:text-base">
+          Reach out to us through any of the following channels. Our team is ready to assist you with your
+          electronics manufacturing needs.
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        {/* Address Card */}
+        <Card className="shadow-sm">
+          <CardContent className="p-5 md:p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-50">
+                <MapPin className="h-6 w-6 text-[#0066CC]" />
+              </div>
+              <div>
+                <h3 className="mb-1 font-semibold">Address</h3>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-semibold">Jayshree Instruments</span>
+                  <br />
+                  <span className="font-semibold">Manufacturing Unit (Come See Our Process):</span>
+                  <br />
+                  B122, GIDC Rd, Electronic Zone, Sector 25,
+                  <br />
+                  Gandhinagar, Gujarat 382044
+                  <br />
+                  <br />
+                  <span className="font-semibold">Head Office (Administration):</span>
+                  <br />
+                  61/D, Omkar Bhavan, Madalpur, Ellisbridge,
+                  <br />
+                  Ahmedabad, Gujarat 380006
+                  <br />
+                  India
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Phone Card */}
+        <Card className="shadow-sm">
+          <CardContent className="p-5 md:p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-teal-50">
+                <Phone className="h-6 w-6 text-[#00A896]" />
+              </div>
+              <div>
+                <h3 className="mb-1 font-semibold">Phone</h3>
+                <p className="text-sm text-muted-foreground space-y-1">
+                  <span className="block">
+                    <a
+                      href="tel:+918866968821"
+                      className="text-[#00A896] hover:underline"
+                    >
+                      +91 8866 968 821
+                    </a>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Email Card */}
+        <Card className="shadow-sm">
+          <CardContent className="p-5 md:p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-50">
+                <Mail className="h-6 w-6 text-[#0066CC]" />
+              </div>
+              <div>
+                <h3 className="mb-1 font-semibold">Email</h3>
+                <p className="text-sm text-muted-foreground space-y-1">
+                  <span className="block">
+                    <a
+                      href="mailto:info@jinst.in"
+                      className="text-[#0066CC] hover:underline"
+                    >
+                      info@jinst.in
+                    </a>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Hours Card */}
+        <Card className="shadow-sm">
+          <CardContent className="p-5 md:p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-teal-50">
+                <Clock className="h-6 w-6 text-[#00A896]" />
+              </div>
+              <div>
+                <h3 className="mb-1 font-semibold">Business Hours</h3>
+                <p className="text-sm text-muted-foreground">
+                  Monday - Friday: 9:00 AM - 6:00 PM
+                  <br />
+                  Saturday: 9:00 AM - 1:00 PM
+                  <br />
+                  Sunday: Closed
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="border-none bg-gradient-to-br from-[#0066CC] to-[#00A896] text-white shadow-md">
+        <CardContent className="p-5 md:p-6">
+          <h3 className="mb-2 font-semibold">Quick Response Guarantee</h3>
+          <p className="text-sm text-white/90">
+            We typically respond to all inquiries within 24 hours during business days. For urgent matters,
+            please call us directly.
+          </p>
+        </CardContent>
+      </Card>
+    </motion.div>
+  )
+}
+
+export default function ContactPage() {
   return (
     <main className="min-h-screen bg-slate-50">
       {/* Hero Section */}
@@ -76,265 +342,26 @@ export default function ContactPage() {
       {/* Contact Form and Info */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Card className="shadow-md">
-                <CardContent className="p-6 md:p-8">
-                  <h2 className="mb-2 text-2xl font-bold md:text-3xl">Send Us a Message</h2>
-                  <p className="mb-6 text-sm text-muted-foreground">
-                    Share your details and requirements, and our team will get back to you with the next steps.
-                  </p>
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid gap-4 md:grid-cols-2">
-                      <div className="space-y-2">
-                        <Label htmlFor="firstName">First Name *</Label>
-                        <Input
-                          id="firstName"
-                          placeholder="John"
-                          {...register("firstName")}
-                          className={errors.firstName ? "border-red-500" : ""}
-                        />
-                        {errors.firstName && (
-                          <p className="text-xs text-red-500">{errors.firstName.message}</p>
-                        )}
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="lastName">Last Name *</Label>
-                        <Input
-                          id="lastName"
-                          placeholder="Doe"
-                          {...register("lastName")}
-                          className={errors.lastName ? "border-red-500" : ""}
-                        />
-                        {errors.lastName && (
-                          <p className="text-xs text-red-500">{errors.lastName.message}</p>
-                        )}
-                      </div>
-                    </div>
+          {/* Mobile View: Tabs */}
+          <div className="lg:hidden">
+            <Tabs defaultValue="form" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-8">
+                <TabsTrigger value="form">Send Message</TabsTrigger>
+                <TabsTrigger value="info">Contact Info</TabsTrigger>
+              </TabsList>
+              <TabsContent value="form">
+                <ContactForm />
+              </TabsContent>
+              <TabsContent value="info">
+                <ContactInfo />
+              </TabsContent>
+            </Tabs>
+          </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="john@example.com"
-                        {...register("email")}
-                        className={errors.email ? "border-red-500" : ""}
-                      />
-                      {errors.email && (
-                        <p className="text-xs text-red-500">{errors.email.message}</p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number *</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="9876543210"
-                        {...register("phone")}
-                        className={errors.phone ? "border-red-500" : ""}
-                      />
-                      {errors.phone && (
-                        <p className="text-xs text-red-500">{errors.phone.message}</p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="company">Company Name</Label>
-                      <Input id="company" placeholder="Your Company" {...register("company")} />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="service">Service Interested In</Label>
-                      <select
-                        id="service"
-                        {...register("service")}
-                        className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      >
-                        <option value="">Select a service</option>
-                        <option value="pcb">PCB Assembly</option>
-                        <option value="prototyping">Prototyping</option>
-                        <option value="wire-harness">Wire Harness &amp; Box Build</option>
-                        <option value="design">Design Engineering</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-
-                    {/* New: File Upload */}
-                    <div className="space-y-2">
-                      <Label htmlFor="file">Upload File (Optional)</Label>
-                      <Input id="file" type="file" />
-                      <p className="text-xs text-muted-foreground">
-                        You can attach BOM, Gerber files, drawings, or project documents.
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell us about your project requirements..."
-                        rows={5}
-                        {...register("message")}
-                        className={errors.message ? "border-red-500" : ""}
-                      />
-                      {errors.message && (
-                        <p className="text-xs text-red-500">{errors.message.message}</p>
-                      )}
-                    </div>
-
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-gradient-to-r from-[#0066CC] to-[#00A896]"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                    </Button>
-                    {submitSuccess && (
-                      <p className="text-center text-sm text-green-600 font-medium">
-                        Message sent successfully!
-                      </p>
-                    )}
-                  </form>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Contact Information */}
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div>
-                <h2 className="mb-3 text-2xl font-bold md:text-3xl">Contact Information</h2>
-                <p className="mb-6 text-sm text-muted-foreground md:text-base">
-                  Reach out to us through any of the following channels. Our team is ready to assist you with your
-                  electronics manufacturing needs.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                {/* Address Card */}
-                <Card className="shadow-sm">
-                  <CardContent className="p-5 md:p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-50">
-                        <MapPin className="h-6 w-6 text-[#0066CC]" />
-                      </div>
-                      <div>
-                        <h3 className="mb-1 font-semibold">Address</h3>
-                        <p className="text-sm text-muted-foreground">
-                          <span className="font-semibold">Jayshree Instruments</span>
-                          <br />
-                          <span className="font-semibold">Manufacturing Unit (Come See Our Process):</span>
-                          <br />
-                          B122, GIDC Rd, Electronic Zone, Sector 25,
-                          <br />
-                          Gandhinagar, Gujarat 382044
-                          <br />
-                          <br />
-                          <span className="font-semibold">Head Office (Administration):</span>
-                          <br />
-                          61/D, Omkar Bhavan, Madalpur, Ellisbridge,
-                          <br />
-                          Ahmedabad, Gujarat 380006
-                          <br />
-                          India
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Phone Card */}
-                <Card className="shadow-sm">
-                  <CardContent className="p-5 md:p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-teal-50">
-                        <Phone className="h-6 w-6 text-[#00A896]" />
-                      </div>
-                      <div>
-                        <h3 className="mb-1 font-semibold">Phone</h3>
-                        <p className="text-sm text-muted-foreground space-y-1">
-                          <span className="block">
-                            <a
-                              href="tel:+918866968821"
-                              className="text-[#00A896] hover:underline"
-                            >
-                              +91 8866 968 821
-                            </a>
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Email Card */}
-                <Card className="shadow-sm">
-                  <CardContent className="p-5 md:p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-50">
-                        <Mail className="h-6 w-6 text-[#0066CC]" />
-                      </div>
-                      <div>
-                        <h3 className="mb-1 font-semibold">Email</h3>
-                        <p className="text-sm text-muted-foreground space-y-1">
-                          <span className="block">
-                            <a
-                              href="mailto:info@jinst.in"
-                              className="text-[#0066CC] hover:underline"
-                            >
-                              info@jinst.in
-                            </a>
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Hours Card */}
-                <Card className="shadow-sm">
-                  <CardContent className="p-5 md:p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-teal-50">
-                        <Clock className="h-6 w-6 text-[#00A896]" />
-                      </div>
-                      <div>
-                        <h3 className="mb-1 font-semibold">Business Hours</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Monday - Friday: 9:00 AM - 6:00 PM
-                          <br />
-                          Saturday: 9:00 AM - 1:00 PM
-                          <br />
-                          Sunday: Closed
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <Card className="border-none bg-gradient-to-br from-[#0066CC] to-[#00A896] text-white shadow-md">
-                <CardContent className="p-5 md:p-6">
-                  <h3 className="mb-2 font-semibold">Quick Response Guarantee</h3>
-                  <p className="text-sm text-white/90">
-                    We typically respond to all inquiries within 24 hours during business days. For urgent matters,
-                    please call us directly.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+          {/* Desktop View: Grid */}
+          <div className="hidden lg:grid gap-12 lg:grid-cols-2 lg:items-start">
+            <ContactForm />
+            <ContactInfo />
           </div>
         </div>
       </section>
